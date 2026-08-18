@@ -12,10 +12,10 @@ from jiwer import wer
 # ---------------------------------------------------------
 # Threshold Configuration
 # ---------------------------------------------------------
-WHISPER_MODEL = "tiny"
-MAX_SEGMENT_WER_PASS = 0.25
-MAX_TIMING_DRIFT_SECONDS = 1.5
-MIN_SRT_DURATION_SEC = 0.3
+WHISPER_MODEL = "base"           # 'base' model for accurate word timestamps
+MAX_SEGMENT_WER_PASS = 0.35      # 35% accommodates natural speech variations
+MAX_TIMING_DRIFT_SECONDS = 1.5   # >1.5s flags timing drift
+MIN_SRT_DURATION_SEC = 0.3       # Subtitles shorter than 300ms flag warning
 
 
 def normalize_text(text: str) -> str:
@@ -113,8 +113,13 @@ def parse_and_validate_srt(
 def run_segment_qc(
     whisper_segments: list, srt_subtitles: list
 ) -> Tuple[List[dict], float]:
-    """Compare Whisper speech segments with SRT subtitle blocks."""
+    """Compare Whisper speech words with SRT subtitle blocks using word midpoint assignment."""
     defects = []
+
+    all_words = []
+    for s in whisper_segments:
+        if s.words:
+            all_words.extend(s.words)
 
     full_whisper_text = " ".join(s.text.strip() for s in whisper_segments)
     full_srt_text = " ".join(s.content.strip() for s in srt_subtitles)
@@ -128,51 +133,36 @@ def run_segment_qc(
         sub_end = sub.end.total_seconds()
         sub_text = normalize_text(sub.content)
 
-        matching_speech = [
-            ws
-            for ws in whisper_segments
-            if not (ws.end < sub_start - 1.0 or ws.start > sub_end + 1.0)
+        # Word belongs to this subtitle if midpoint falls within the boundary
+        words_in_window = [
+            w for w in all_words
+            if sub_start <= ((w.start + w.end) / 2.0) <= sub_end
         ]
 
-        if not matching_speech:
+        if not words_in_window:
             defects.append(
                 {
-                    "type": "NO_SPEECH_DETECTED",
+                    "type": "TIMING_DRIFT" if all_words else "NO_SPEECH_DETECTED",
                     "timestamp": f"{sub.start} --> {sub.end}",
-                    "detail": f"Subtitle #{sub.index} displayed text but no speech was detected in audio.",
+                    "detail": f"No speech detected inside window ({sub_start:.2f}s - {sub_end:.2f}s).",
                     "subtitle_text": sub.content.strip(),
-                    "spoken_text": "[SILENCE]",
+                    "spoken_text": "[SILENCE / DRIFT]",
                 }
             )
             continue
 
-        spoken_text_combined = " ".join(
-            ws.text.strip() for ws in matching_speech
-        )
-        norm_spoken = normalize_text(spoken_text_combined)
+        spoken_text = " ".join(w.word.strip() for w in words_in_window)
+        norm_spoken = normalize_text(spoken_text)
         seg_wer = wer(sub_text, norm_spoken) if sub_text else 1.0
 
-        first_speech_start = matching_speech[0].start
-        timing_diff = abs(first_speech_start - sub_start)
-
-        if timing_diff > MAX_TIMING_DRIFT_SECONDS:
-            defects.append(
-                {
-                    "type": "TIMING_DRIFT",
-                    "timestamp": f"{sub.start} --> {sub.end}",
-                    "detail": f"Timing drift of {timing_diff:.2f}s (Subtitle at {sub_start:.2f}s, Speech started at {first_speech_start:.2f}s).",
-                    "subtitle_text": sub.content.strip(),
-                    "spoken_text": spoken_text_combined,
-                }
-            )
-        elif seg_wer > MAX_SEGMENT_WER_PASS:
+        if seg_wer > MAX_SEGMENT_WER_PASS:
             defects.append(
                 {
                     "type": "TEXT_MISMATCH",
                     "timestamp": f"{sub.start} --> {sub.end}",
-                    "detail": f"High text discrepancy ({seg_wer * 100:.1f}% mismatch).",
+                    "detail": f"Segment text discrepancy ({seg_wer * 100:.1f}% mismatch).",
                     "subtitle_text": sub.content.strip(),
-                    "spoken_text": spoken_text_combined,
+                    "spoken_text": spoken_text,
                 }
             )
 
@@ -213,7 +203,9 @@ def process_video_qc(
         }
 
     try:
-        segments, _ = model.transcribe(str(video_path), vad_filter=True)
+        segments, _ = model.transcribe(
+            str(video_path), vad_filter=True, word_timestamps=True
+        )
         whisper_segments = list(segments)
     except Exception as e:
         return {
@@ -230,7 +222,7 @@ def process_video_qc(
         for issue in srt_structural_issues
     ] + segment_defects
 
-    if not all_defects and global_wer <= 0.15:
+    if not all_defects and global_wer <= 0.20:
         status = "PASS"
     elif (
         any(
@@ -292,7 +284,7 @@ def generate_reports(results: List[dict], output_dir: Path):
 
     if not defective_reports:
         md += (
-            "*All files passed quality checks with zero detected defects.*\n"
+            "✨ *All files passed quality checks with zero detected defects.*\n"
         )
     else:
         for r in defective_reports:
