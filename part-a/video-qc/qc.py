@@ -3,157 +3,349 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 import srt
 from faster_whisper import WhisperModel
 from jiwer import wer
 
 # ---------------------------------------------------------
-# Configuration
+# Threshold Configuration
 # ---------------------------------------------------------
-
 WHISPER_MODEL = "tiny"
-MAX_WER_PASS = 0.20
-MAX_WER_REVIEW = 0.40
-MAX_TIMING_DIFF_SECONDS = 2.0
+MAX_SEGMENT_WER_PASS = 0.25
+MAX_TIMING_DRIFT_SECONDS = 1.5
+MIN_SRT_DURATION_SEC = 0.3
 
-
-# ---------------------------------------------------------
-# Utility functions
-# ---------------------------------------------------------
 
 def normalize_text(text: str) -> str:
-    """Normalize text before comparison."""
+    """Normalize text for reliable comparison."""
     text = text.lower()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 
-def run_ffprobe(video_path: Path) -> dict:
-    """Check whether the video is readable and collect basic metadata."""
+def probe_media(video_path: Path) -> Tuple[bool, Optional[dict], str]:
+    """Validate video integrity, container health, and audio streams using ffprobe."""
     command = [
         "ffprobe",
         "-v", "error",
         "-show_streams",
         "-show_format",
         "-print_format", "json",
-        str(video_path)
+        str(video_path),
     ]
     try:
-        res = subprocess.run(command, capture_output=True, text=True, check=True)
-        return json.loads(res.stdout)
+        res = subprocess.run(
+            command, capture_output=True, text=True, check=True
+        )
+        data = json.loads(res.stdout)
+
+        streams = data.get("streams", [])
+        has_video = any(s.get("codec_type") == "video" for s in streams)
+        has_audio = any(s.get("codec_type") == "audio" for s in streams)
+
+        if not has_video:
+            return False, data, "No video stream detected or file is corrupted."
+        if not has_audio:
+            return False, data, "Video has no audio stream to transcribe."
+
+        return True, data, "Valid"
+    except subprocess.CalledProcessError:
+        return False, None, "Corrupt or unreadable video file."
     except Exception as e:
-        return {"error": str(e)}
+        return False, None, f"ffprobe error: {str(e)}"
 
 
-def load_srt(srt_path: Path):
-    """Load and parse SRT subtitle entries."""
-    with open(srt_path, "r", encoding="utf-8-sig") as f:
-        return list(srt.parse(f.read()))
+def parse_and_validate_srt(
+    srt_path: Path, video_duration: Optional[float] = None
+) -> Tuple[List[srt.Subtitle], List[str]]:
+    """Parse SRT file and flag structural/timestamp issues."""
+    issues = []
+    if not srt_path.exists():
+        return [], ["Subtitle file is missing."]
+
+    if srt_path.stat().st_size == 0:
+        return [], ["Subtitle file is empty."]
+
+    try:
+        with open(srt_path, "r", encoding="utf-8-sig") as f:
+            content = f.read().strip()
+            if not content:
+                return [], ["Subtitle file is empty."]
+            subtitles = list(srt.parse(content))
+    except Exception as e:
+        return [], [f"Malformed SRT format: {str(e)}"]
+
+    if not subtitles:
+        return [], ["No valid subtitle entries found."]
+
+    for i, sub in enumerate(subtitles):
+        start_sec = sub.start.total_seconds()
+        end_sec = sub.end.total_seconds()
+
+        if end_sec <= start_sec:
+            issues.append(
+                f"Subtitle #{sub.index}: End time ({end_sec:.2f}s) is before or equal to start time ({start_sec:.2f}s)."
+            )
+
+        if (end_sec - start_sec) < MIN_SRT_DURATION_SEC:
+            issues.append(
+                f"Subtitle #{sub.index}: Extremely short duration ({(end_sec - start_sec):.2f}s)."
+            )
+
+        if video_duration and start_sec > video_duration:
+            issues.append(
+                f"Subtitle #{sub.index}: Subtitle starts ({start_sec:.2f}s) after video ends ({video_duration:.2f}s)."
+            )
+
+        if i > 0:
+            prev_end = subtitles[i - 1].end.total_seconds()
+            if start_sec < prev_end:
+                issues.append(
+                    f"Subtitle #{sub.index} overlaps with Subtitle #{subtitles[i - 1].index}."
+                )
+
+    return subtitles, issues
 
 
-def process_video(model: WhisperModel, video_path: Path, srt_path: Path) -> dict:
-    print(f"\n--> Running QC on: {video_path.name}")
-    probe_data = run_ffprobe(video_path)
+def run_segment_qc(
+    whisper_segments: list, srt_subtitles: list
+) -> Tuple[List[dict], float]:
+    """Compare Whisper speech segments with SRT subtitle blocks."""
+    defects = []
 
-    # 1. Transcribe
-    segments, _ = model.transcribe(str(video_path), vad_filter=True)
-    whisper_segments = list(segments)
-    whisper_full_text = " ".join(s.text.strip() for s in whisper_segments)
+    full_whisper_text = " ".join(s.text.strip() for s in whisper_segments)
+    full_srt_text = " ".join(s.content.strip() for s in srt_subtitles)
 
-    # 2. Parse SRT
-    srt_segments = load_srt(srt_path)
-    srt_full_text = " ".join(s.content.strip() for s in srt_segments)
+    norm_w = normalize_text(full_whisper_text)
+    norm_s = normalize_text(full_srt_text)
+    global_wer = wer(norm_s, norm_w) if norm_s else 1.0
 
-    # 3. Text Comparison
-    norm_whisper = normalize_text(whisper_full_text)
-    norm_srt = normalize_text(srt_full_text)
+    for sub in srt_subtitles:
+        sub_start = sub.start.total_seconds()
+        sub_end = sub.end.total_seconds()
+        sub_text = normalize_text(sub.content)
 
-    wer_score = wer(norm_srt, norm_whisper) if norm_srt else 1.0
+        matching_speech = [
+            ws
+            for ws in whisper_segments
+            if not (ws.end < sub_start - 1.0 or ws.start > sub_end + 1.0)
+        ]
 
-    # 4. Timing Check
-    first_whisper_start = whisper_segments[0].start if whisper_segments else 0.0
-    first_srt_start = srt_segments[0].start.total_seconds() if srt_segments else 0.0
-    start_timing_diff = abs(first_whisper_start - first_srt_start)
+        if not matching_speech:
+            defects.append(
+                {
+                    "type": "NO_SPEECH_DETECTED",
+                    "timestamp": f"{sub.start} --> {sub.end}",
+                    "detail": f"Subtitle #{sub.index} displayed text but no speech was detected in audio.",
+                    "subtitle_text": sub.content.strip(),
+                    "spoken_text": "[SILENCE]",
+                }
+            )
+            continue
 
-    # Status classification
-    if wer_score <= MAX_WER_PASS and start_timing_diff <= MAX_TIMING_DIFF_SECONDS:
-        result_status = "PASS"
-    elif wer_score <= MAX_WER_REVIEW:
-        result_status = "NEEDS_REVIEW"
+        spoken_text_combined = " ".join(
+            ws.text.strip() for ws in matching_speech
+        )
+        norm_spoken = normalize_text(spoken_text_combined)
+        seg_wer = wer(sub_text, norm_spoken) if sub_text else 1.0
+
+        first_speech_start = matching_speech[0].start
+        timing_diff = abs(first_speech_start - sub_start)
+
+        if timing_diff > MAX_TIMING_DRIFT_SECONDS:
+            defects.append(
+                {
+                    "type": "TIMING_DRIFT",
+                    "timestamp": f"{sub.start} --> {sub.end}",
+                    "detail": f"Timing drift of {timing_diff:.2f}s (Subtitle at {sub_start:.2f}s, Speech started at {first_speech_start:.2f}s).",
+                    "subtitle_text": sub.content.strip(),
+                    "spoken_text": spoken_text_combined,
+                }
+            )
+        elif seg_wer > MAX_SEGMENT_WER_PASS:
+            defects.append(
+                {
+                    "type": "TEXT_MISMATCH",
+                    "timestamp": f"{sub.start} --> {sub.end}",
+                    "detail": f"High text discrepancy ({seg_wer * 100:.1f}% mismatch).",
+                    "subtitle_text": sub.content.strip(),
+                    "spoken_text": spoken_text_combined,
+                }
+            )
+
+    return defects, global_wer
+
+
+def process_video_qc(
+    model: WhisperModel, video_path: Path, samples_dir: Path
+) -> dict:
+    print(f"\n--> Inspecting: {video_path.name}")
+    srt_path = video_path.with_suffix(".srt")
+
+    is_valid, probe_data, probe_msg = probe_media(video_path)
+    if not is_valid:
+        return {
+            "file": video_path.name,
+            "status": "FAIL",
+            "reason": probe_msg,
+            "defects": [{"type": "FILE_CORRUPT", "detail": probe_msg}],
+            "metrics": {},
+        }
+
+    video_duration = float(probe_data.get("format", {}).get("duration", 0.0))
+
+    subtitles, srt_structural_issues = parse_and_validate_srt(
+        srt_path, video_duration
+    )
+    if srt_structural_issues and not subtitles:
+        return {
+            "file": video_path.name,
+            "status": "FAIL",
+            "reason": srt_structural_issues[0],
+            "defects": [
+                {"type": "INVALID_SRT", "detail": err}
+                for err in srt_structural_issues
+            ],
+            "metrics": {},
+        }
+
+    try:
+        segments, _ = model.transcribe(str(video_path), vad_filter=True)
+        whisper_segments = list(segments)
+    except Exception as e:
+        return {
+            "file": video_path.name,
+            "status": "FAIL",
+            "reason": f"Whisper transcription failed: {str(e)}",
+            "defects": [{"type": "TRANSCRIPTION_ERROR", "detail": str(e)}],
+            "metrics": {},
+        }
+
+    segment_defects, global_wer = run_segment_qc(whisper_segments, subtitles)
+    all_defects = [
+        {"type": "SRT_SYNTAX", "detail": issue}
+        for issue in srt_structural_issues
+    ] + segment_defects
+
+    if not all_defects and global_wer <= 0.15:
+        status = "PASS"
+    elif (
+        any(
+            d["type"] in ["FILE_CORRUPT", "INVALID_SRT", "TEXT_MISMATCH"]
+            for d in all_defects
+        )
+        or global_wer > 0.40
+    ):
+        status = "FAIL"
     else:
-        result_status = "FAIL"
+        status = "NEEDS_REVIEW"
 
     return {
         "file": video_path.name,
-        "srt_file": srt_path.name,
-        "result": result_status,
+        "srt_file": srt_path.name if srt_path.exists() else None,
+        "status": status,
         "metrics": {
-            "wer": round(wer_score, 4),
-            "start_timing_diff_sec": round(start_timing_diff, 2),
+            "global_wer": round(global_wer, 4),
+            "video_duration_sec": round(video_duration, 2),
+            "defect_count": len(all_defects),
         },
-        "streams_found": len(probe_data.get("streams", []))
+        "defects": all_defects,
     }
 
 
-def create_markdown_report(results: list) -> str:
-    md = "# Video Subtitle QC Report\n\n"
-    md += "| Video File | Status | WER | Start Offset Diff |\n"
-    md += "| :--- | :--- | :--- | :--- |\n"
+def generate_reports(results: List[dict], output_dir: Path):
+    json_path = output_dir / "report.json"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2)
+
+    md_path = output_dir / "report.md"
+    pass_count = sum(1 for r in results if r["status"] == "PASS")
+    review_count = sum(1 for r in results if r["status"] == "NEEDS_REVIEW")
+    fail_count = sum(1 for r in results if r["status"] == "FAIL")
+
+    md = "# Video & Subtitle Batch QC Report\n\n"
+    md += f"**Summary:** Total: {len(results)} | ✅ PASS: {pass_count} | ⚠️ NEEDS REVIEW: {review_count} | ❌ FAIL: {fail_count}\n\n"
+
+    md += "## Overview\n\n"
+    md += "| File | Status | Global WER | Defects Found |\n"
+    md += "| :--- | :---: | :---: | :---: |\n"
     for r in results:
-        status_icon = "✅ PASS" if r["result"] == "PASS" else ("⚠️ REVIEW" if r["result"] == "NEEDS_REVIEW" else "❌ FAIL")
-        md += f"| {r['file']} | {status_icon} | {r['metrics']['wer'] * 100:.1f}% | {r['metrics']['start_timing_diff_sec']}s |\n"
-    return md
+        badge = (
+            "✅ PASS"
+            if r["status"] == "PASS"
+            else (
+                "⚠️ REVIEW" if r["status"] == "NEEDS_REVIEW" else "❌ FAIL"
+            )
+        )
+        wer_str = (
+            f"{r['metrics'].get('global_wer', 0.0) * 100:.1f}%"
+            if "global_wer" in r.get("metrics", {})
+            else "N/A"
+        )
+        md += f"| `{r['file']}` | {badge} | {wer_str} | {len(r['defects'])} |\n"
+
+    md += "\n## Actionable Defect Breakdown\n\n"
+    defective_reports = [r for r in results if r["defects"]]
+
+    if not defective_reports:
+        md += (
+            "*All files passed quality checks with zero detected defects.*\n"
+        )
+    else:
+        for r in defective_reports:
+            md += f"### `{r['file']}` ({r['status']})\n"
+            for d in r["defects"]:
+                md += f"- **[{d['type']}]** {d['detail']}\n"
+                if "subtitle_text" in d and "spoken_text" in d:
+                    md += f"  - *Timestamp:* `{d.get('timestamp', 'N/A')}`\n"
+                    md += f'  - *Subtitle:* "{d["subtitle_text"]}"\n'
+                    md += f'  - *Spoken Audio:* "{d["spoken_text"]}"\n'
+            md += "\n"
+
+    with open(md_path, "w", encoding="utf-8") as f:
+        f.write(md)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Subtitle Quality Control Script")
-    parser.add_argument("samples_dir", type=str, help="Path to samples folder")
-    parser.add_argument("--output", type=str, default="./output", help="Path to output folder")
+    parser = argparse.ArgumentParser(
+        description="Automated Video & Subtitle QC Skill"
+    )
+    parser.add_argument(
+        "samples_dir",
+        type=str,
+        help="Directory containing .mp4 and .srt files",
+    )
+    parser.add_argument(
+        "--output", type=str, default="./output", help="Directory to save reports"
+    )
     args = parser.parse_args()
 
-    samples_folder = Path(args.samples_dir)
-    output_folder = Path(args.output)
-    output_folder.mkdir(parents=True, exist_ok=True)
+    samples_dir = Path(args.samples_dir)
+    output_dir = Path(args.output)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Loading Whisper model '{WHISPER_MODEL}'...")
     model = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
 
-    results = []
-    video_files = list(samples_folder.glob("*.mp4"))
-
+    video_files = list(samples_dir.glob("*.mp4"))
     if not video_files:
-        print(f"No .mp4 files found in {samples_folder.resolve()}")
+        print(f"No .mp4 files found in {samples_dir.resolve()}")
         return
 
-    for video in video_files:
-        srt_file = video.with_suffix(".srt")
-        if not srt_file.exists():
-            print(f"Skipping {video.name} (no matching .srt found)")
-            continue
-
-        result = process_video(model, video, srt_file)
-        results.append(result)
-
-    # Write JSON report
-    json_path = output_folder / "report.json"
-    with open(json_path, "w", encoding="utf-8") as file:
-        json.dump(results, file, indent=2)
-
-    # Write Markdown report
-    markdown = create_markdown_report(results)
-    markdown_path = output_folder / "report.md"
-    with open(markdown_path, "w", encoding="utf-8") as file:
-        file.write(markdown)
+    results = [
+        process_video_qc(model, video, samples_dir) for video in video_files
+    ]
+    generate_reports(results, output_dir)
 
     print("\n================================")
-    print("QC COMPLETE")
+    print("QC SUMMARY")
     print("================================")
-    for result in results:
-        print(f"{result['file']}: {result['result']}")
-
-    print(f"\nReports written to: {output_folder.resolve()}")
+    for r in results:
+        print(f"{r['file']:<20} -> {r['status']}")
+    print(f"\nDetailed actionable reports written to: {output_dir.resolve()}")
 
 
 if __name__ == "__main__":
