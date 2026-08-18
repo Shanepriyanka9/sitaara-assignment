@@ -1,0 +1,7 @@
+1
+00:00:00,500 --> 00:00:08,000
+Today we are going to learn how to cook Italian pasta with olive oil and garlic.
+
+2
+00:00:08,500 --> 00:00:18,000
+Make sure the water is boiling before adding salt and pasta into the pot.

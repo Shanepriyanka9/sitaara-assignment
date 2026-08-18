@@ -1,0 +1,62 @@
+[
+  {
+    "file": "good.mp4",
+    "srt_file": "good.srt",
+    "result": "PASS",
+    "metrics": {
+      "wer": 0.0352,
+      "start_timing_diff_sec": 0.0
+    },
+    "streams_found": 2
+  },
+  {
+    "file": "video1.mp4",
+    "srt_file": "video1.srt",
+    "result": "PASS",
+    "metrics": {
+      "wer": 0.0,
+      "start_timing_diff_sec": 0.45
+    },
+    "streams_found": 5
+  },
+  {
+    "file": "video2.mp4",
+    "srt_file": "video2.srt",
+    "result": "FAIL",
+    "metrics": {
+      "wer": 1.0,
+      "start_timing_diff_sec": 0.45
+    },
+    "streams_found": 5
+  },
+  {
+    "file": "video3.mp4",
+    "srt_file": "video3.srt",
+    "result": "NEEDS_REVIEW",
+    "metrics": {
+      "wer": 0.0,
+      "start_timing_diff_sec": 6.45
+    },
+    "streams_found": 5
+  },
+  {
+    "file": "wrong_text.mp4",
+    "srt_file": "wrong_text.srt",
+    "result": "FAIL",
+    "metrics": {
+      "wer": 4.5333,
+      "start_timing_diff_sec": 0.5
+    },
+    "streams_found": 2
+  },
+  {
+    "file": "wrong_timing.mp4",
+    "srt_file": "wrong_timing.srt",
+    "result": "FAIL",
+    "metrics": {
+      "wer": 3.2059,
+      "start_timing_diff_sec": 12.0
+    },
+    "streams_found": 2
+  }
+]

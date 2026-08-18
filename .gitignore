@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Cache
+.cache/
+hf_cache/
+
+# Large test videos (keep repo lightweight)
+*.mp4
+*.MOV
