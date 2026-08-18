@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables & API keys
+.env
+*.env
+
+# Google Cloud service account keys
+credentials.json
+*credentials*.json
+
+# Part A video files
+*.mp4
