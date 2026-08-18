@@ -35,6 +35,18 @@
     "metrics": {}
   },
   {
+    "file": "no_audio.mp4",
+    "status": "FAIL",
+    "reason": "Video has no audio stream to transcribe.",
+    "defects": [
+      {
+        "type": "FILE_CORRUPT",
+        "detail": "Video has no audio stream to transcribe."
+      }
+    ],
+    "metrics": {}
+  },
+  {
     "file": "video1.mp4",
     "srt_file": "video1.srt",
     "status": "PASS",

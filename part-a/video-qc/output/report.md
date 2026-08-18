@@ -1,6 +1,6 @@
 # Video & Subtitle Batch QC Report
 
-**Summary:** Total: 8 | ✅ PASS: 2 | ⚠️ NEEDS REVIEW: 1 | ❌ FAIL: 5
+**Summary:** Total: 9 | ✅ PASS: 2 | ⚠️ NEEDS REVIEW: 1 | ❌ FAIL: 6
 
 ## Overview
 
@@ -9,6 +9,7 @@
 | `empty_subtitle.mp4` | ❌ FAIL | N/A | 1 |
 | `good.mp4` | ✅ PASS | 0.0% | 0 |
 | `missing_subtitle.mp4` | ❌ FAIL | N/A | 1 |
+| `no_audio.mp4` | ❌ FAIL | N/A | 1 |
 | `video1.mp4` | ✅ PASS | 0.0% | 0 |
 | `video2.mp4` | ❌ FAIL | 100.0% | 1 |
 | `video3.mp4` | ⚠️ REVIEW | 0.0% | 2 |
@@ -22,6 +23,9 @@
 
 ### `missing_subtitle.mp4` (FAIL)
 - **[INVALID_SRT]** Subtitle file is missing.
+
+### `no_audio.mp4` (FAIL)
+- **[FILE_CORRUPT]** Video has no audio stream to transcribe.
 
 ### `video2.mp4` (FAIL)
 - **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
