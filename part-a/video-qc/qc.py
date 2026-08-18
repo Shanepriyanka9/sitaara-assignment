@@ -1,3 +1,18 @@
+
+"""
+Video & Subtitle Automated QC Skill
+===================================
+Automated quality control for video exports and subtitle files.
+
+Usage:
+    python qc.py <PATH_TO_FOLDER>
+    python qc.py ./samples
+    python qc.py ./samples --output ./custom_output
+
+Prerequisites:
+    - ffmpeg / ffprobe installed and in PATH
+    - pip install -r requirements.txt
+"""
 import argparse
 import json
 import re
