@@ -23,7 +23,7 @@ def test_pr_open_ticket_done():
 
 
 def test_stale_pr_flagged():
-    # Simulate a PR created 10 days ago
+    # Simulate a PR created 10 days ago for an in-progress ticket
     ten_days_ago = (datetime.now(timezone.utc) - timedelta(days=10)).isoformat()
     pr = {"state": "open", "created_at": ten_days_ago}
     assert detect_discrepancy("In Progress", pr) == "Stale PR (Open for 10 days)"
@@ -43,3 +43,10 @@ def test_in_sync_recent_open():
     now_str = datetime.now(timezone.utc).isoformat()
     pr = {"state": "open", "created_at": now_str}
     assert detect_discrepancy("In Progress", pr) == "None"
+
+
+def test_priority_done_ticket_with_stale_pr():
+    # Explicitly test priority resolution: status contradiction > stale check
+    ten_days_ago = (datetime.now(timezone.utc) - timedelta(days=10)).isoformat()
+    pr = {"state": "open", "created_at": ten_days_ago}
+    assert detect_discrepancy("Done", pr) == "Ticket marked Done but PR is still Open"
