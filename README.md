@@ -1,6 +1,12 @@
-# sitaara-assignment
+# Sitaara Assignment
 
-Part B: Engineering Status Automation
+This repository contains solutions for both parts of the engineering assessment:
+
+* **[Part A: Video & Subtitle QC Skill](./part-a/video-qc/README.md)** — Automated audio stream validation, subtitle timing/drift detection, speech-to-text alignment (ASR), and report generation.
+* **[Part B: Engineering Status Automation](#part-b-engineering-status-automation)** — Automated Python pipeline that pulls active tickets from Linear via GraphQL, correlates them with Pull Requests from GitHub via REST, checks for operational discrepancies and workflow bottlenecks, and atomically writes the data to a Google Sheet.
+
+---
+## Part B: Engineering Status Automation
 An automated Python pipeline that pulls active tickets from Linear via GraphQL, correlates them with Pull Requests from GitHub via REST, checks for operational discrepancies and workflow bottlenecks, and atomically writes the data to a Google Sheet.
 
 ---
@@ -17,7 +23,7 @@ An automated Python pipeline that pulls active tickets from Linear via GraphQL, 
 1. **Navigate to the automation folder:**
    ```bash
    cd part-b-automation
-
+   ```
 2. **Set up a virtual environment:**
    ```bash
    python -m venv venv
@@ -25,10 +31,12 @@ An automated Python pipeline that pulls active tickets from Linear via GraphQL, 
    venv\Scripts\activate
    # On macOS/Linux:
    source venv/bin/activate
+   ```
 
 3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
+   ```
 
 4. **Set up Environment Variables:**  
    Create a `.env` file inside `part-b-automation/` with:
@@ -39,28 +47,31 @@ An automated Python pipeline that pulls active tickets from Linear via GraphQL, 
    GITHUB_REPO=your_repository_name
    GOOGLE_SHEET_NAME=Sitaara Status
    GOOGLE_CREDENTIALS_FILE=credentials.json
+   ```
 5. **Configure Google Service Account:**  
    Place your GCP service account JSON key at `part-b-automation/credentials.json`. Ensure your target Google Sheet is shared with the `client_email` specified inside that JSON file with **Editor** permissions.
 
-##  Execution
+## Execution
 
 ### Local Sync
 Run the pipeline manually from your terminal:
 ```bash
 python sync.py
+```
 
-Automated CI/CD (GitHub Actions)
+### Automated CI/CD (GitHub Actions)
 The workflow defined in .github/workflows/sync.yml provides:
 
 Scheduled Runs: Runs daily at 04:30 UTC (10:00 AM IST).
 
 On-Demand Dispatch: Run manually at any time via GitHub UI ➔ Actions ➔ Engineering Status Sync ➔ Run workflow.
 
-#Automated Testing
+### Automated Testing
 Execute the test suite using pytest to validate regex ticket parsing, boundary cases, and discrepancy hierarchy:
 
-Bash
+```Bash
 pytest
+```
 
-# In-Depth Architectural Write-Up
-For a comprehensive evaluation of architectural options considered, priority rules matrix, debugging pivot points, and AI collaboration verification, review WRITEUP.md.
+## In-Depth Architectural Write-Up
+For a comprehensive evaluation of architectural options considered, priority rules matrix, debugging pivot points, and AI collaboration verification, review [WRITEUP.md](./WRITEUP.md)

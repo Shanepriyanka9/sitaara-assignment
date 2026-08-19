@@ -1,3 +1,42 @@
+# Part A: Video & Subtitle Automated QC Skill
+
+### 1. The Options I Considered & Trade-offs
+
+* **Option 1: Cloud Transcription API (e.g., OpenAI Whisper API, Deepgram)**
+  * *Trade-off:* Fast and requires minimal local compute setup, but introduces external dependencies, recurring costs, and cloud API keys.
+  * *Why I rejected it:* If an evaluator or AI agent runs this tool without active network credentials, it immediately fails. It violates the strict zero-setup portability requirement.
+
+* **Option 2: Basic Whole-File String / Levenshtein Comparison**
+  * *Trade-off:* Simple to implement without ML models, but completely ignores speech timing and timecode structure.
+  * *Why I rejected it:* It cannot verify whether spoken words match at the correct timestamps. Additionally, whole-file comparisons mask missing or completely incorrect subtitle blocks in longer videos.
+
+* **Option 3: Local `faster-whisper` (int8) with Word-Midpoint Alignment (Selected)**
+  * *Trade-off:* Requires a local `ffmpeg` binary and an initial model cache (~75MB for `base`), but runs entirely offline on standard CPU hardware with zero API keys.
+  * *Why I chose it:* It provides precise, word-level timestamps to verify audio-to-subtitle timeline synchronization while keeping the skill 100% portable, self-contained, and free to run.
+
+---
+
+### 2. How I Worked: Progression, Stuck Points & AI Collaboration
+
+* **What I did first:** I built a baseline pipeline that paired `.mp4` video files with `.srt` subtitle files, validated container integrity using `ffprobe`, transcribed audio locally with `faster-whisper`, and output initial Markdown and JSON reports.
+* **Where I got stuck & what I changed:**
+  * *Word-Bleed False Positives:* When implementing segment-level checks, words spanning subtitle boundaries caused false-positive mismatches. I resolved this by implementing a **word-midpoint assignment rule** (`(start + end) / 2`), which cleanly anchors each word to a single subtitle cue.
+  * *Multi-Format Container Support:*The initial script only scanned for lowercase .mp4 files. Real-world testing with iPhone recordings (.MOV) and editor deliverables highlighted that uppercase extensions (.MOV, .MP4) and alternate video containers (.mov, .mkv, .webm) were being skipped or failing. I updated the ingestion pipeline to case-insensitively match all major video containers (f.suffix.lower() in SUPPORTED_EXTS)
+* **AI vs. Human Contribution:**
+  * *AI-generated:* Initial boilerplate subprocess wrappers, regex text normalization functions, and Markdown table string formatting.
+  * *My decisions & logic:* Designing the 3-state exit criteria (`PASS`, `FAIL`, `NEEDS_REVIEW`), selecting the word-midpoint alignment rule, tuning the WER pass/fail thresholds (35% segment / 20% global), and structuring the failure checks.
+  * *How I verified the AI’s output:* I created a dedicated negative test suite in `samples/` with distinct failure fixtures (`good.mp4`, `empty_subtitle`, `no_audio`, `wrong_text`, `wrong_timing`, `video3`). I verified that every single fixture triggered its intended defect code and failure mode in `report.md` and `report.json`.
+
+---
+
+### 3. What I Would Do Next (With Another Week)
+
+* **Visual Safe-Zone OCR:** Implement lightweight OCR (Tesseract / EasyOCR) to ensure burned-in/open captions do not collide with social media platform UI overlays (e.g., TikTok/Instagram Reels interactive icons).
+* **Audio Loudness Verification (LUFS):** Add an EBU R128 loudness check via `ffmpeg` to ensure video audio adheres to platform delivery standards (-14 LUFS).
+* **Automated Subtitle Re-Timing (`--fix`):** Build an auto-remediation flag that uses Whisper's word-level timestamps to automatically shift and correct drifted `.srt` cue times.
+
+---
+
 # Part B: Engineering Status & Operations Automation Write-Up
 
 ## 1. Overview & Architecture
@@ -67,7 +106,7 @@ Running the sync repeatedly must never duplicate rows or create messy logs. The 
 
 ### Division of Work
 * **AI Assistance:** Scaffolded initial GraphQL query structures for Linear, suggested `gspread` method syntax, and helped structure the `pytest` parameter matrix in `test_sync.py`.
-* **Human Decisions & Engineering Ownership:**
+* **Human Decisions:**
   * Architecture choice to use scheduled GitHub Actions over cloud webhooks.
   * Definition and prioritization of discrepancy edge cases (e.g., catching premature closures and unmerged abandons).
   * Design of the idempotent batch-overwrite to prevent duplicate spreadsheet entries.
