@@ -31,7 +31,6 @@
 
 ### 3. What I Would Do Next (With Another Week)
 
-* **Visual Safe-Zone OCR:** Implement lightweight OCR (Tesseract / EasyOCR) to ensure burned-in/open captions do not collide with social media platform UI overlays (e.g., TikTok/Instagram Reels interactive icons).
 * **Audio Loudness Verification (LUFS):** Add an EBU R128 loudness check via `ffmpeg` to ensure video audio adheres to platform delivery standards (-14 LUFS).
 * **Automated Subtitle Re-Timing (`--fix`):** Build an auto-remediation flag that uses Whisper's word-level timestamps to automatically shift and correct drifted `.srt` cue times.
 
