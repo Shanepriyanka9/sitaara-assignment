@@ -1,0 +1,177 @@
+[
+  {
+    "file": "empty_subtitle.mp4",
+    "status": "FAIL",
+    "reason": "Subtitle file is empty.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is empty."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "good.mp4",
+    "srt_file": "good.srt",
+    "status": "PASS",
+    "metrics": {
+      "global_wer": 0.0,
+      "video_duration_sec": 58.61,
+      "defect_count": 0
+    },
+    "defects": []
+  },
+  {
+    "file": "good_mov_test.mov",
+    "srt_file": "good_mov_test.srt",
+    "status": "PASS",
+    "metrics": {
+      "global_wer": 0.0,
+      "video_duration_sec": 58.5,
+      "defect_count": 0
+    },
+    "defects": []
+  },
+  {
+    "file": "iphone_test.MOV",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "missing_subtitle.mp4",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "no_audio.mp4",
+    "status": "FAIL",
+    "reason": "Video has no audio stream to transcribe.",
+    "defects": [
+      {
+        "type": "FILE_CORRUPT",
+        "detail": "Video has no audio stream to transcribe."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "video1.mp4",
+    "srt_file": "video1.srt",
+    "status": "PASS",
+    "metrics": {
+      "global_wer": 0.0,
+      "video_duration_sec": 5.64,
+      "defect_count": 0
+    },
+    "defects": []
+  },
+  {
+    "file": "video2.mp4",
+    "srt_file": "video2.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 1.0,
+      "video_duration_sec": 5.64,
+      "defect_count": 1
+    },
+    "defects": [
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:00.500000 --> 0:00:04.500000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "This is a completely different recipe for baking chocolate cookies.",
+        "spoken_text": "to the Automated subtitle Quality Checking demo."
+      }
+    ]
+  },
+  {
+    "file": "video3.mp4",
+    "srt_file": "video3.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0,
+      "video_duration_sec": 5.64,
+      "defect_count": 2
+    },
+    "defects": [
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #1: Subtitle starts (6.50s) after video ends (5.64s)."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:06.500000 --> 0:00:10.500000",
+        "detail": "No speech detected inside window (6.50s - 10.50s).",
+        "subtitle_text": "Welcome to the automated subtitle quality checking demo.",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "wrong_text.mp4",
+    "srt_file": "wrong_text.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 4.5,
+      "video_duration_sec": 58.61,
+      "defect_count": 2
+    },
+    "defects": [
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:00.500000 --> 0:00:08",
+        "detail": "Segment text discrepancy (137.5% mismatch).",
+        "subtitle_text": "Today we are going to learn how to cook Italian pasta with olive oil and garlic.",
+        "spoken_text": "wants to climb that slide or the ladder and you're saying be careful What does that mean to the child be careful?"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:08.500000 --> 0:00:18",
+        "detail": "Segment text discrepancy (157.1% mismatch).",
+        "subtitle_text": "Make sure the water is boiling before adding salt and pasta into the pot.",
+        "spoken_text": "child supposed to do except maybe freeze Whereas if you said that ladder is quite tall You need to make sure you know"
+      }
+    ]
+  },
+  {
+    "file": "wrong_timing.mp4",
+    "srt_file": "wrong_timing.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 3.1765,
+      "video_duration_sec": 58.61,
+      "defect_count": 2
+    },
+    "defects": [
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:12 --> 0:00:16.500000",
+        "detail": "Segment text discrepancy (93.3% mismatch).",
+        "subtitle_text": "The child wants to climb that slide or the ladder, and you're saying, \"Be careful.\"",
+        "spoken_text": "said that ladder is quite tall You need to"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:16.500000 --> 0:00:23.200000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "What does that mean to the child, \"Be careful\"? What is the child supposed to do except maybe freeze?",
+        "spoken_text": "make sure you know you're holding the side railings Now you've given him something very"
+      }
+    ]
+  }
+]

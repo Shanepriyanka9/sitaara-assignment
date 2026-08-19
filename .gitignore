@@ -226,9 +226,18 @@ env/
 .env
 *.env
 
+# Cache
+.cache/
+hf_cache/
+
+# Video files (block heavy files from git)
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.mkv
+*.webm
+
 # Google Cloud service account keys
 credentials.json
 *credentials*.json
-
-# Part A video files
-*.mp4
