@@ -23,6 +23,29 @@
     "defects": []
   },
   {
+    "file": "good_mov_test.mov",
+    "srt_file": "good_mov_test.srt",
+    "status": "PASS",
+    "metrics": {
+      "global_wer": 0.0,
+      "video_duration_sec": 58.5,
+      "defect_count": 0
+    },
+    "defects": []
+  },
+  {
+    "file": "iphone_test.MOV",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
+  },
+  {
     "file": "missing_subtitle.mp4",
     "status": "FAIL",
     "reason": "Subtitle file is missing.",

@@ -321,9 +321,9 @@ def main():
         description="Automated Video & Subtitle QC Skill"
     )
     parser.add_argument(
-        "samples_dir",
-        type=str,
-        help="Directory containing .mp4 and .srt files",
+    "samples_dir",
+    type=str,
+    help="Directory containing video files (.mp4, .mov, .mkv, .webm) and .srt files",
     )
     parser.add_argument(
         "--output", type=str, default="./output", help="Directory to save reports"
@@ -337,9 +337,13 @@ def main():
     print(f"Loading Whisper model '{WHISPER_MODEL}'...")
     model = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
 
-    video_files = list(samples_dir.glob("*.mp4"))
+    SUPPORTED_EXTS = {".mp4", ".mov", ".mkv", ".webm"}
+    video_files = [
+        f for f in samples_dir.iterdir()
+        if f.is_file() and f.suffix.lower() in SUPPORTED_EXTS
+    ]
     if not video_files:
-        print(f"No .mp4 files found in {samples_dir.resolve()}")
+        print(f"No supported video files ({', '.join(sorted(SUPPORTED_EXTS))}) found in {samples_dir.resolve()}")
         return
 
     results = [

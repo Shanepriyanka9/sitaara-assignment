@@ -228,4 +228,17 @@ hf_cache/
 
 # Large test videos (keep repo lightweight)
 *.mp4
+*.MP4
+*.mov
 *.MOV
+*.mkv
+*.webm
+
+# Credentials & Secrets
+credentials.json
+*.json.secret
+.env
+
+
+
+

@@ -1,6 +1,6 @@
 # Video & Subtitle Batch QC Report
 
-**Summary:** Total: 9 | ✅ PASS: 2 | ⚠️ NEEDS REVIEW: 1 | ❌ FAIL: 6
+**Summary:** Total: 11 | ✅ PASS: 3 | ⚠️ NEEDS REVIEW: 1 | ❌ FAIL: 7
 
 ## Overview
 
@@ -8,6 +8,8 @@
 | :--- | :---: | :---: | :---: |
 | `empty_subtitle.mp4` | ❌ FAIL | N/A | 1 |
 | `good.mp4` | ✅ PASS | 0.0% | 0 |
+| `good_mov_test.mov` | ✅ PASS | 0.0% | 0 |
+| `iphone_test.MOV` | ❌ FAIL | N/A | 1 |
 | `missing_subtitle.mp4` | ❌ FAIL | N/A | 1 |
 | `no_audio.mp4` | ❌ FAIL | N/A | 1 |
 | `video1.mp4` | ✅ PASS | 0.0% | 0 |
@@ -20,6 +22,9 @@
 
 ### `empty_subtitle.mp4` (FAIL)
 - **[INVALID_SRT]** Subtitle file is empty.
+
+### `iphone_test.MOV` (FAIL)
+- **[INVALID_SRT]** Subtitle file is missing.
 
 ### `missing_subtitle.mp4` (FAIL)
 - **[INVALID_SRT]** Subtitle file is missing.
