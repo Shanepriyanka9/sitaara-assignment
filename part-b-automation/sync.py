@@ -69,6 +69,7 @@ def map_prs_to_tickets(prs):
             mapping[ticket_id] = {
                 "number": pr.get("number"),
                 "state": pr_state,
+                "created_at": pr.get("created_at"),  # Added for stale PR tracking
                 "url": pr.get("html_url")
             }
     return mapping
@@ -83,11 +84,19 @@ def detect_discrepancy(linear_status, pr_data):
     pr_state = pr_data["state"].lower()
     l_status = linear_status.lower()
 
+    # Rule 1: Stale PR check (sitting open >= 7 days)
+    if pr_state == "open" and pr_data.get("created_at"):
+        created_at = datetime.fromisoformat(pr_data["created_at"].replace("Z", "+00:00"))
+        age_days = (datetime.now(timezone.utc) - created_at).days
+        if age_days >= 7:
+            return f"Stale PR (Open for {age_days} days)"
+
+    # Rule 2: Status mismatches
     if pr_state == "merged" and l_status != "done":
         return "PR Merged but ticket not Done"
     if pr_state == "open" and l_status == "done":
         return "Ticket marked Done but PR is still Open"
-    if pr_state == "closed" and not pr_data.get("merged", False) and l_status == "done":
+    if pr_state == "closed" and l_status == "done":
         return "Ticket Done but PR closed without merge"
 
     return "None"
