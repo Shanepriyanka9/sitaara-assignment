@@ -1,177 +1,3506 @@
 [
   {
-    "file": "empty_subtitle.mp4",
-    "status": "FAIL",
-    "reason": "Subtitle file is empty.",
-    "defects": [
-      {
-        "type": "INVALID_SRT",
-        "detail": "Subtitle file is empty."
-      }
-    ],
-    "metrics": {}
-  },
-  {
-    "file": "good.mp4",
-    "srt_file": "good.srt",
-    "status": "PASS",
-    "metrics": {
-      "global_wer": 0.0,
-      "video_duration_sec": 58.61,
-      "defect_count": 0
-    },
-    "defects": []
-  },
-  {
-    "file": "good_mov_test.mov",
-    "srt_file": "good_mov_test.srt",
-    "status": "PASS",
-    "metrics": {
-      "global_wer": 0.0,
-      "video_duration_sec": 58.5,
-      "defect_count": 0
-    },
-    "defects": []
-  },
-  {
-    "file": "iphone_test.MOV",
-    "status": "FAIL",
-    "reason": "Subtitle file is missing.",
-    "defects": [
-      {
-        "type": "INVALID_SRT",
-        "detail": "Subtitle file is missing."
-      }
-    ],
-    "metrics": {}
-  },
-  {
-    "file": "missing_subtitle.mp4",
-    "status": "FAIL",
-    "reason": "Subtitle file is missing.",
-    "defects": [
-      {
-        "type": "INVALID_SRT",
-        "detail": "Subtitle file is missing."
-      }
-    ],
-    "metrics": {}
-  },
-  {
-    "file": "no_audio.mp4",
-    "status": "FAIL",
-    "reason": "Video has no audio stream to transcribe.",
-    "defects": [
-      {
-        "type": "FILE_CORRUPT",
-        "detail": "Video has no audio stream to transcribe."
-      }
-    ],
-    "metrics": {}
-  },
-  {
-    "file": "video1.mp4",
-    "srt_file": "video1.srt",
-    "status": "PASS",
-    "metrics": {
-      "global_wer": 0.0,
-      "video_duration_sec": 5.64,
-      "defect_count": 0
-    },
-    "defects": []
-  },
-  {
-    "file": "video2.mp4",
-    "srt_file": "video2.srt",
-    "status": "FAIL",
-    "metrics": {
-      "global_wer": 1.0,
-      "video_duration_sec": 5.64,
-      "defect_count": 1
-    },
-    "defects": [
-      {
-        "type": "TEXT_MISMATCH",
-        "timestamp": "0:00:00.500000 --> 0:00:04.500000",
-        "detail": "Segment text discrepancy (100.0% mismatch).",
-        "subtitle_text": "This is a completely different recipe for baking chocolate cookies.",
-        "spoken_text": "to the Automated subtitle Quality Checking demo."
-      }
-    ]
-  },
-  {
-    "file": "video3.mp4",
-    "srt_file": "video3.srt",
+    "file": "ep1.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep1.srt",
     "status": "NEEDS_REVIEW",
     "metrics": {
-      "global_wer": 0.0,
-      "video_duration_sec": 5.64,
+      "global_wer": 0.0197,
+      "video_duration_sec": 130.08,
       "defect_count": 2
     },
     "defects": [
       {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:10.320000 --> 0:00:12.640000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>Winnicott named Donald Winnicott.</b>",
+        "spoken_text": "Vinicord, named Donald Vinicord. And"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:27.920000 --> 0:00:31.640000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>how deeply intertwined or coexisting</b>",
+        "spoken_text": "deeply intertwined or co -existing"
+      }
+    ]
+  },
+  {
+    "file": "ep2.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep2.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 1.0114,
+      "video_duration_sec": 109.96,
+      "defect_count": 42
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 2176.20s on a 109.96s clip (Master timeline offset of ~2176.20s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -2176.20s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:00 --> 0:00:02.624000",
+        "detail": "Segment text discrepancy (77.8% mismatch).",
+        "subtitle_text": "<b>So six months is a lot changes at six</b>",
+        "spoken_text": "So, as a parent, your engagement"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:02.624000 --> 0:00:04.818000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>months because by the time they have</b>",
+        "spoken_text": "with the baby is of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:04.818000 --> 0:00:06.540000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>that kind of abdominal strength to</b>",
+        "spoken_text": "critical importance."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:06.540000 --> 0:00:09.207000",
+        "detail": "Segment text discrepancy (137.5% mismatch).",
+        "subtitle_text": "<b>be able to sit up, more or less</b>",
+        "spoken_text": "So, it's really important that we don't think of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:09.207000 --> 0:00:11.617000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>unsupported, I would say more or</b>",
+        "spoken_text": "early baby care as something that can"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:11.617000 --> 0:00:12.820000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>less because they're still quite</b>",
+        "spoken_text": "be done in a mechanical way."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:12.820000 --> 0:00:13.682000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>floppy, right?</b>",
+        "spoken_text": "So,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:13.682000 --> 0:00:15.961000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>Like you plant them like this and then</b>",
+        "spoken_text": "the same things, it's very repetitive,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:15.961000 --> 0:00:17.767000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like a few minutes later, they'll be</b>",
+        "spoken_text": "it's very dull, yes."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:17.767000 --> 0:00:19.832000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like, and then they'll keel over</b>",
+        "spoken_text": "That it's the changing, the holding,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:19.832000 --> 0:00:22.543000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>sideways or backwards and just have</b>",
+        "spoken_text": "the carrying, the feeding, the cleaning, and then"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:22.543000 --> 0:00:24.694000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>cushions around so that they are not</b>",
+        "spoken_text": "repeat. That is how your baby"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:24.694000 --> 0:00:25.726000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>whacking their heads.</b>",
+        "spoken_text": "is literally being held"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:25.726000 --> 0:00:27.534000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>But six months, quite a lot changes.</b>",
+        "spoken_text": "together. Because any of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:27.534000 --> 0:00:30.201000",
+        "detail": "Segment text discrepancy (128.6% mismatch).",
+        "subtitle_text": "<b>And because of that sort of upright</b>",
+        "spoken_text": "these sensations that are on the inside, whether it"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:30.201000 --> 0:00:32.825000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>posture, your experience of your baby</b>",
+        "spoken_text": "is hunger or who has to come"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:32.825000 --> 0:00:36.224000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>is much more of, oh, this is a person</b>",
+        "spoken_text": "out, so some things are happening, the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:36.224000 --> 0:00:40.612000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>that somehow manages to engage adults</b>",
+        "spoken_text": "baby has no cognitive or emotional psychic"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:40.612000 --> 0:00:42.891000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>in a different kind of way.</b>",
+        "spoken_text": "structures to be able to tell the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:42.891000 --> 0:00:46.033000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>And from here on, their interaction</b>",
+        "spoken_text": "difference between inside and outside. So, the baby is"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.033000 --> 0:00:47.882000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>and the quality of their interaction</b>",
+        "spoken_text": "almost like being"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:47.882000 --> 0:00:50.463000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>actually changes quite significantly.</b>",
+        "spoken_text": "besieged by these sensations. The baby"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:51.022000 --> 0:00:52.571000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>They become much more active.</b>",
+        "spoken_text": "just, and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.571000 --> 0:00:54.206000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>Some of the previous things, of course,</b>",
+        "spoken_text": "it's the way"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:54.206000 --> 0:00:55.755000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>are still there where they still</b>",
+        "spoken_text": "in which the caregiver,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:55.755000 --> 0:00:58.078000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>can't like necessarily reach out</b>",
+        "spoken_text": "which is the environment,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:58.078000 --> 0:01:03.026000",
+        "detail": "Segment text discrepancy (183.3% mismatch).",
+        "subtitle_text": "<b>so pointedly, but they are rolling,</b>",
+        "spoken_text": "meets this baby with a kind of consistency, reliability, and gentleness"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:03.026000 --> 0:01:06.769000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>they are pulling themselves, they are</b>",
+        "spoken_text": "that makes that physical"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.769000 --> 0:01:11.457000",
+        "detail": "Segment text discrepancy (128.6% mismatch).",
+        "subtitle_text": "<b>on their tummies, they are sitting up,</b>",
+        "spoken_text": "care into something that is nurturing because there are"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:11.930000 --> 0:01:14.298000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>they are moving about that way.</b>",
+        "spoken_text": "feeding the baby that are just"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:14.298000 --> 0:01:16.664000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>And all of that will feed into</b>",
+        "spoken_text": "and then there are ways of feeding the baby,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:16.664000 --> 0:01:18.857000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>the next step of being able</b>",
+        "spoken_text": "which are holding and nourishing."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.857000 --> 0:01:22.471000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>to hold themselves up on all fours.</b>",
+        "spoken_text": "So, at a very simple level, don't"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.471000 --> 0:01:24.020000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So you can see that there is</b>",
+        "spoken_text": "be on your phone while you"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:24.063000 --> 0:01:27.290000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>a gradual going from head to arms</b>",
+        "spoken_text": "are feeding the baby. Make eye contact, hold"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:27.290000 --> 0:01:30.816000",
+        "detail": "Segment text discrepancy (200.0% mismatch).",
+        "subtitle_text": "<b>to shoulders to abdomen to legs kind</b>",
+        "spoken_text": "the baby like you mean it, hold the baby like you want to, and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:30.816000 --> 0:01:33.441000",
+        "detail": "Segment text discrepancy (175.0% mismatch).",
+        "subtitle_text": "<b>of development of control.</b>",
+        "spoken_text": "if you need a break, then take"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:33.700000 --> 0:01:37.572000",
+        "detail": "Segment text discrepancy (171.4% mismatch).",
+        "subtitle_text": "<b>So our interactions with babies can be</b>",
+        "spoken_text": "the break from the entire process, even if it is for 20"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:37.572000 --> 0:01:40.410000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>about encouraging all of that, giving</b>",
+        "spoken_text": "minutes, 30 minutes, if there's nothing else possible."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:40.410000 --> 0:01:46.778000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>them room to roll around, to explore just</b>",
+        "spoken_text": "But when you are being with the baby, your emotional state pretty"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:46.778000 --> 0:01:48.800000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like what their arms and legs can do.</b>",
+        "spoken_text": "much directly maps onto the"
+      }
+    ]
+  },
+  {
+    "file": "ep3.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep3.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0054,
+      "video_duration_sec": 65.2,
+      "defect_count": 1
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 836.52s on a 65.20s clip (Master timeline offset of ~836.52s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -836.52s to align with clip start."
+      }
+    ]
+  },
+  {
+    "file": "ep4.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep4.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.2424,
+      "video_duration_sec": 111.53,
+      "defect_count": 51
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 968.44s on a 111.53s clip (Master timeline offset of ~968.44s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -968.44s to align with clip start."
+      },
+      {
         "type": "SRT_SYNTAX",
-        "detail": "Subtitle #1: Subtitle starts (6.50s) after video ends (5.64s)."
+        "detail": "Subtitle #54: Subtitle starts (114.28s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #55: Subtitle starts (116.92s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #56: Subtitle starts (119.80s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #57: Subtitle starts (123.24s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #58: Subtitle starts (125.20s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #59: Subtitle starts (127.76s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #60: Subtitle starts (132.04s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #61: Subtitle starts (135.00s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #62: Subtitle starts (137.36s) after video ends (111.53s)."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:08.920000 --> 0:00:10.599000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>is the biggest and the most</b>",
+        "spoken_text": "and it is the biggest and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:21.079000 --> 0:00:22.160000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "<b>slightly more from a distance,</b>",
+        "spoken_text": "distance, slightly more from a"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43.839000 --> 0:00:45.079000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>to take turns because you have</b>",
+        "spoken_text": "able to take turns because"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:45.079000 --> 0:00:46.880000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>been demonstrating taking turns.</b>",
+        "spoken_text": "you have been demonstrating taking turns."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.199000 --> 0:00:49.079000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>come out of nowhere.</b>",
+        "spoken_text": "didn't come out of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:55.439000 --> 0:00:56.760000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>with the baby in that way.</b>",
+        "spoken_text": "interacting with them"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:56.760000 --> 0:00:57.919000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>How do we know this?</b>",
+        "spoken_text": "but now they'll be able"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:57.919000 --> 0:00:59.960000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>Usually from cases where it</b>",
+        "spoken_text": "to be much more"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.960000 --> 0:01:01.480000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>has not worked like that.</b>",
+        "spoken_text": "expressive"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:01.480000 --> 0:01:03.399000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, babies who have been very isolated,</b>",
+        "spoken_text": "with their facial expressions"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:03.399000 --> 0:01:05.639000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>babies who have not had consistent care,</b>",
+        "spoken_text": "and body movements"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:05.639000 --> 0:01:06.839000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>institutionalized babies,</b>",
+        "spoken_text": "because now they"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.839000 --> 0:01:08.200000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>they don't develop this.</b>",
+        "spoken_text": "can kind of like have voluntary"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:08.200000 --> 0:01:10.280000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>None of these developmental markers</b>",
+        "spoken_text": "control over this much and the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:10.280000 --> 0:01:12.359000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>can just be taken for granted</b>",
+        "spoken_text": "gross motor movements around their arms."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:12.399000 --> 0:01:14.679000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>that it is going to just happen.</b>",
+        "spoken_text": "So if they're holding a rattle"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:15.079000 --> 0:01:18.800000",
+        "detail": "Segment text discrepancy (320.0% mismatch).",
+        "subtitle_text": "<b>Nothing happens out of context.</b>",
+        "spoken_text": "example they'll be able to do this but every once in a while they'll"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:21.200000 --> 0:01:22.040000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, your baby is learning</b>",
+        "spoken_text": "coordination"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.040000 --> 0:01:24.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>turn-taking because you have</b>",
+        "spoken_text": "is still somewhere away"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:24.599000 --> 0:01:26.440000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>been interacting with them.</b>",
+        "spoken_text": "but they will also"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:26.440000 --> 0:01:29.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>But now, they will be able to be much</b>",
+        "spoken_text": "do things like spontaneously laugh and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:29.240000 --> 0:01:32.359000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>more expressive with their facial</b>",
+        "spoken_text": "let you know that oh this"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:32.359000 --> 0:01:35.520000",
+        "detail": "Segment text discrepancy (250.0% mismatch).",
+        "subtitle_text": "<b>expressions and body movements</b>",
+        "spoken_text": "is something that was that has caught their attention and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:35.520000 --> 0:01:37.280000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>because now they can kind of like</b>",
+        "spoken_text": "it could be something like"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:37.280000 --> 0:01:39.399000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>have voluntary control over this much</b>",
+        "spoken_text": "a mobile turning"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:39.399000 --> 0:01:41.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>and the gross motor movements around</b>",
+        "spoken_text": "song playing"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:41.599000 --> 0:01:42.480000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>their arms.</b>",
+        "spoken_text": "or"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:43.319000 --> 0:01:44.639000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, if they are holding a rattle, for</b>",
+        "spoken_text": "around with them and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:44.639000 --> 0:01:46.879000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>example, they will be able to do this.</b>",
+        "spoken_text": "breeze in their face depending"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:46.879000 --> 0:01:48.760000",
+        "detail": "Segment text discrepancy (88.9% mismatch).",
+        "subtitle_text": "<b>But every once in a while, they will end</b>",
+        "spoken_text": "on which sensations they have"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:48.760000 --> 0:01:51.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>up whacking their own face because</b>",
+        "spoken_text": "found like that."
       },
       {
         "type": "TIMING_DRIFT",
-        "timestamp": "0:00:06.500000 --> 0:00:10.500000",
-        "detail": "No speech detected inside window (6.50s - 10.50s).",
-        "subtitle_text": "Welcome to the automated subtitle quality checking demo.",
+        "timestamp": "0:01:51.240000 --> 0:01:54.280000",
+        "detail": "No spoken speech detected inside window (111.24s - 114.28s).",
+        "subtitle_text": "<b>coordination is still some way away.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:54.280000 --> 0:01:56.919000",
+        "detail": "No spoken speech detected inside window (114.28s - 116.92s).",
+        "subtitle_text": "<b>But they will also do things like</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:56.919000 --> 0:01:59.800000",
+        "detail": "No spoken speech detected inside window (116.92s - 119.80s).",
+        "subtitle_text": "<b>spontaneously laugh and let you</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:59.800000 --> 0:02:03.240000",
+        "detail": "No spoken speech detected inside window (119.80s - 123.24s).",
+        "subtitle_text": "<b>know that, oh, this is something</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:03.240000 --> 0:02:05.200000",
+        "detail": "No spoken speech detected inside window (123.24s - 125.20s).",
+        "subtitle_text": "<b>that has caught their attention.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:05.200000 --> 0:02:07.760000",
+        "detail": "No spoken speech detected inside window (125.20s - 127.76s).",
+        "subtitle_text": "<b>And it could be something like a mobile</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:07.760000 --> 0:02:12.040000",
+        "detail": "No spoken speech detected inside window (127.76s - 132.04s).",
+        "subtitle_text": "<b>turning, song playing or you are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:12.040000 --> 0:02:15",
+        "detail": "No spoken speech detected inside window (132.04s - 135.00s).",
+        "subtitle_text": "<b>walking around with them and breeze</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:15 --> 0:02:17.359000",
+        "detail": "No spoken speech detected inside window (135.00s - 137.36s).",
+        "subtitle_text": "<b>in their face depending on which</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:17.359000 --> 0:02:20.200000",
+        "detail": "No spoken speech detected inside window (137.36s - 140.20s).",
+        "subtitle_text": "<b>sensations they have found like that.</b>",
         "spoken_text": "[SILENCE / DRIFT]"
       }
     ]
   },
   {
-    "file": "wrong_text.mp4",
-    "srt_file": "wrong_text.srt",
+    "file": "ep5.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep5.srt",
     "status": "FAIL",
     "metrics": {
-      "global_wer": 4.5,
-      "video_duration_sec": 58.61,
-      "defect_count": 2
+      "global_wer": 0.8717,
+      "video_duration_sec": 136.0,
+      "defect_count": 13
     },
     "defects": [
       {
-        "type": "TEXT_MISMATCH",
-        "timestamp": "0:00:00.500000 --> 0:00:08",
-        "detail": "Segment text discrepancy (137.5% mismatch).",
-        "subtitle_text": "Today we are going to learn how to cook Italian pasta with olive oil and garlic.",
-        "spoken_text": "wants to climb that slide or the ladder and you're saying be careful What does that mean to the child be careful?"
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1188.44s on a 136.00s clip (Master timeline offset of ~1188.44s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1188.44s to align with clip start."
       },
       {
         "type": "TEXT_MISMATCH",
-        "timestamp": "0:00:08.500000 --> 0:00:18",
-        "detail": "Segment text discrepancy (157.1% mismatch).",
-        "subtitle_text": "Make sure the water is boiling before adding salt and pasta into the pot.",
-        "spoken_text": "child supposed to do except maybe freeze Whereas if you said that ladder is quite tall You need to make sure you know"
+        "timestamp": "0:00:34.800000 --> 0:00:36.560000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "<b>probably scream their heads off.</b>",
+        "spoken_text": "a bath, probably screen the heads off,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:40.119000 --> 0:00:42.919000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>And then a lot has been done now.</b>",
+        "spoken_text": "changed, and then a lot has been"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:42.919000 --> 0:00:44.319000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "<b>So now they will have a nap.</b>",
+        "spoken_text": "done now. So now they will have"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:44.319000 --> 0:00:46.119000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>By the time there are three months,</b>",
+        "spoken_text": "a nap. By the time there are three"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.119000 --> 0:00:48.399000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>that might include some kind of</b>",
+        "spoken_text": "months that might have include some"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.440000 --> 0:00:50.520000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>like a little stroll outdoors.</b>",
+        "spoken_text": "kind of like a little stroll,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:50.520000 --> 0:00:52.079000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>Or they might spend some time</b>",
+        "spoken_text": "outdoors, or they might"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.079000 --> 0:00:53.520000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>with a different adult.</b>",
+        "spoken_text": "spend some time with a different"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.800000 --> 0:01:08.839000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>There is this idea that babies are just</b>",
+        "spoken_text": "to. There is this idea that babies"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:08.839000 --> 0:01:10.960000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>like blobs and it really doesn't matter.</b>",
+        "spoken_text": "are just like blobs and it really doesn't"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:10.960000 --> 0:01:13.399000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>So as long as the people are there</b>",
+        "spoken_text": "matter. So as long as the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:13.399000 --> 0:01:15.240000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>or they are looked after, you can just</b>",
+        "spoken_text": "people are there or they are looked after,"
       }
     ]
   },
   {
-    "file": "wrong_timing.mp4",
-    "srt_file": "wrong_timing.srt",
+    "file": "ep6.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep6.srt",
     "status": "FAIL",
     "metrics": {
-      "global_wer": 3.1765,
-      "video_duration_sec": 58.61,
+      "global_wer": 0.0269,
+      "video_duration_sec": 149.44,
+      "defect_count": 7
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 397.40s on a 149.44s clip (Master timeline offset of ~397.40s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -397.40s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:14 --> 0:00:14.761000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>outside.</b>",
+        "spoken_text": "the outside."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.560000 --> 0:01:08.641000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>sort of emotional and social world is</b>",
+        "spoken_text": "baby's sort of emotional and social world"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:24.240000 --> 0:01:25.721000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>really close level.</b>",
+        "spoken_text": "like a really close level."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:41.521000 --> 0:01:45.721000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>without necessarily knowing about</b>",
+        "spoken_text": "thing without necessarily doing about"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:45.721000 --> 0:01:49.281000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "<b>the developmental detail underneath it.</b>",
+        "spoken_text": "the sort of developmental detail underneath it"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:15.120000 --> 0:02:17.400000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>better than it was like last week.</b>",
+        "spoken_text": "a teeny bit better than it was like last week"
+      }
+    ]
+  },
+  {
+    "file": "ep7.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep7.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.5415,
+      "video_duration_sec": 102.66,
+      "defect_count": 28
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1892.04s on a 102.66s clip (Master timeline offset of ~1892.04s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1892.04s to align with clip start."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:51.681000 --> 0:00:54.320000",
+        "detail": "No spoken speech detected inside window (51.68s - 54.32s).",
+        "subtitle_text": "<b>a little bit extra or something</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:54.320000 --> 0:00:55.401000",
+        "detail": "No spoken speech detected inside window (54.32s - 55.40s).",
+        "subtitle_text": "<b>happening that they are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:55.401000 --> 0:00:57.280000",
+        "detail": "No spoken speech detected inside window (55.40s - 57.28s).",
+        "subtitle_text": "<b>uncomfortable about, they might use</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:57.280000 --> 0:00:59.121000",
+        "detail": "No spoken speech detected inside window (57.28s - 59.12s).",
+        "subtitle_text": "<b>their eyes as a way of holding down</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:59.121000 --> 0:00:59.921000",
+        "detail": "No spoken speech detected inside window (59.12s - 59.92s).",
+        "subtitle_text": "<b>the rest of them.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:00.121000 --> 0:01:01.681000",
+        "detail": "No spoken speech detected inside window (60.12s - 61.68s).",
+        "subtitle_text": "<b>And these are like the beginnings</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:01.681000 --> 0:01:05.121000",
+        "detail": "No spoken speech detected inside window (61.68s - 65.12s).",
+        "subtitle_text": "<b>of little, little like coping strategies</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:05.240000 --> 0:01:07.760000",
+        "detail": "No spoken speech detected inside window (65.24s - 67.76s).",
+        "subtitle_text": "<b>when things are not all okay also.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:07.760000 --> 0:01:09.921000",
+        "detail": "No spoken speech detected inside window (67.76s - 69.92s).",
+        "subtitle_text": "<b>Other than that, they are beginning to,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:10.080000 --> 0:01:10.961000",
+        "detail": "No spoken speech detected inside window (70.08s - 70.96s).",
+        "subtitle_text": "<b>again like I said,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:10.961000 --> 0:01:13.161000",
+        "detail": "No spoken speech detected inside window (70.96s - 73.16s).",
+        "subtitle_text": "<b>with their gaze let you know that they</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:13.161000 --> 0:01:14.441000",
+        "detail": "No spoken speech detected inside window (73.16s - 74.44s).",
+        "subtitle_text": "<b>are interested in something.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:14.441000 --> 0:01:15.681000",
+        "detail": "No spoken speech detected inside window (74.44s - 75.68s).",
+        "subtitle_text": "<b>So, because they can't point yet,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:15.681000 --> 0:01:16.841000",
+        "detail": "No spoken speech detected inside window (75.68s - 76.84s).",
+        "subtitle_text": "<b>they will look at it.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:17.441000 --> 0:01:19.161000",
+        "detail": "No spoken speech detected inside window (77.44s - 79.16s).",
+        "subtitle_text": "<b>Then they will be looking at it.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:19.161000 --> 0:01:20.601000",
+        "detail": "No spoken speech detected inside window (79.16s - 80.60s).",
+        "subtitle_text": "<b>And that's a way in which</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:20.601000 --> 0:01:22.681000",
+        "detail": "No spoken speech detected inside window (80.60s - 82.68s).",
+        "subtitle_text": "<b>they are also communicating.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:22.881000 --> 0:01:24.401000",
+        "detail": "No spoken speech detected inside window (82.88s - 84.40s).",
+        "subtitle_text": "<b>So, again they are communicating with</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:24.401000 --> 0:01:27.441000",
+        "detail": "No spoken speech detected inside window (84.40s - 87.44s).",
+        "subtitle_text": "<b>you so much, but it's mainly eyes,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:27.961000 --> 0:01:30.720000",
+        "detail": "No spoken speech detected inside window (87.96s - 90.72s).",
+        "subtitle_text": "<b>neck, movement of the head and the</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:30.720000 --> 0:01:32.401000",
+        "detail": "No spoken speech detected inside window (90.72s - 92.40s).",
+        "subtitle_text": "<b>sort of upper torso part where they</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:32.401000 --> 0:01:33.921000",
+        "detail": "No spoken speech detected inside window (92.40s - 93.92s).",
+        "subtitle_text": "<b>will lean forward if they are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:33.921000 --> 0:01:34.720000",
+        "detail": "No spoken speech detected inside window (93.92s - 94.72s).",
+        "subtitle_text": "<b>interested in you.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:35.320000 --> 0:01:36.161000",
+        "detail": "No spoken speech detected inside window (95.32s - 96.16s).",
+        "subtitle_text": "<b>They will lean back</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:36.161000 --> 0:01:38",
+        "detail": "No spoken speech detected inside window (96.16s - 98.00s).",
+        "subtitle_text": "<b>if they are not interested.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:38 --> 0:01:40.080000",
+        "detail": "No spoken speech detected inside window (98.00s - 100.08s).",
+        "subtitle_text": "<b>And all of these are ways in which your</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:40.080000 --> 0:01:41.841000",
+        "detail": "No spoken speech detected inside window (100.08s - 101.84s).",
+        "subtitle_text": "<b>baby is continuing to interact with you.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "ep8.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep8.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0705,
+      "video_duration_sec": 51.88,
+      "defect_count": 2
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 2056.56s on a 51.88s clip (Master timeline offset of ~2056.56s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -2056.56s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:07.520000 --> 0:00:08.881000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>If a five-month-old sitting</b>",
+        "spoken_text": "It's a 5 month old sitting"
+      }
+    ]
+  },
+  {
+    "file": "ep9.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep9.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.0323,
+      "video_duration_sec": 82.32,
+      "defect_count": 10
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1604.20s on a 82.32s clip (Master timeline offset of ~1604.20s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1604.20s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:09.639000 --> 0:00:10.960000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "<b>a three month old is a veteran.</b>",
+        "spoken_text": "before, a three -month -old"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:20.359000 --> 0:00:21.800000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>The quality shifts a little bit,</b>",
+        "spoken_text": "other, the quality shifts a"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:21.800000 --> 0:00:22.879000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>I find at four months.</b>",
+        "spoken_text": "little bit, I find at four"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:37.359000 --> 0:00:38.680000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>on the tummy and stretching out</b>",
+        "spoken_text": "like lying on the tummy and stretching"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:38.680000 --> 0:00:40.399000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>like that kind of thing going on.</b>",
+        "spoken_text": "stretching out like that kind of thing going"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:07.040000 --> 0:01:09.480000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>So that turn taking has really</b>",
+        "spoken_text": "to you. That turn -taking"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:09.480000 --> 0:01:10.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like got established.</b>",
+        "spoken_text": "has really like got"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:14.879000 --> 0:01:16.440000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "<b>with a four month old.</b>",
+        "spoken_text": "with the form of thought."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.440000 --> 0:01:21.200000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>going to get more and more exciting.</b>",
+        "spoken_text": "only just going to get more and more"
+      }
+    ]
+  },
+  {
+    "file": "ep10.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep10.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.102,
+      "video_duration_sec": 97.48,
+      "defect_count": 18
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1736.72s on a 97.48s clip (Master timeline offset of ~1736.72s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1736.72s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:05.799000 --> 0:00:08.599000",
+        "detail": "Segment text discrepancy (62.5% mismatch).",
+        "subtitle_text": "<b>with a four-month-old, make eye contact</b>",
+        "spoken_text": "engage with a formal role, make eye"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:17.839000 --> 0:00:20.240000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>contact with your baby, the rest just</b>",
+        "spoken_text": "make eye contact with your baby, the rest"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:20.240000 --> 0:00:22.039000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "<b>becomes part of that relationship.</b>",
+        "spoken_text": "just becomes part of that"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:29.639000 --> 0:00:31.359000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>the content of what you say</b>",
+        "spoken_text": "the content of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:31.359000 --> 0:00:33.520000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "<b>really doesn't matter at this point.</b>",
+        "spoken_text": "what you say really doesn't matter, right, at this point,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43.319000 --> 0:00:44",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>It could be anything.</b>",
+        "spoken_text": "of shoes, it could be"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.440000 --> 0:00:48.319000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>on your face and it's about</b>",
+        "spoken_text": "on your face and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.319000 --> 0:00:50.559000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "<b>the intonation that you use.</b>",
+        "spoken_text": "it's about the intonation that you"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:56.160000 --> 0:00:58.319000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "<b>when they're speaking to really small</b>",
+        "spoken_text": "most adults, when they are speaking to"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:58.319000 --> 0:00:59.960000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>babies, like three, four months old,</b>",
+        "spoken_text": "really small babies like three, four months"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.960000 --> 0:01:02.039000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>they use very high-pitched tones.</b>",
+        "spoken_text": "months old, they use very high -pitched"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.039000 --> 0:01:09.359000",
+        "detail": "Segment text discrepancy (44.4% mismatch).",
+        "subtitle_text": "<b>So it'll be like, Baby, how are you?</b>",
+        "spoken_text": "so it'll be like, yeah,"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:10.039000 --> 0:01:11.799000",
+        "detail": "No spoken speech detected inside window (70.04s - 71.80s).",
+        "subtitle_text": "<b>What did you eat?</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:11.799000 --> 0:01:14",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>What did you do?</b>",
+        "spoken_text": "so they say,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:16.599000 --> 0:01:17.960000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>babies are responding to.</b>",
+        "spoken_text": "it that babies are responding"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:29.039000 --> 0:01:29.960000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>It's called Motherese.</b>",
+        "spoken_text": "yeah. It's called Motherease,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:31.920000 --> 0:01:36.039000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>it motherese, this high-toned interaction.</b>",
+        "spoken_text": "calls it Motherease, this high -toned"
+      }
+    ]
+  },
+  {
+    "file": "ep11.mov",
+    "folder": "Horizontal",
+    "srt_file": "ep11.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.4263,
+      "video_duration_sec": 140.0,
+      "defect_count": 48
+    },
+    "defects": [
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #1: Extremely short duration (0.08s)."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:00 --> 0:00:00.080000",
+        "detail": "No spoken speech detected inside window (0.00s - 0.08s).",
+        "subtitle_text": "throw tantrums",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:17.600000 --> 0:00:18.080000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "right?",
+        "spoken_text": "and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:19.400000 --> 0:00:20.640000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "So baby ke liye",
+        "spoken_text": "so baby the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:20.640000 --> 0:00:21.200000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "the thing",
+        "spoken_text": "thing"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:23 --> 0:00:24.680000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "for all evil sab chizo ka",
+        "spoken_text": "for all evil sub"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:24.680000 --> 0:00:27.240000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "illaz ye hai, woh ab suddenly nahi hai",
+        "spoken_text": "-chosenka illaagye hai whoop suckingi nahi hai so"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:32.120000 --> 0:00:33.320000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "certain babies.",
+        "spoken_text": "certain babies we"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:33.320000 --> 0:00:35.760000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "We say, mummy ko tum chup jao",
+        "spoken_text": "say mameko tum chup jao tum"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:35.760000 --> 0:00:36.920000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "tum aaj dusre kamre mein",
+        "spoken_text": "aaj dhursre kamre mein"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:36.920000 --> 0:00:37.560000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "So jao",
+        "spoken_text": "sao jao tum"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:39.600000 --> 0:00:41.640000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "tum kuch kadva laga lo",
+        "spoken_text": "kuch kadwa lagalo"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:41.640000 --> 0:00:43",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "jaise baby suckle karne lage toh",
+        "spoken_text": "jasii baby suckle kande lagi"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43 --> 0:00:44.040000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "tum jor se chikne lago",
+        "spoken_text": "tum zor se chikle i'm"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:44.040000 --> 0:00:46.400000",
+        "detail": "Segment text discrepancy (77.8% mismatch).",
+        "subtitle_text": "I'm just imagine hum kya kar rahe hai",
+        "spoken_text": "just imagine what we are doing we"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.920000 --> 0:00:54.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "humko bhi bahot acha nhi lagh raha",
+        "spoken_text": "we are not very good at"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:54.320000 --> 0:00:55.800000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "woh karte hue",
+        "spoken_text": "it but"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:55.800000 --> 0:00:58.440000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "but yes ho sakta hai kuch percent baby par",
+        "spoken_text": "yes hosatthai kuch person baby se"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.040000 --> 0:01:00.760000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "And we see it enough on Instagram.",
+        "spoken_text": "and we see it in a fun instagram but"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:03.280000 --> 0:01:05.920000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "Yes, baby ke jitne bhi needs hai.",
+        "spoken_text": "yes baby ke jitne binaidse"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:05.920000 --> 0:01:08.720000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "chahe woh emotional needs chahe woh physical needs hai",
+        "spoken_text": "chai wo emotional needs a chai wo physical needs"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:13 --> 0:01:14.160000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "nahi beta abhi",
+        "spoken_text": "nae bitta abhi"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:15.680000 --> 0:01:17.440000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "because ab mumma ko nahi karna",
+        "spoken_text": "because ab mamako nae karna"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.840000 --> 0:01:20.080000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "ki aab mere se nhi ho raha",
+        "spoken_text": "ki abhmeer se nae hora"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.360000 --> 0:01:23.560000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "But again,",
+        "spoken_text": "again the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:25.480000 --> 0:01:26.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "jaise aap normal",
+        "spoken_text": "as you talk"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:26.320000 --> 0:01:27.600000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "baby se baat karte hoon",
+        "spoken_text": "with normal baby be"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:28.520000 --> 0:01:31.040000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "ratbhar usko lekar ghomna pad sakta hai",
+        "spoken_text": "abhmeer hosko leke ghumna par sakta"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:31.040000 --> 0:01:32.760000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "because thoda sa soyenge",
+        "spoken_text": "because hosatthai saoing it"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:32.760000 --> 0:01:34.200000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "fir unki neend kholegi fir again",
+        "spoken_text": "firun ki neen kulaegi fir again"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:34.200000 --> 0:01:35.360000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "they would ask for milk.",
+        "spoken_text": "they would ask for me so"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:38.280000 --> 0:01:40.680000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "But mostly jaha par aisa hai",
+        "spoken_text": "mostly jhaapar asa hai"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:40.680000 --> 0:01:42.920000",
+        "detail": "Segment text discrepancy (70.0% mismatch).",
+        "subtitle_text": "jaha par family bhi apke saath same page pe hai",
+        "spoken_text": "jhaapar family bhaapke saat same page for"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:42.920000 --> 0:01:45.560000",
+        "detail": "Segment text discrepancy (77.8% mismatch).",
+        "subtitle_text": "For example baby ro raha hai, cheek raha hai",
+        "spoken_text": "example baby roo rai chik rai so"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:45.560000 --> 0:01:48.120000",
+        "detail": "Segment text discrepancy (88.9% mismatch).",
+        "subtitle_text": "So aapne pehle se sabko batake rakha hua hai,",
+        "spoken_text": "apne pala se savko bata ke rakhao hai ki"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:48.120000 --> 0:01:49.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "ki aisa honewala hai.",
+        "spoken_text": "ashao ne wala so"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:50.800000 --> 0:01:52.600000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "and repeatedly asking  kyu rula rahe ho",
+        "spoken_text": "and repeated yaskeen kyo roo la reo"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:52.600000 --> 0:01:53.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "kyu rula rahe ho",
+        "spoken_text": "kyo roo la reo"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:53.320000 --> 0:01:55.200000",
+        "detail": "Segment text discrepancy (62.5% mismatch).",
+        "subtitle_text": "Because they know aap kya kar rahe ho.",
+        "spoken_text": "because they know what you are doing"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:59.600000 --> 0:02:00.760000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "code word or safe",
+        "spoken_text": "cordward or safe"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:04.040000 --> 0:02:05.880000",
+        "detail": "No spoken speech detected inside window (124.04s - 125.88s).",
+        "subtitle_text": "Kyunki jab aap puri raat tehel rahe ho",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:05.880000 --> 0:02:08.800000",
+        "detail": "No spoken speech detected inside window (125.88s - 128.80s).",
+        "subtitle_text": "aap thak rahe ho. Aapko gussa aanewala hai thik",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:08.800000 --> 0:02:10.360000",
+        "detail": "No spoken speech detected inside window (128.80s - 130.36s).",
+        "subtitle_text": "So kahi baar wo gussa",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:10.360000 --> 0:02:12.120000",
+        "detail": "No spoken speech detected inside window (130.36s - 132.12s).",
+        "subtitle_text": "subconsciously baby pe nikal jata hai.",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:12.120000 --> 0:02:14.360000",
+        "detail": "No spoken speech detected inside window (132.12s - 134.36s).",
+        "subtitle_text": "Toh jab aapko lage ki aapka hone laga,",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:14.360000 --> 0:02:15.960000",
+        "detail": "No spoken speech detected inside window (134.36s - 135.96s).",
+        "subtitle_text": "apne wo code-word bola",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:15.960000 --> 0:02:18.320000",
+        "detail": "No spoken speech detected inside window (135.96s - 138.32s).",
+        "subtitle_text": "aur aapke partner ne casually bilkul",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:18.320000 --> 0:02:18.900000",
+        "detail": "No spoken speech detected inside window (138.32s - 138.90s).",
+        "subtitle_text": "comfortably casually",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "ep13.mov",
+    "folder": "Horizontal",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "ep1.mov",
+    "folder": "Portrait",
+    "srt_file": "ep1.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0197,
+      "video_duration_sec": 130.08,
       "defect_count": 2
     },
     "defects": [
       {
         "type": "TEXT_MISMATCH",
-        "timestamp": "0:00:12 --> 0:00:16.500000",
-        "detail": "Segment text discrepancy (93.3% mismatch).",
-        "subtitle_text": "The child wants to climb that slide or the ladder, and you're saying, \"Be careful.\"",
-        "spoken_text": "said that ladder is quite tall You need to"
+        "timestamp": "0:00:10.320000 --> 0:00:12.640000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>Winnicott named Donald Winnicott.</b>",
+        "spoken_text": "Vinicord, named Donald Vinicord. And"
       },
       {
         "type": "TEXT_MISMATCH",
-        "timestamp": "0:00:16.500000 --> 0:00:23.200000",
-        "detail": "Segment text discrepancy (100.0% mismatch).",
-        "subtitle_text": "What does that mean to the child, \"Be careful\"? What is the child supposed to do except maybe freeze?",
-        "spoken_text": "make sure you know you're holding the side railings Now you've given him something very"
+        "timestamp": "0:00:27.920000 --> 0:00:31.640000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>how deeply intertwined or coexisting</b>",
+        "spoken_text": "deeply intertwined or co -existing"
       }
     ]
+  },
+  {
+    "file": "ep2.mov",
+    "folder": "Portrait",
+    "srt_file": "ep2.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 1.0114,
+      "video_duration_sec": 109.96,
+      "defect_count": 42
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 2176.20s on a 109.96s clip (Master timeline offset of ~2176.20s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -2176.20s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:00 --> 0:00:02.624000",
+        "detail": "Segment text discrepancy (77.8% mismatch).",
+        "subtitle_text": "<b>So six months is a lot changes at six</b>",
+        "spoken_text": "So, as a parent, your engagement"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:02.624000 --> 0:00:04.818000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>months because by the time they have</b>",
+        "spoken_text": "with the baby is of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:04.818000 --> 0:00:06.540000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>that kind of abdominal strength to</b>",
+        "spoken_text": "critical importance."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:06.540000 --> 0:00:09.207000",
+        "detail": "Segment text discrepancy (137.5% mismatch).",
+        "subtitle_text": "<b>be able to sit up, more or less</b>",
+        "spoken_text": "So, it's really important that we don't think of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:09.207000 --> 0:00:11.617000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>unsupported, I would say more or</b>",
+        "spoken_text": "early baby care as something that can"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:11.617000 --> 0:00:12.820000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>less because they're still quite</b>",
+        "spoken_text": "be done in a mechanical way."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:12.820000 --> 0:00:13.682000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>floppy, right?</b>",
+        "spoken_text": "So,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:13.682000 --> 0:00:15.961000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>Like you plant them like this and then</b>",
+        "spoken_text": "the same things, it's very repetitive,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:15.961000 --> 0:00:17.767000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like a few minutes later, they'll be</b>",
+        "spoken_text": "it's very dull, yes."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:17.767000 --> 0:00:19.832000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like, and then they'll keel over</b>",
+        "spoken_text": "It's the changing, the holding,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:19.832000 --> 0:00:22.543000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>sideways or backwards and just have</b>",
+        "spoken_text": "the carrying, the feeding, the cleaning, and then"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:22.543000 --> 0:00:24.694000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>cushions around so that they are not</b>",
+        "spoken_text": "repeat. That is how your baby"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:24.694000 --> 0:00:25.726000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>whacking their heads.</b>",
+        "spoken_text": "is literally being held"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:25.726000 --> 0:00:27.534000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>But six months, quite a lot changes.</b>",
+        "spoken_text": "together. Because any of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:27.534000 --> 0:00:30.201000",
+        "detail": "Segment text discrepancy (128.6% mismatch).",
+        "subtitle_text": "<b>And because of that sort of upright</b>",
+        "spoken_text": "these sensations that are on the inside, whether it"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:30.201000 --> 0:00:32.825000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>posture, your experience of your baby</b>",
+        "spoken_text": "is hunger, or who has to come"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:32.825000 --> 0:00:36.224000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>is much more of, oh, this is a person</b>",
+        "spoken_text": "out, so some things are happening, the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:36.224000 --> 0:00:40.612000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>that somehow manages to engage adults</b>",
+        "spoken_text": "baby has no cognitive or emotional psychic"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:40.612000 --> 0:00:42.891000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>in a different kind of way.</b>",
+        "spoken_text": "structures to be able to tell the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:42.891000 --> 0:00:46.033000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>And from here on, their interaction</b>",
+        "spoken_text": "difference between inside and outside. So, the baby is"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.033000 --> 0:00:47.882000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>and the quality of their interaction</b>",
+        "spoken_text": "almost like being"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:47.882000 --> 0:00:50.463000",
+        "detail": "Segment text discrepancy (175.0% mismatch).",
+        "subtitle_text": "<b>actually changes quite significantly.</b>",
+        "spoken_text": "besieged by these sensations. Like the baby"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:51.022000 --> 0:00:52.571000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>They become much more active.</b>",
+        "spoken_text": "just, and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.571000 --> 0:00:54.206000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>Some of the previous things, of course,</b>",
+        "spoken_text": "it's the way"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:54.206000 --> 0:00:55.755000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>are still there where they still</b>",
+        "spoken_text": "in which the caregiver,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:55.755000 --> 0:00:58.078000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>can't like necessarily reach out</b>",
+        "spoken_text": "the environment,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:58.078000 --> 0:01:03.026000",
+        "detail": "Segment text discrepancy (183.3% mismatch).",
+        "subtitle_text": "<b>so pointedly, but they are rolling,</b>",
+        "spoken_text": "meets this baby with a kind of consistency, reliability, and gentleness"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:03.026000 --> 0:01:06.769000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>they are pulling themselves, they are</b>",
+        "spoken_text": "that makes that physical"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.769000 --> 0:01:11.457000",
+        "detail": "Segment text discrepancy (128.6% mismatch).",
+        "subtitle_text": "<b>on their tummies, they are sitting up,</b>",
+        "spoken_text": "care into something that is nurturing because there are"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:11.930000 --> 0:01:14.298000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>they are moving about that way.</b>",
+        "spoken_text": "feeding the baby that are just,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:14.298000 --> 0:01:16.664000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>And all of that will feed into</b>",
+        "spoken_text": "and then there are ways of feeding the baby,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:16.664000 --> 0:01:18.857000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>the next step of being able</b>",
+        "spoken_text": "which are holding and nourishing."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.857000 --> 0:01:22.471000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>to hold themselves up on all fours.</b>",
+        "spoken_text": "So, at a very simple level, don't"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.471000 --> 0:01:24.020000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So you can see that there is</b>",
+        "spoken_text": "be on your phone while you"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:24.063000 --> 0:01:27.290000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>a gradual going from head to arms</b>",
+        "spoken_text": "are feeding the baby. Make eye contact, hold"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:27.290000 --> 0:01:30.816000",
+        "detail": "Segment text discrepancy (200.0% mismatch).",
+        "subtitle_text": "<b>to shoulders to abdomen to legs kind</b>",
+        "spoken_text": "the baby like you mean it, hold the baby like you want to, and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:30.816000 --> 0:01:33.441000",
+        "detail": "Segment text discrepancy (175.0% mismatch).",
+        "subtitle_text": "<b>of development of control.</b>",
+        "spoken_text": "if you need a break, then take"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:33.700000 --> 0:01:37.572000",
+        "detail": "Segment text discrepancy (171.4% mismatch).",
+        "subtitle_text": "<b>So our interactions with babies can be</b>",
+        "spoken_text": "the break from the entire process, even if it is for 20"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:37.572000 --> 0:01:40.410000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>about encouraging all of that, giving</b>",
+        "spoken_text": "minutes, 30 minutes, if there's nothing else possible."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:40.410000 --> 0:01:46.778000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>them room to roll around, to explore just</b>",
+        "spoken_text": "But when you are being with the baby, your emotional state pretty"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:46.778000 --> 0:01:48.800000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like what their arms and legs can do.</b>",
+        "spoken_text": "much directly maps on to the baby."
+      }
+    ]
+  },
+  {
+    "file": "ep3.mov",
+    "folder": "Portrait",
+    "srt_file": "ep3.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0054,
+      "video_duration_sec": 65.2,
+      "defect_count": 2
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 836.52s on a 65.20s clip (Master timeline offset of ~836.52s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -836.52s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:15.721000 --> 0:00:18.160000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>responsive environment, and I'm</b>",
+        "spoken_text": "environment and"
+      }
+    ]
+  },
+  {
+    "file": "ep4.mov",
+    "folder": "Portrait",
+    "srt_file": "ep4.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.2342,
+      "video_duration_sec": 111.53,
+      "defect_count": 51
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 968.44s on a 111.53s clip (Master timeline offset of ~968.44s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -968.44s to align with clip start."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #54: Subtitle starts (114.28s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #55: Subtitle starts (116.92s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #56: Subtitle starts (119.80s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #57: Subtitle starts (123.24s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #58: Subtitle starts (125.20s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #59: Subtitle starts (127.76s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #60: Subtitle starts (132.04s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #61: Subtitle starts (135.00s) after video ends (111.53s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #62: Subtitle starts (137.36s) after video ends (111.53s)."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:08.920000 --> 0:00:10.599000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>is the biggest and the most</b>",
+        "spoken_text": "and it is the biggest and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:21.079000 --> 0:00:22.160000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "<b>slightly more from a distance,</b>",
+        "spoken_text": "distance, slightly more from a"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43.839000 --> 0:00:45.079000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>to take turns because you have</b>",
+        "spoken_text": "able to take turns because"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:45.079000 --> 0:00:46.880000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>been demonstrating taking turns.</b>",
+        "spoken_text": "you have been demonstrating taking turns."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.199000 --> 0:00:49.079000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>come out of nowhere.</b>",
+        "spoken_text": "didn't come out of"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:55.439000 --> 0:00:56.760000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>with the baby in that way.</b>",
+        "spoken_text": "interacting with them."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:56.760000 --> 0:00:57.919000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>How do we know this?</b>",
+        "spoken_text": "But now they'll be able"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:57.919000 --> 0:00:59.960000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>Usually from cases where it</b>",
+        "spoken_text": "to be much more"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.960000 --> 0:01:01.480000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>has not worked like that.</b>",
+        "spoken_text": "expressive"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:01.480000 --> 0:01:03.399000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, babies who have been very isolated,</b>",
+        "spoken_text": "with their facial expressions"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:03.399000 --> 0:01:05.639000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>babies who have not had consistent care,</b>",
+        "spoken_text": "and body movements"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:05.639000 --> 0:01:06.839000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>institutionalized babies,</b>",
+        "spoken_text": "because now they"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.839000 --> 0:01:08.200000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>they don't develop this.</b>",
+        "spoken_text": "can kind of like have voluntary"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:08.200000 --> 0:01:10.280000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>None of these developmental markers</b>",
+        "spoken_text": "control over this much and the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:10.280000 --> 0:01:12.359000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>can just be taken for granted</b>",
+        "spoken_text": "gross motor movements around their"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:12.399000 --> 0:01:14.679000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>that it is going to just happen.</b>",
+        "spoken_text": "So if they're holding a rattle"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:15.079000 --> 0:01:18.800000",
+        "detail": "Segment text discrepancy (320.0% mismatch).",
+        "subtitle_text": "<b>Nothing happens out of context.</b>",
+        "spoken_text": "example, they'll be able to do this. But every once in a while, they'll"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:21.200000 --> 0:01:22.040000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, your baby is learning</b>",
+        "spoken_text": "coordination"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.040000 --> 0:01:24.599000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "<b>turn-taking because you have</b>",
+        "spoken_text": "is still some way away. But"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:24.599000 --> 0:01:26.440000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>been interacting with them.</b>",
+        "spoken_text": "they will also"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:26.440000 --> 0:01:29.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>But now, they will be able to be much</b>",
+        "spoken_text": "do things like spontaneously laugh and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:29.240000 --> 0:01:32.359000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>more expressive with their facial</b>",
+        "spoken_text": "let you know that oh,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:32.359000 --> 0:01:35.520000",
+        "detail": "Segment text discrepancy (225.0% mismatch).",
+        "subtitle_text": "<b>expressions and body movements</b>",
+        "spoken_text": "this is something that has got their attention and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:35.520000 --> 0:01:37.280000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>because now they can kind of like</b>",
+        "spoken_text": "it could be something like"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:37.280000 --> 0:01:39.399000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>have voluntary control over this much</b>",
+        "spoken_text": "a mobile, turning"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:39.399000 --> 0:01:41.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>and the gross motor movements around</b>",
+        "spoken_text": "song playing or"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:41.599000 --> 0:01:42.480000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>their arms.</b>",
+        "spoken_text": "you"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:43.319000 --> 0:01:44.639000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So, if they are holding a rattle, for</b>",
+        "spoken_text": "around with them and"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:44.639000 --> 0:01:46.879000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>example, they will be able to do this.</b>",
+        "spoken_text": "breeze in their face, depending"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:46.879000 --> 0:01:48.760000",
+        "detail": "Segment text discrepancy (88.9% mismatch).",
+        "subtitle_text": "<b>But every once in a while, they will end</b>",
+        "spoken_text": "on which sensations they have"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:48.760000 --> 0:01:51.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>up whacking their own face because</b>",
+        "spoken_text": "found like that."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:51.240000 --> 0:01:54.280000",
+        "detail": "No spoken speech detected inside window (111.24s - 114.28s).",
+        "subtitle_text": "<b>coordination is still some way away.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:54.280000 --> 0:01:56.919000",
+        "detail": "No spoken speech detected inside window (114.28s - 116.92s).",
+        "subtitle_text": "<b>But they will also do things like</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:56.919000 --> 0:01:59.800000",
+        "detail": "No spoken speech detected inside window (116.92s - 119.80s).",
+        "subtitle_text": "<b>spontaneously laugh and let you</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:59.800000 --> 0:02:03.240000",
+        "detail": "No spoken speech detected inside window (119.80s - 123.24s).",
+        "subtitle_text": "<b>know that, oh, this is something</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:03.240000 --> 0:02:05.200000",
+        "detail": "No spoken speech detected inside window (123.24s - 125.20s).",
+        "subtitle_text": "<b>that has caught their attention.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:05.200000 --> 0:02:07.760000",
+        "detail": "No spoken speech detected inside window (125.20s - 127.76s).",
+        "subtitle_text": "<b>And it could be something like a mobile</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:07.760000 --> 0:02:12.040000",
+        "detail": "No spoken speech detected inside window (127.76s - 132.04s).",
+        "subtitle_text": "<b>turning, song playing or you are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:12.040000 --> 0:02:15",
+        "detail": "No spoken speech detected inside window (132.04s - 135.00s).",
+        "subtitle_text": "<b>walking around with them and breeze</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:15 --> 0:02:17.359000",
+        "detail": "No spoken speech detected inside window (135.00s - 137.36s).",
+        "subtitle_text": "<b>in their face depending on which</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:02:17.359000 --> 0:02:20.200000",
+        "detail": "No spoken speech detected inside window (137.36s - 140.20s).",
+        "subtitle_text": "<b>sensations they have found like that.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "ep5.mov",
+    "folder": "Portrait",
+    "srt_file": "ep5.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.877,
+      "video_duration_sec": 136.0,
+      "defect_count": 13
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1188.44s on a 136.00s clip (Master timeline offset of ~1188.44s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1188.44s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:34.800000 --> 0:00:36.560000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "<b>probably scream their heads off.</b>",
+        "spoken_text": "a bath, probably screen the heads off,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:40.119000 --> 0:00:42.919000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>And then a lot has been done now.</b>",
+        "spoken_text": "changed, and then a lot has been"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:42.919000 --> 0:00:44.319000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "<b>So now they will have a nap.</b>",
+        "spoken_text": "done now, so now they will have"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:44.319000 --> 0:00:46.119000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "<b>By the time there are three months,</b>",
+        "spoken_text": "a nap. But at the time there are three"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.119000 --> 0:00:48.399000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>that might include some kind of</b>",
+        "spoken_text": "months that might have include some"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.440000 --> 0:00:50.520000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>like a little stroll outdoors.</b>",
+        "spoken_text": "kind of like a little stroll"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:50.520000 --> 0:00:52.079000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>Or they might spend some time</b>",
+        "spoken_text": "outdoors, or they might"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.079000 --> 0:00:53.520000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>with a different adult.</b>",
+        "spoken_text": "spend some time with a different"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.800000 --> 0:01:08.839000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>There is this idea that babies are just</b>",
+        "spoken_text": "to. There is this idea that babies"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:08.839000 --> 0:01:10.960000",
+        "detail": "Segment text discrepancy (37.5% mismatch).",
+        "subtitle_text": "<b>like blobs and it really doesn't matter.</b>",
+        "spoken_text": "are just like blobs and it really doesn't"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:10.960000 --> 0:01:13.399000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>So as long as the people are there</b>",
+        "spoken_text": "matter, so as long as the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:13.399000 --> 0:01:15.240000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>or they are looked after, you can just</b>",
+        "spoken_text": "people are there, they are looked after,"
+      }
+    ]
+  },
+  {
+    "file": "ep6.mov",
+    "folder": "Portrait",
+    "srt_file": "ep6.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.0196,
+      "video_duration_sec": 149.44,
+      "defect_count": 6
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 397.40s on a 149.44s clip (Master timeline offset of ~397.40s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -397.40s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:14 --> 0:00:14.761000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>outside.</b>",
+        "spoken_text": "the outside."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.560000 --> 0:01:08.641000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>sort of emotional and social world is</b>",
+        "spoken_text": "baby's sort of emotional and social world"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:41.521000 --> 0:01:45.721000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>without necessarily knowing about</b>",
+        "spoken_text": "thing without necessarily being about"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:12.601000 --> 0:02:15.120000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>neck strength is just a teeny bit</b>",
+        "spoken_text": "neck strength is just"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:15.120000 --> 0:02:17.400000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>better than it was like last week.</b>",
+        "spoken_text": "a teeny bit better than it was like last week"
+      }
+    ]
+  },
+  {
+    "file": "ep7.mov",
+    "folder": "Portrait",
+    "srt_file": "ep7.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.5482,
+      "video_duration_sec": 102.66,
+      "defect_count": 29
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1892.04s on a 102.66s clip (Master timeline offset of ~1892.04s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1892.04s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:03.361000 --> 0:00:06.121000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "<b>So, gaze is really something</b>",
+        "spoken_text": "it's so gaze is really something"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:51.681000 --> 0:00:54.320000",
+        "detail": "No spoken speech detected inside window (51.68s - 54.32s).",
+        "subtitle_text": "<b>a little bit extra or something</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:54.320000 --> 0:00:55.401000",
+        "detail": "No spoken speech detected inside window (54.32s - 55.40s).",
+        "subtitle_text": "<b>happening that they are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:55.401000 --> 0:00:57.280000",
+        "detail": "No spoken speech detected inside window (55.40s - 57.28s).",
+        "subtitle_text": "<b>uncomfortable about, they might use</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:57.280000 --> 0:00:59.121000",
+        "detail": "No spoken speech detected inside window (57.28s - 59.12s).",
+        "subtitle_text": "<b>their eyes as a way of holding down</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:59.121000 --> 0:00:59.921000",
+        "detail": "No spoken speech detected inside window (59.12s - 59.92s).",
+        "subtitle_text": "<b>the rest of them.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:00.121000 --> 0:01:01.681000",
+        "detail": "No spoken speech detected inside window (60.12s - 61.68s).",
+        "subtitle_text": "<b>And these are like the beginnings</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:01.681000 --> 0:01:05.121000",
+        "detail": "No spoken speech detected inside window (61.68s - 65.12s).",
+        "subtitle_text": "<b>of little, little like coping strategies</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:05.240000 --> 0:01:07.760000",
+        "detail": "No spoken speech detected inside window (65.24s - 67.76s).",
+        "subtitle_text": "<b>when things are not all okay also.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:07.760000 --> 0:01:09.921000",
+        "detail": "No spoken speech detected inside window (67.76s - 69.92s).",
+        "subtitle_text": "<b>Other than that, they are beginning to,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:10.080000 --> 0:01:10.961000",
+        "detail": "No spoken speech detected inside window (70.08s - 70.96s).",
+        "subtitle_text": "<b>again like I said,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:10.961000 --> 0:01:13.161000",
+        "detail": "No spoken speech detected inside window (70.96s - 73.16s).",
+        "subtitle_text": "<b>with their gaze let you know that they</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:13.161000 --> 0:01:14.441000",
+        "detail": "No spoken speech detected inside window (73.16s - 74.44s).",
+        "subtitle_text": "<b>are interested in something.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:14.441000 --> 0:01:15.681000",
+        "detail": "No spoken speech detected inside window (74.44s - 75.68s).",
+        "subtitle_text": "<b>So, because they can't point yet,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:15.681000 --> 0:01:16.841000",
+        "detail": "No spoken speech detected inside window (75.68s - 76.84s).",
+        "subtitle_text": "<b>they will look at it.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:17.441000 --> 0:01:19.161000",
+        "detail": "No spoken speech detected inside window (77.44s - 79.16s).",
+        "subtitle_text": "<b>Then they will be looking at it.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:19.161000 --> 0:01:20.601000",
+        "detail": "No spoken speech detected inside window (79.16s - 80.60s).",
+        "subtitle_text": "<b>And that's a way in which</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:20.601000 --> 0:01:22.681000",
+        "detail": "No spoken speech detected inside window (80.60s - 82.68s).",
+        "subtitle_text": "<b>they are also communicating.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:22.881000 --> 0:01:24.401000",
+        "detail": "No spoken speech detected inside window (82.88s - 84.40s).",
+        "subtitle_text": "<b>So, again they are communicating with</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:24.401000 --> 0:01:27.441000",
+        "detail": "No spoken speech detected inside window (84.40s - 87.44s).",
+        "subtitle_text": "<b>you so much, but it's mainly eyes,</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:27.961000 --> 0:01:30.720000",
+        "detail": "No spoken speech detected inside window (87.96s - 90.72s).",
+        "subtitle_text": "<b>neck, movement of the head and the</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:30.720000 --> 0:01:32.401000",
+        "detail": "No spoken speech detected inside window (90.72s - 92.40s).",
+        "subtitle_text": "<b>sort of upper torso part where they</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:32.401000 --> 0:01:33.921000",
+        "detail": "No spoken speech detected inside window (92.40s - 93.92s).",
+        "subtitle_text": "<b>will lean forward if they are</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:33.921000 --> 0:01:34.720000",
+        "detail": "No spoken speech detected inside window (93.92s - 94.72s).",
+        "subtitle_text": "<b>interested in you.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:35.320000 --> 0:01:36.161000",
+        "detail": "No spoken speech detected inside window (95.32s - 96.16s).",
+        "subtitle_text": "<b>They will lean back</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:36.161000 --> 0:01:38",
+        "detail": "No spoken speech detected inside window (96.16s - 98.00s).",
+        "subtitle_text": "<b>if they are not interested.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:38 --> 0:01:40.080000",
+        "detail": "No spoken speech detected inside window (98.00s - 100.08s).",
+        "subtitle_text": "<b>And all of these are ways in which your</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:40.080000 --> 0:01:41.841000",
+        "detail": "No spoken speech detected inside window (100.08s - 101.84s).",
+        "subtitle_text": "<b>baby is continuing to interact with you.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "ep8.mov",
+    "folder": "Portrait",
+    "srt_file": "ep8.srt",
+    "status": "NEEDS_REVIEW",
+    "metrics": {
+      "global_wer": 0.0577,
+      "video_duration_sec": 51.88,
+      "defect_count": 1
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 2056.56s on a 51.88s clip (Master timeline offset of ~2056.56s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -2056.56s to align with clip start."
+      }
+    ]
+  },
+  {
+    "file": "ep9.mov",
+    "folder": "Portrait",
+    "srt_file": "ep9.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.0276,
+      "video_duration_sec": 82.32,
+      "defect_count": 10
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1604.20s on a 82.32s clip (Master timeline offset of ~1604.20s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1604.20s to align with clip start."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:09.639000 --> 0:00:10.960000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "<b>a three month old is a veteran.</b>",
+        "spoken_text": "before, a three -month -old"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:21.800000 --> 0:00:22.879000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "<b>I find at four months.</b>",
+        "spoken_text": "little bit, I find at four"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:37.359000 --> 0:00:38.680000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>on the tummy and stretching out</b>",
+        "spoken_text": "like lying on the tummy and stretching"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:38.680000 --> 0:00:40.399000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "<b>like that kind of thing going on.</b>",
+        "spoken_text": "stretching out like that kind of thing going"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:07.040000 --> 0:01:09.480000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "<b>So that turn taking has really</b>",
+        "spoken_text": "to you. That turn -taking"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:09.480000 --> 0:01:10.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>like got established.</b>",
+        "spoken_text": "has really like got"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:14.879000 --> 0:01:16.440000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "<b>with a four month old.</b>",
+        "spoken_text": "with the form of thought."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:16.440000 --> 0:01:18.440000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "<b>And from here onwards, it's only just</b>",
+        "spoken_text": "And from here onwards,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.440000 --> 0:01:21.200000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "<b>going to get more and more exciting.</b>",
+        "spoken_text": "it's only just going to get more and more"
+      }
+    ]
+  },
+  {
+    "file": "ep10.mov",
+    "folder": "Portrait",
+    "srt_file": "ep10.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.9429,
+      "video_duration_sec": 82.32,
+      "defect_count": 45
+    },
+    "defects": [
+      {
+        "type": "TIMELINE_OFFSET",
+        "detail": "Subtitles start at 1736.72s on a 82.32s clip (Master timeline offset of ~1736.72s detected).",
+        "suggested_fix": "Shift all subtitle timecodes by -1736.72s to align with clip start."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #35: Subtitle starts (84.56s) after video ends (82.32s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #36: Subtitle starts (86.52s) after video ends (82.32s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #37: Subtitle starts (89.04s) after video ends (82.32s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #38: Subtitle starts (89.96s) after video ends (82.32s)."
+      },
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #39: Subtitle starts (91.92s) after video ends (82.32s)."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:00 --> 0:00:02",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>See, there is no replacement</b>",
+        "spoken_text": "So, see by four"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:02 --> 0:00:03",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>for eye contact.</b>",
+        "spoken_text": "months, the"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:03 --> 0:00:05.799000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So what can parents do to engage</b>",
+        "spoken_text": "entire thing about feeding and sleeping has"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:05.799000 --> 0:00:08.599000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>with a four-month-old, make eye contact</b>",
+        "spoken_text": "now been established. So,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:09.599000 --> 0:00:11.520000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>And honestly, it's like after that,</b>",
+        "spoken_text": "before, a three -month -old is a veteran."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:11.520000 --> 0:00:14.799000",
+        "detail": "Segment text discrepancy (133.3% mismatch).",
+        "subtitle_text": "<b>if you are not terribly depressed</b>",
+        "spoken_text": "So, this whole feeding business by now is"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:14.799000 --> 0:00:17.839000",
+        "detail": "Segment text discrepancy (171.4% mismatch).",
+        "subtitle_text": "<b>or elsewhere mentally, once you make eye</b>",
+        "spoken_text": "chill. So, now it's like, okay, we can move on to"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:17.839000 --> 0:00:20.240000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>contact with your baby, the rest just</b>",
+        "spoken_text": "other interactions,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:20.240000 --> 0:00:22.039000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>becomes part of that relationship.</b>",
+        "spoken_text": "the quality shifts a little"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:22.720000 --> 0:00:26.240000",
+        "detail": "Segment text discrepancy (166.7% mismatch).",
+        "subtitle_text": "<b>Whether it's in terms of speaking to them,</b>",
+        "spoken_text": "four months. So, one is that the neck has more strength. So, the world can"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:26.240000 --> 0:00:29.639000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>trying to engage them in some way,</b>",
+        "spoken_text": "now be seen with much more, like,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:29.639000 --> 0:00:31.359000",
+        "detail": "Segment text discrepancy (83.3% mismatch).",
+        "subtitle_text": "<b>the content of what you say</b>",
+        "spoken_text": "the circumference"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:31.359000 --> 0:00:33.520000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>really doesn't matter at this point.</b>",
+        "spoken_text": "changes. Being on that tummy"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:33.520000 --> 0:00:36.079000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>You could tell them about the recipe of</b>",
+        "spoken_text": "is something that is much more possible."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:36.079000 --> 0:00:39.079000",
+        "detail": "Segment text discrepancy (200.0% mismatch).",
+        "subtitle_text": "<b>potato that you were cooking or something,</b>",
+        "spoken_text": "So, there's a lot more like lying on the tummy and stretching out"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:39.079000 --> 0:00:40.960000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>or about how uncomfortable your shoes</b>",
+        "spoken_text": "like that kind of thing going on."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:40.960000 --> 0:00:43.319000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>are and how you need a new pair of shoes.</b>",
+        "spoken_text": "So, they're really much more"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43.319000 --> 0:00:44",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>It could be anything.</b>",
+        "spoken_text": "able"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:44.599000 --> 0:00:46.440000",
+        "detail": "Segment text discrepancy (160.0% mismatch).",
+        "subtitle_text": "<b>It's about the expressiveness</b>",
+        "spoken_text": "than they were even like a month ago."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:46.440000 --> 0:00:48.319000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>on your face and it's about</b>",
+        "spoken_text": "And that shows up in their"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:48.319000 --> 0:00:50.559000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>the intonation that you use.</b>",
+        "spoken_text": "slightly wider"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:50.559000 --> 0:00:53.440000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>And again, there's been research done</b>",
+        "spoken_text": "range of the kind of movements."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:53.440000 --> 0:00:56.160000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "<b>on this, which is that most adults,</b>",
+        "spoken_text": "Which"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:56.160000 --> 0:00:58.319000",
+        "detail": "Segment text discrepancy (114.3% mismatch).",
+        "subtitle_text": "<b>when they're speaking to really small</b>",
+        "spoken_text": "for them is terribly exciting because now they"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:58.319000 --> 0:00:59.960000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>babies, like three, four months old,</b>",
+        "spoken_text": "can see"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.960000 --> 0:01:02.039000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>they use very high-pitched tones.</b>",
+        "spoken_text": "further. If they can see further,"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:02.039000 --> 0:01:06.039000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "<b>So it's like quite exaggerated.</b>",
+        "spoken_text": "they can actually like respond to your face."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:06.039000 --> 0:01:09.359000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>So it'll be like, Baby, how are you?</b>",
+        "spoken_text": "They can call out to you. That turn -taking"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:10.039000 --> 0:01:11.799000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>What did you eat?</b>",
+        "spoken_text": "like got established."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:11.799000 --> 0:01:14",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "<b>What did you do?</b>",
+        "spoken_text": "So, there's much more like"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:14 --> 0:01:16.599000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "<b>So it's the tonality of it that</b>",
+        "spoken_text": "interaction with the form of thought."
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:16.599000 --> 0:01:17.960000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>babies are responding to.</b>",
+        "spoken_text": "And from here"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:17.960000 --> 0:01:20.799000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "<b>The content of it is\u2026 and this is common</b>",
+        "spoken_text": "onwards, it's only just going to get more"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:20.799000 --> 0:01:24.559000",
+        "detail": "Segment text discrepancy (83.3% mismatch).",
+        "subtitle_text": "<b>across languages and many, many cultures.</b>",
+        "spoken_text": "and more exciting."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:24.559000 --> 0:01:26.520000",
+        "detail": "No spoken speech detected inside window (84.56s - 86.52s).",
+        "subtitle_text": "<b>So we know that it matters</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:26.520000 --> 0:01:28.399000",
+        "detail": "No spoken speech detected inside window (86.52s - 88.40s).",
+        "subtitle_text": "<b>in the quality of the interaction.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:29.039000 --> 0:01:29.960000",
+        "detail": "No spoken speech detected inside window (89.04s - 89.96s).",
+        "subtitle_text": "<b>It's called Motherese.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:29.960000 --> 0:01:31.920000",
+        "detail": "No spoken speech detected inside window (89.96s - 91.92s).",
+        "subtitle_text": "<b>Developmental psychology literature calls</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:01:31.920000 --> 0:01:36.039000",
+        "detail": "No spoken speech detected inside window (91.92s - 96.04s).",
+        "subtitle_text": "<b>it motherese, this high-toned interaction.</b>",
+        "spoken_text": "[SILENCE / DRIFT]"
+      }
+    ]
+  },
+  {
+    "file": "ep11.mov",
+    "folder": "Portrait",
+    "srt_file": "ep11.srt",
+    "status": "FAIL",
+    "metrics": {
+      "global_wer": 0.4665,
+      "video_duration_sec": 140.0,
+      "defect_count": 47
+    },
+    "defects": [
+      {
+        "type": "SRT_SYNTAX",
+        "detail": "Subtitle #1: Extremely short duration (0.08s)."
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:00 --> 0:00:00.080000",
+        "detail": "No spoken speech detected inside window (0.00s - 0.08s).",
+        "subtitle_text": "throw tantrums",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:15.320000 --> 0:00:17.600000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "but it is like a breakup,",
+        "spoken_text": "but it is like a break up Right?"
+      },
+      {
+        "type": "TIMING_DRIFT",
+        "timestamp": "0:00:17.600000 --> 0:00:18.080000",
+        "detail": "No spoken speech detected inside window (17.60s - 18.08s).",
+        "subtitle_text": "right?",
+        "spoken_text": "[SILENCE / DRIFT]"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:23 --> 0:00:24.680000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "for all evil sab chizo ka",
+        "spoken_text": "for all evil sub -cheezaun"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:24.680000 --> 0:00:27.240000",
+        "detail": "Segment text discrepancy (75.0% mismatch).",
+        "subtitle_text": "illaz ye hai, woh ab suddenly nahi hai",
+        "spoken_text": "ka illaagye hai Wap saki ki nahi hai So"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:32.120000 --> 0:00:33.320000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "certain babies.",
+        "spoken_text": "Certain babies We"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:33.320000 --> 0:00:35.760000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "We say, mummy ko tum chup jao",
+        "spoken_text": "say Mameko tum chub jao tum"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:35.760000 --> 0:00:36.920000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "tum aaj dusre kamre mein",
+        "spoken_text": "aaj zushre kamre mein"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:36.920000 --> 0:00:37.560000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "So jao",
+        "spoken_text": "sao jao tum"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:39.600000 --> 0:00:41.640000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "tum kuch kadva laga lo",
+        "spoken_text": "kuch ka dva lagalo Jai"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:41.640000 --> 0:00:43",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "jaise baby suckle karne lage toh",
+        "spoken_text": "si baby suckle ka delagye"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:43 --> 0:00:44.040000",
+        "detail": "Segment text discrepancy (60.0% mismatch).",
+        "subtitle_text": "tum jor se chikne lago",
+        "spoken_text": "tum zor se chikle hago"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:44.040000 --> 0:00:46.400000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "I'm just imagine hum kya kar rahe hai",
+        "spoken_text": "I am just imagine what we are doing We"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:50.560000 --> 0:00:52.920000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "Or maybe as parents",
+        "spoken_text": "Maybe as parents we"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:52.920000 --> 0:00:54.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "humko bhi bahot acha nhi lagh raha",
+        "spoken_text": "are not very good at"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:54.320000 --> 0:00:55.800000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "woh karte hue",
+        "spoken_text": "it But"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:00:59.040000 --> 0:01:00.760000",
+        "detail": "Segment text discrepancy (57.1% mismatch).",
+        "subtitle_text": "And we see it enough on Instagram.",
+        "spoken_text": "And we see it in a fun instagram But"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:05.920000 --> 0:01:08.720000",
+        "detail": "Segment text discrepancy (77.8% mismatch).",
+        "subtitle_text": "chahe woh emotional needs chahe woh physical needs hai",
+        "spoken_text": "Jai wo emotional nainse Jai wo physical nainse"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:13 --> 0:01:14.160000",
+        "detail": "Segment text discrepancy (66.7% mismatch).",
+        "subtitle_text": "nahi beta abhi",
+        "spoken_text": "new bitta Abhi"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:17.440000 --> 0:01:18.840000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "own it tell it",
+        "spoken_text": "On it Tell it ki"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:18.840000 --> 0:01:20.080000",
+        "detail": "Segment text discrepancy (71.4% mismatch).",
+        "subtitle_text": "ki aab mere se nhi ho raha",
+        "spoken_text": "ki ab mir se nahi hora"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:22.360000 --> 0:01:23.560000",
+        "detail": "Segment text discrepancy (50.0% mismatch).",
+        "subtitle_text": "But again,",
+        "spoken_text": "But again The"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:25.480000 --> 0:01:26.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "jaise aap normal",
+        "spoken_text": "Like you talk"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:26.320000 --> 0:01:27.600000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "baby se baat karte hoon",
+        "spoken_text": "to your normal baby Be"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:27.600000 --> 0:01:28.520000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "be prepared ki",
+        "spoken_text": "prepared that you"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:28.520000 --> 0:01:31.040000",
+        "detail": "Segment text discrepancy (171.4% mismatch).",
+        "subtitle_text": "ratbhar usko lekar ghomna pad sakta hai",
+        "spoken_text": "are at night And you have to take her to the room"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:31.040000 --> 0:01:32.760000",
+        "detail": "Segment text discrepancy (150.0% mismatch).",
+        "subtitle_text": "because thoda sa soyenge",
+        "spoken_text": "Because You will be sleeping a little"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:32.760000 --> 0:01:34.200000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "fir unki neend kholegi fir again",
+        "spoken_text": "Then she will take her sleep again"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:34.200000 --> 0:01:35.360000",
+        "detail": "Segment text discrepancy (40.0% mismatch).",
+        "subtitle_text": "they would ask for milk.",
+        "spoken_text": "They would ask for me So"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:38.280000 --> 0:01:40.680000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "But mostly jaha par aisa hai",
+        "spoken_text": "mostly Where there is a way Where"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:40.680000 --> 0:01:42.920000",
+        "detail": "Segment text discrepancy (70.0% mismatch).",
+        "subtitle_text": "jaha par family bhi apke saath same page pe hai",
+        "spoken_text": "the family is at the same page"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:42.920000 --> 0:01:45.560000",
+        "detail": "Segment text discrepancy (55.6% mismatch).",
+        "subtitle_text": "For example baby ro raha hai, cheek raha hai",
+        "spoken_text": "For example, baby crying Cheek crying So"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:45.560000 --> 0:01:48.120000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "So aapne pehle se sabko batake rakha hua hai,",
+        "spoken_text": "you have first told everyone That"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:48.120000 --> 0:01:49.240000",
+        "detail": "Segment text discrepancy (125.0% mismatch).",
+        "subtitle_text": "ki aisa honewala hai.",
+        "spoken_text": "it is going to happen"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:50.800000 --> 0:01:52.600000",
+        "detail": "Segment text discrepancy (85.7% mismatch).",
+        "subtitle_text": "and repeatedly asking  kyu rula rahe ho",
+        "spoken_text": "and repeated Why are you crying?"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:52.600000 --> 0:01:53.320000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "kyu rula rahe ho",
+        "spoken_text": "Why are you crying?"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:01:53.320000 --> 0:01:55.200000",
+        "detail": "Segment text discrepancy (62.5% mismatch).",
+        "subtitle_text": "Because they know aap kya kar rahe ho.",
+        "spoken_text": "Because they know what you are doing"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:01.920000 --> 0:02:04.040000",
+        "detail": "Segment text discrepancy (42.9% mismatch).",
+        "subtitle_text": "or whosoever is helping you with this.",
+        "spoken_text": "who server is helping you with this Because"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:04.040000 --> 0:02:05.880000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "Kyunki jab aap puri raat tehel rahe ho",
+        "spoken_text": "when you are crying all night"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:05.880000 --> 0:02:08.800000",
+        "detail": "Segment text discrepancy (111.1% mismatch).",
+        "subtitle_text": "aap thak rahe ho. Aapko gussa aanewala hai thik",
+        "spoken_text": "You are tired You are going to get angry Okay?"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:08.800000 --> 0:02:10.360000",
+        "detail": "Segment text discrepancy (120.0% mismatch).",
+        "subtitle_text": "So kahi baar wo gussa",
+        "spoken_text": "So many times she gets angry All"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:10.360000 --> 0:02:12.120000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "subconsciously baby pe nikal jata hai.",
+        "spoken_text": "the time she gets unconscious"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:12.120000 --> 0:02:14.360000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "Toh jab aapko lage ki aapka hone laga,",
+        "spoken_text": "So when you started to cry"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:14.360000 --> 0:02:15.960000",
+        "detail": "Segment text discrepancy (80.0% mismatch).",
+        "subtitle_text": "apne wo code-word bola",
+        "spoken_text": "You said that code word And"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:15.960000 --> 0:02:18.320000",
+        "detail": "Segment text discrepancy (116.7% mismatch).",
+        "subtitle_text": "aur aapke partner ne casually bilkul",
+        "spoken_text": "your partner said That it is not"
+      },
+      {
+        "type": "TEXT_MISMATCH",
+        "timestamp": "0:02:18.320000 --> 0:02:18.900000",
+        "detail": "Segment text discrepancy (100.0% mismatch).",
+        "subtitle_text": "comfortably casually",
+        "spoken_text": "comfortable"
+      }
+    ]
+  },
+  {
+    "file": "ep13.mov",
+    "folder": "Portrait",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "file": "So_me_20 August 2026.mp4",
+    "folder": "Portrait",
+    "status": "FAIL",
+    "reason": "Subtitle file is missing.",
+    "defects": [
+      {
+        "type": "INVALID_SRT",
+        "detail": "Subtitle file is missing."
+      }
+    ],
+    "metrics": {}
   }
 ]

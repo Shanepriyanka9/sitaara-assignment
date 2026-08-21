@@ -1,67 +1,1858 @@
 # Video & Subtitle Batch QC Report
 
-**Summary:** Total: 11 | ✅ PASS: 3 | ⚠️ NEEDS REVIEW: 1 | ❌ FAIL: 7
+**Summary:** Total Deliverables: 25 | ✅ PASS: 0 | ⚠️ NEEDS REVIEW: 8 | ❌ FAIL: 17
 
-## Overview
+## Overview Table
 
-| File | Status | Global WER | Defects Found |
-| :--- | :---: | :---: | :---: |
-| `empty_subtitle.mp4` | ❌ FAIL | N/A | 1 |
-| `good.mp4` | ✅ PASS | 0.0% | 0 |
-| `good_mov_test.mov` | ✅ PASS | 0.0% | 0 |
-| `iphone_test.MOV` | ❌ FAIL | N/A | 1 |
-| `missing_subtitle.mp4` | ❌ FAIL | N/A | 1 |
-| `no_audio.mp4` | ❌ FAIL | N/A | 1 |
-| `video1.mp4` | ✅ PASS | 0.0% | 0 |
-| `video2.mp4` | ❌ FAIL | 100.0% | 1 |
-| `video3.mp4` | ⚠️ REVIEW | 0.0% | 2 |
-| `wrong_text.mp4` | ❌ FAIL | 450.0% | 2 |
-| `wrong_timing.mp4` | ❌ FAIL | 317.6% | 2 |
+| File | Folder | Subtitle | Status | Global WER | Defects Found |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| `ep1.mov` | `Horizontal` | `ep1.srt` | ⚠️ REVIEW | 2.0% | 2 |
+| `ep2.mov` | `Horizontal` | `ep2.srt` | ❌ FAIL | 101.1% | 42 |
+| `ep3.mov` | `Horizontal` | `ep3.srt` | ⚠️ REVIEW | 0.5% | 1 |
+| `ep4.mov` | `Horizontal` | `ep4.srt` | ❌ FAIL | 24.2% | 51 |
+| `ep5.mov` | `Horizontal` | `ep5.srt` | ❌ FAIL | 87.2% | 13 |
+| `ep6.mov` | `Horizontal` | `ep6.srt` | ❌ FAIL | 2.7% | 7 |
+| `ep7.mov` | `Horizontal` | `ep7.srt` | ⚠️ REVIEW | 54.1% | 28 |
+| `ep8.mov` | `Horizontal` | `ep8.srt` | ⚠️ REVIEW | 7.0% | 2 |
+| `ep9.mov` | `Horizontal` | `ep9.srt` | ❌ FAIL | 3.2% | 10 |
+| `ep10.mov` | `Horizontal` | `ep10.srt` | ❌ FAIL | 10.2% | 18 |
+| `ep11.mov` | `Horizontal` | `ep11.srt` | ❌ FAIL | 42.6% | 48 |
+| `ep13.mov` | `Horizontal` | `None` | ❌ FAIL | N/A | 1 |
+| `ep1.mov` | `Portrait` | `ep1.srt` | ⚠️ REVIEW | 2.0% | 2 |
+| `ep2.mov` | `Portrait` | `ep2.srt` | ❌ FAIL | 101.1% | 42 |
+| `ep3.mov` | `Portrait` | `ep3.srt` | ⚠️ REVIEW | 0.5% | 2 |
+| `ep4.mov` | `Portrait` | `ep4.srt` | ❌ FAIL | 23.4% | 51 |
+| `ep5.mov` | `Portrait` | `ep5.srt` | ❌ FAIL | 87.7% | 13 |
+| `ep6.mov` | `Portrait` | `ep6.srt` | ❌ FAIL | 2.0% | 6 |
+| `ep7.mov` | `Portrait` | `ep7.srt` | ⚠️ REVIEW | 54.8% | 29 |
+| `ep8.mov` | `Portrait` | `ep8.srt` | ⚠️ REVIEW | 5.8% | 1 |
+| `ep9.mov` | `Portrait` | `ep9.srt` | ❌ FAIL | 2.8% | 10 |
+| `ep10.mov` | `Portrait` | `ep10.srt` | ❌ FAIL | 94.3% | 45 |
+| `ep11.mov` | `Portrait` | `ep11.srt` | ❌ FAIL | 46.7% | 47 |
+| `ep13.mov` | `Portrait` | `None` | ❌ FAIL | N/A | 1 |
+| `So_me_20 August 2026.mp4` | `Portrait` | `None` | ❌ FAIL | N/A | 1 |
 
-## Actionable Defect Breakdown
+## Actionable Remediation Details
 
-### `empty_subtitle.mp4` (FAIL)
-- **[INVALID_SRT]** Subtitle file is empty.
+### `ep1.mov` (Horizontal) — Status: NEEDS_REVIEW
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:10.320000 --> 0:00:12.640000`
+  - *Expected Subtitle:* "<b>Winnicott named Donald Winnicott.</b>"
+  - *Spoken Audio:* "Vinicord, named Donald Vinicord. And"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:27.920000 --> 0:00:31.640000`
+  - *Expected Subtitle:* "<b>how deeply intertwined or coexisting</b>"
+  - *Spoken Audio:* "deeply intertwined or co -existing"
 
-### `iphone_test.MOV` (FAIL)
-- **[INVALID_SRT]** Subtitle file is missing.
-
-### `missing_subtitle.mp4` (FAIL)
-- **[INVALID_SRT]** Subtitle file is missing.
-
-### `no_audio.mp4` (FAIL)
-- **[FILE_CORRUPT]** Video has no audio stream to transcribe.
-
-### `video2.mp4` (FAIL)
+### `ep2.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 2176.20s on a 109.96s clip (Master timeline offset of ~2176.20s detected).
+  - *Action:* Shift all subtitle timecodes by -2176.20s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (77.8% mismatch).
+  - *Timestamp:* `0:00:00 --> 0:00:02.624000`
+  - *Expected Subtitle:* "<b>So six months is a lot changes at six</b>"
+  - *Spoken Audio:* "So, as a parent, your engagement"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:00:02.624000 --> 0:00:04.818000`
+  - *Expected Subtitle:* "<b>months because by the time they have</b>"
+  - *Spoken Audio:* "with the baby is of"
 - **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
-  - *Timestamp:* `0:00:00.500000 --> 0:00:04.500000`
-  - *Subtitle:* "This is a completely different recipe for baking chocolate cookies."
-  - *Spoken Audio:* "to the Automated subtitle Quality Checking demo."
+  - *Timestamp:* `0:00:04.818000 --> 0:00:06.540000`
+  - *Expected Subtitle:* "<b>that kind of abdominal strength to</b>"
+  - *Spoken Audio:* "critical importance."
+- **[TEXT_MISMATCH]** Segment text discrepancy (137.5% mismatch).
+  - *Timestamp:* `0:00:06.540000 --> 0:00:09.207000`
+  - *Expected Subtitle:* "<b>be able to sit up, more or less</b>"
+  - *Spoken Audio:* "So, it's really important that we don't think of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:09.207000 --> 0:00:11.617000`
+  - *Expected Subtitle:* "<b>unsupported, I would say more or</b>"
+  - *Spoken Audio:* "early baby care as something that can"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:11.617000 --> 0:00:12.820000`
+  - *Expected Subtitle:* "<b>less because they're still quite</b>"
+  - *Spoken Audio:* "be done in a mechanical way."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:12.820000 --> 0:00:13.682000`
+  - *Expected Subtitle:* "<b>floppy, right?</b>"
+  - *Spoken Audio:* "So,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:13.682000 --> 0:00:15.961000`
+  - *Expected Subtitle:* "<b>Like you plant them like this and then</b>"
+  - *Spoken Audio:* "the same things, it's very repetitive,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:15.961000 --> 0:00:17.767000`
+  - *Expected Subtitle:* "<b>like a few minutes later, they'll be</b>"
+  - *Spoken Audio:* "it's very dull, yes."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:17.767000 --> 0:00:19.832000`
+  - *Expected Subtitle:* "<b>like, and then they'll keel over</b>"
+  - *Spoken Audio:* "That it's the changing, the holding,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:19.832000 --> 0:00:22.543000`
+  - *Expected Subtitle:* "<b>sideways or backwards and just have</b>"
+  - *Spoken Audio:* "the carrying, the feeding, the cleaning, and then"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:22.543000 --> 0:00:24.694000`
+  - *Expected Subtitle:* "<b>cushions around so that they are not</b>"
+  - *Spoken Audio:* "repeat. That is how your baby"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:24.694000 --> 0:00:25.726000`
+  - *Expected Subtitle:* "<b>whacking their heads.</b>"
+  - *Spoken Audio:* "is literally being held"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:25.726000 --> 0:00:27.534000`
+  - *Expected Subtitle:* "<b>But six months, quite a lot changes.</b>"
+  - *Spoken Audio:* "together. Because any of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (128.6% mismatch).
+  - *Timestamp:* `0:00:27.534000 --> 0:00:30.201000`
+  - *Expected Subtitle:* "<b>And because of that sort of upright</b>"
+  - *Spoken Audio:* "these sensations that are on the inside, whether it"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:30.201000 --> 0:00:32.825000`
+  - *Expected Subtitle:* "<b>posture, your experience of your baby</b>"
+  - *Spoken Audio:* "is hunger or who has to come"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:32.825000 --> 0:00:36.224000`
+  - *Expected Subtitle:* "<b>is much more of, oh, this is a person</b>"
+  - *Spoken Audio:* "out, so some things are happening, the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:36.224000 --> 0:00:40.612000`
+  - *Expected Subtitle:* "<b>that somehow manages to engage adults</b>"
+  - *Spoken Audio:* "baby has no cognitive or emotional psychic"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:40.612000 --> 0:00:42.891000`
+  - *Expected Subtitle:* "<b>in a different kind of way.</b>"
+  - *Spoken Audio:* "structures to be able to tell the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:42.891000 --> 0:00:46.033000`
+  - *Expected Subtitle:* "<b>And from here on, their interaction</b>"
+  - *Spoken Audio:* "difference between inside and outside. So, the baby is"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:46.033000 --> 0:00:47.882000`
+  - *Expected Subtitle:* "<b>and the quality of their interaction</b>"
+  - *Spoken Audio:* "almost like being"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:00:47.882000 --> 0:00:50.463000`
+  - *Expected Subtitle:* "<b>actually changes quite significantly.</b>"
+  - *Spoken Audio:* "besieged by these sensations. The baby"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:51.022000 --> 0:00:52.571000`
+  - *Expected Subtitle:* "<b>They become much more active.</b>"
+  - *Spoken Audio:* "just, and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:00:52.571000 --> 0:00:54.206000`
+  - *Expected Subtitle:* "<b>Some of the previous things, of course,</b>"
+  - *Spoken Audio:* "it's the way"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:54.206000 --> 0:00:55.755000`
+  - *Expected Subtitle:* "<b>are still there where they still</b>"
+  - *Spoken Audio:* "in which the caregiver,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:55.755000 --> 0:00:58.078000`
+  - *Expected Subtitle:* "<b>can't like necessarily reach out</b>"
+  - *Spoken Audio:* "which is the environment,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (183.3% mismatch).
+  - *Timestamp:* `0:00:58.078000 --> 0:01:03.026000`
+  - *Expected Subtitle:* "<b>so pointedly, but they are rolling,</b>"
+  - *Spoken Audio:* "meets this baby with a kind of consistency, reliability, and gentleness"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:03.026000 --> 0:01:06.769000`
+  - *Expected Subtitle:* "<b>they are pulling themselves, they are</b>"
+  - *Spoken Audio:* "that makes that physical"
+- **[TEXT_MISMATCH]** Segment text discrepancy (128.6% mismatch).
+  - *Timestamp:* `0:01:06.769000 --> 0:01:11.457000`
+  - *Expected Subtitle:* "<b>on their tummies, they are sitting up,</b>"
+  - *Spoken Audio:* "care into something that is nurturing because there are"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:11.930000 --> 0:01:14.298000`
+  - *Expected Subtitle:* "<b>they are moving about that way.</b>"
+  - *Spoken Audio:* "feeding the baby that are just"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:14.298000 --> 0:01:16.664000`
+  - *Expected Subtitle:* "<b>And all of that will feed into</b>"
+  - *Spoken Audio:* "and then there are ways of feeding the baby,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:16.664000 --> 0:01:18.857000`
+  - *Expected Subtitle:* "<b>the next step of being able</b>"
+  - *Spoken Audio:* "which are holding and nourishing."
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:18.857000 --> 0:01:22.471000`
+  - *Expected Subtitle:* "<b>to hold themselves up on all fours.</b>"
+  - *Spoken Audio:* "So, at a very simple level, don't"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:22.471000 --> 0:01:24.020000`
+  - *Expected Subtitle:* "<b>So you can see that there is</b>"
+  - *Spoken Audio:* "be on your phone while you"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:24.063000 --> 0:01:27.290000`
+  - *Expected Subtitle:* "<b>a gradual going from head to arms</b>"
+  - *Spoken Audio:* "are feeding the baby. Make eye contact, hold"
+- **[TEXT_MISMATCH]** Segment text discrepancy (200.0% mismatch).
+  - *Timestamp:* `0:01:27.290000 --> 0:01:30.816000`
+  - *Expected Subtitle:* "<b>to shoulders to abdomen to legs kind</b>"
+  - *Spoken Audio:* "the baby like you mean it, hold the baby like you want to, and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (175.0% mismatch).
+  - *Timestamp:* `0:01:30.816000 --> 0:01:33.441000`
+  - *Expected Subtitle:* "<b>of development of control.</b>"
+  - *Spoken Audio:* "if you need a break, then take"
+- **[TEXT_MISMATCH]** Segment text discrepancy (171.4% mismatch).
+  - *Timestamp:* `0:01:33.700000 --> 0:01:37.572000`
+  - *Expected Subtitle:* "<b>So our interactions with babies can be</b>"
+  - *Spoken Audio:* "the break from the entire process, even if it is for 20"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:37.572000 --> 0:01:40.410000`
+  - *Expected Subtitle:* "<b>about encouraging all of that, giving</b>"
+  - *Spoken Audio:* "minutes, 30 minutes, if there's nothing else possible."
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:40.410000 --> 0:01:46.778000`
+  - *Expected Subtitle:* "<b>them room to roll around, to explore just</b>"
+  - *Spoken Audio:* "But when you are being with the baby, your emotional state pretty"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:46.778000 --> 0:01:48.800000`
+  - *Expected Subtitle:* "<b>like what their arms and legs can do.</b>"
+  - *Spoken Audio:* "much directly maps onto the"
 
-### `video3.mp4` (NEEDS_REVIEW)
-- **[SRT_SYNTAX]** Subtitle #1: Subtitle starts (6.50s) after video ends (5.64s).
-- **[TIMING_DRIFT]** No speech detected inside window (6.50s - 10.50s).
-  - *Timestamp:* `0:00:06.500000 --> 0:00:10.500000`
-  - *Subtitle:* "Welcome to the automated subtitle quality checking demo."
+### `ep3.mov` (Horizontal) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 836.52s on a 65.20s clip (Master timeline offset of ~836.52s detected).
+  - *Action:* Shift all subtitle timecodes by -836.52s to align with clip start.
+
+### `ep4.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 968.44s on a 111.53s clip (Master timeline offset of ~968.44s detected).
+  - *Action:* Shift all subtitle timecodes by -968.44s to align with clip start.
+- **[SRT_SYNTAX]** Subtitle #54: Subtitle starts (114.28s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #55: Subtitle starts (116.92s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #56: Subtitle starts (119.80s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #57: Subtitle starts (123.24s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #58: Subtitle starts (125.20s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #59: Subtitle starts (127.76s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #60: Subtitle starts (132.04s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #61: Subtitle starts (135.00s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #62: Subtitle starts (137.36s) after video ends (111.53s).
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:08.920000 --> 0:00:10.599000`
+  - *Expected Subtitle:* "<b>is the biggest and the most</b>"
+  - *Spoken Audio:* "and it is the biggest and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:21.079000 --> 0:00:22.160000`
+  - *Expected Subtitle:* "<b>slightly more from a distance,</b>"
+  - *Spoken Audio:* "distance, slightly more from a"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:43.839000 --> 0:00:45.079000`
+  - *Expected Subtitle:* "<b>to take turns because you have</b>"
+  - *Spoken Audio:* "able to take turns because"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:45.079000 --> 0:00:46.880000`
+  - *Expected Subtitle:* "<b>been demonstrating taking turns.</b>"
+  - *Spoken Audio:* "you have been demonstrating taking turns."
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:48.199000 --> 0:00:49.079000`
+  - *Expected Subtitle:* "<b>come out of nowhere.</b>"
+  - *Spoken Audio:* "didn't come out of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:55.439000 --> 0:00:56.760000`
+  - *Expected Subtitle:* "<b>with the baby in that way.</b>"
+  - *Spoken Audio:* "interacting with them"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:00:56.760000 --> 0:00:57.919000`
+  - *Expected Subtitle:* "<b>How do we know this?</b>"
+  - *Spoken Audio:* "but now they'll be able"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:57.919000 --> 0:00:59.960000`
+  - *Expected Subtitle:* "<b>Usually from cases where it</b>"
+  - *Spoken Audio:* "to be much more"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:59.960000 --> 0:01:01.480000`
+  - *Expected Subtitle:* "<b>has not worked like that.</b>"
+  - *Spoken Audio:* "expressive"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:01.480000 --> 0:01:03.399000`
+  - *Expected Subtitle:* "<b>So, babies who have been very isolated,</b>"
+  - *Spoken Audio:* "with their facial expressions"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:03.399000 --> 0:01:05.639000`
+  - *Expected Subtitle:* "<b>babies who have not had consistent care,</b>"
+  - *Spoken Audio:* "and body movements"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:05.639000 --> 0:01:06.839000`
+  - *Expected Subtitle:* "<b>institutionalized babies,</b>"
+  - *Spoken Audio:* "because now they"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:06.839000 --> 0:01:08.200000`
+  - *Expected Subtitle:* "<b>they don't develop this.</b>"
+  - *Spoken Audio:* "can kind of like have voluntary"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:08.200000 --> 0:01:10.280000`
+  - *Expected Subtitle:* "<b>None of these developmental markers</b>"
+  - *Spoken Audio:* "control over this much and the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:10.280000 --> 0:01:12.359000`
+  - *Expected Subtitle:* "<b>can just be taken for granted</b>"
+  - *Spoken Audio:* "gross motor movements around their arms."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:12.399000 --> 0:01:14.679000`
+  - *Expected Subtitle:* "<b>that it is going to just happen.</b>"
+  - *Spoken Audio:* "So if they're holding a rattle"
+- **[TEXT_MISMATCH]** Segment text discrepancy (320.0% mismatch).
+  - *Timestamp:* `0:01:15.079000 --> 0:01:18.800000`
+  - *Expected Subtitle:* "<b>Nothing happens out of context.</b>"
+  - *Spoken Audio:* "example they'll be able to do this but every once in a while they'll"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:21.200000 --> 0:01:22.040000`
+  - *Expected Subtitle:* "<b>So, your baby is learning</b>"
+  - *Spoken Audio:* "coordination"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:22.040000 --> 0:01:24.599000`
+  - *Expected Subtitle:* "<b>turn-taking because you have</b>"
+  - *Spoken Audio:* "is still somewhere away"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:24.599000 --> 0:01:26.440000`
+  - *Expected Subtitle:* "<b>been interacting with them.</b>"
+  - *Spoken Audio:* "but they will also"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:26.440000 --> 0:01:29.240000`
+  - *Expected Subtitle:* "<b>But now, they will be able to be much</b>"
+  - *Spoken Audio:* "do things like spontaneously laugh and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:29.240000 --> 0:01:32.359000`
+  - *Expected Subtitle:* "<b>more expressive with their facial</b>"
+  - *Spoken Audio:* "let you know that oh this"
+- **[TEXT_MISMATCH]** Segment text discrepancy (250.0% mismatch).
+  - *Timestamp:* `0:01:32.359000 --> 0:01:35.520000`
+  - *Expected Subtitle:* "<b>expressions and body movements</b>"
+  - *Spoken Audio:* "is something that was that has caught their attention and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:01:35.520000 --> 0:01:37.280000`
+  - *Expected Subtitle:* "<b>because now they can kind of like</b>"
+  - *Spoken Audio:* "it could be something like"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:37.280000 --> 0:01:39.399000`
+  - *Expected Subtitle:* "<b>have voluntary control over this much</b>"
+  - *Spoken Audio:* "a mobile turning"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:39.399000 --> 0:01:41.599000`
+  - *Expected Subtitle:* "<b>and the gross motor movements around</b>"
+  - *Spoken Audio:* "song playing"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:41.599000 --> 0:01:42.480000`
+  - *Expected Subtitle:* "<b>their arms.</b>"
+  - *Spoken Audio:* "or"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:43.319000 --> 0:01:44.639000`
+  - *Expected Subtitle:* "<b>So, if they are holding a rattle, for</b>"
+  - *Spoken Audio:* "around with them and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:44.639000 --> 0:01:46.879000`
+  - *Expected Subtitle:* "<b>example, they will be able to do this.</b>"
+  - *Spoken Audio:* "breeze in their face depending"
+- **[TEXT_MISMATCH]** Segment text discrepancy (88.9% mismatch).
+  - *Timestamp:* `0:01:46.879000 --> 0:01:48.760000`
+  - *Expected Subtitle:* "<b>But every once in a while, they will end</b>"
+  - *Spoken Audio:* "on which sensations they have"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:48.760000 --> 0:01:51.240000`
+  - *Expected Subtitle:* "<b>up whacking their own face because</b>"
+  - *Spoken Audio:* "found like that."
+- **[TIMING_DRIFT]** No spoken speech detected inside window (111.24s - 114.28s).
+  - *Timestamp:* `0:01:51.240000 --> 0:01:54.280000`
+  - *Expected Subtitle:* "<b>coordination is still some way away.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (114.28s - 116.92s).
+  - *Timestamp:* `0:01:54.280000 --> 0:01:56.919000`
+  - *Expected Subtitle:* "<b>But they will also do things like</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (116.92s - 119.80s).
+  - *Timestamp:* `0:01:56.919000 --> 0:01:59.800000`
+  - *Expected Subtitle:* "<b>spontaneously laugh and let you</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (119.80s - 123.24s).
+  - *Timestamp:* `0:01:59.800000 --> 0:02:03.240000`
+  - *Expected Subtitle:* "<b>know that, oh, this is something</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (123.24s - 125.20s).
+  - *Timestamp:* `0:02:03.240000 --> 0:02:05.200000`
+  - *Expected Subtitle:* "<b>that has caught their attention.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (125.20s - 127.76s).
+  - *Timestamp:* `0:02:05.200000 --> 0:02:07.760000`
+  - *Expected Subtitle:* "<b>And it could be something like a mobile</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (127.76s - 132.04s).
+  - *Timestamp:* `0:02:07.760000 --> 0:02:12.040000`
+  - *Expected Subtitle:* "<b>turning, song playing or you are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (132.04s - 135.00s).
+  - *Timestamp:* `0:02:12.040000 --> 0:02:15`
+  - *Expected Subtitle:* "<b>walking around with them and breeze</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (135.00s - 137.36s).
+  - *Timestamp:* `0:02:15 --> 0:02:17.359000`
+  - *Expected Subtitle:* "<b>in their face depending on which</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (137.36s - 140.20s).
+  - *Timestamp:* `0:02:17.359000 --> 0:02:20.200000`
+  - *Expected Subtitle:* "<b>sensations they have found like that.</b>"
   - *Spoken Audio:* "[SILENCE / DRIFT]"
 
-### `wrong_text.mp4` (FAIL)
-- **[TEXT_MISMATCH]** Segment text discrepancy (137.5% mismatch).
-  - *Timestamp:* `0:00:00.500000 --> 0:00:08`
-  - *Subtitle:* "Today we are going to learn how to cook Italian pasta with olive oil and garlic."
-  - *Spoken Audio:* "wants to climb that slide or the ladder and you're saying be careful What does that mean to the child be careful?"
-- **[TEXT_MISMATCH]** Segment text discrepancy (157.1% mismatch).
-  - *Timestamp:* `0:00:08.500000 --> 0:00:18`
-  - *Subtitle:* "Make sure the water is boiling before adding salt and pasta into the pot."
-  - *Spoken Audio:* "child supposed to do except maybe freeze Whereas if you said that ladder is quite tall You need to make sure you know"
-
-### `wrong_timing.mp4` (FAIL)
-- **[TEXT_MISMATCH]** Segment text discrepancy (93.3% mismatch).
-  - *Timestamp:* `0:00:12 --> 0:00:16.500000`
-  - *Subtitle:* "The child wants to climb that slide or the ladder, and you're saying, "Be careful.""
-  - *Spoken Audio:* "said that ladder is quite tall You need to"
+### `ep5.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1188.44s on a 136.00s clip (Master timeline offset of ~1188.44s detected).
+  - *Action:* Shift all subtitle timecodes by -1188.44s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:00:34.800000 --> 0:00:36.560000`
+  - *Expected Subtitle:* "<b>probably scream their heads off.</b>"
+  - *Spoken Audio:* "a bath, probably screen the heads off,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:00:40.119000 --> 0:00:42.919000`
+  - *Expected Subtitle:* "<b>And then a lot has been done now.</b>"
+  - *Spoken Audio:* "changed, and then a lot has been"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:42.919000 --> 0:00:44.319000`
+  - *Expected Subtitle:* "<b>So now they will have a nap.</b>"
+  - *Spoken Audio:* "done now. So now they will have"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:00:44.319000 --> 0:00:46.119000`
+  - *Expected Subtitle:* "<b>By the time there are three months,</b>"
+  - *Spoken Audio:* "a nap. By the time there are three"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:46.119000 --> 0:00:48.399000`
+  - *Expected Subtitle:* "<b>that might include some kind of</b>"
+  - *Spoken Audio:* "months that might have include some"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:48.440000 --> 0:00:50.520000`
+  - *Expected Subtitle:* "<b>like a little stroll outdoors.</b>"
+  - *Spoken Audio:* "kind of like a little stroll,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:50.520000 --> 0:00:52.079000`
+  - *Expected Subtitle:* "<b>Or they might spend some time</b>"
+  - *Spoken Audio:* "outdoors, or they might"
 - **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
-  - *Timestamp:* `0:00:16.500000 --> 0:00:23.200000`
-  - *Subtitle:* "What does that mean to the child, "Be careful"? What is the child supposed to do except maybe freeze?"
-  - *Spoken Audio:* "make sure you know you're holding the side railings Now you've given him something very"
+  - *Timestamp:* `0:00:52.079000 --> 0:00:53.520000`
+  - *Expected Subtitle:* "<b>with a different adult.</b>"
+  - *Spoken Audio:* "spend some time with a different"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:01:06.800000 --> 0:01:08.839000`
+  - *Expected Subtitle:* "<b>There is this idea that babies are just</b>"
+  - *Spoken Audio:* "to. There is this idea that babies"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:01:08.839000 --> 0:01:10.960000`
+  - *Expected Subtitle:* "<b>like blobs and it really doesn't matter.</b>"
+  - *Spoken Audio:* "are just like blobs and it really doesn't"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:10.960000 --> 0:01:13.399000`
+  - *Expected Subtitle:* "<b>So as long as the people are there</b>"
+  - *Spoken Audio:* "matter. So as long as the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:01:13.399000 --> 0:01:15.240000`
+  - *Expected Subtitle:* "<b>or they are looked after, you can just</b>"
+  - *Spoken Audio:* "people are there or they are looked after,"
+
+### `ep6.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 397.40s on a 149.44s clip (Master timeline offset of ~397.40s detected).
+  - *Action:* Shift all subtitle timecodes by -397.40s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:14 --> 0:00:14.761000`
+  - *Expected Subtitle:* "<b>outside.</b>"
+  - *Spoken Audio:* "the outside."
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:01:06.560000 --> 0:01:08.641000`
+  - *Expected Subtitle:* "<b>sort of emotional and social world is</b>"
+  - *Spoken Audio:* "baby's sort of emotional and social world"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:24.240000 --> 0:01:25.721000`
+  - *Expected Subtitle:* "<b>really close level.</b>"
+  - *Spoken Audio:* "like a really close level."
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:41.521000 --> 0:01:45.721000`
+  - *Expected Subtitle:* "<b>without necessarily knowing about</b>"
+  - *Spoken Audio:* "thing without necessarily doing about"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:01:45.721000 --> 0:01:49.281000`
+  - *Expected Subtitle:* "<b>the developmental detail underneath it.</b>"
+  - *Spoken Audio:* "the sort of developmental detail underneath it"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:02:15.120000 --> 0:02:17.400000`
+  - *Expected Subtitle:* "<b>better than it was like last week.</b>"
+  - *Spoken Audio:* "a teeny bit better than it was like last week"
+
+### `ep7.mov` (Horizontal) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 1892.04s on a 102.66s clip (Master timeline offset of ~1892.04s detected).
+  - *Action:* Shift all subtitle timecodes by -1892.04s to align with clip start.
+- **[TIMING_DRIFT]** No spoken speech detected inside window (51.68s - 54.32s).
+  - *Timestamp:* `0:00:51.681000 --> 0:00:54.320000`
+  - *Expected Subtitle:* "<b>a little bit extra or something</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (54.32s - 55.40s).
+  - *Timestamp:* `0:00:54.320000 --> 0:00:55.401000`
+  - *Expected Subtitle:* "<b>happening that they are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (55.40s - 57.28s).
+  - *Timestamp:* `0:00:55.401000 --> 0:00:57.280000`
+  - *Expected Subtitle:* "<b>uncomfortable about, they might use</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (57.28s - 59.12s).
+  - *Timestamp:* `0:00:57.280000 --> 0:00:59.121000`
+  - *Expected Subtitle:* "<b>their eyes as a way of holding down</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (59.12s - 59.92s).
+  - *Timestamp:* `0:00:59.121000 --> 0:00:59.921000`
+  - *Expected Subtitle:* "<b>the rest of them.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (60.12s - 61.68s).
+  - *Timestamp:* `0:01:00.121000 --> 0:01:01.681000`
+  - *Expected Subtitle:* "<b>And these are like the beginnings</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (61.68s - 65.12s).
+  - *Timestamp:* `0:01:01.681000 --> 0:01:05.121000`
+  - *Expected Subtitle:* "<b>of little, little like coping strategies</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (65.24s - 67.76s).
+  - *Timestamp:* `0:01:05.240000 --> 0:01:07.760000`
+  - *Expected Subtitle:* "<b>when things are not all okay also.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (67.76s - 69.92s).
+  - *Timestamp:* `0:01:07.760000 --> 0:01:09.921000`
+  - *Expected Subtitle:* "<b>Other than that, they are beginning to,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (70.08s - 70.96s).
+  - *Timestamp:* `0:01:10.080000 --> 0:01:10.961000`
+  - *Expected Subtitle:* "<b>again like I said,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (70.96s - 73.16s).
+  - *Timestamp:* `0:01:10.961000 --> 0:01:13.161000`
+  - *Expected Subtitle:* "<b>with their gaze let you know that they</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (73.16s - 74.44s).
+  - *Timestamp:* `0:01:13.161000 --> 0:01:14.441000`
+  - *Expected Subtitle:* "<b>are interested in something.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (74.44s - 75.68s).
+  - *Timestamp:* `0:01:14.441000 --> 0:01:15.681000`
+  - *Expected Subtitle:* "<b>So, because they can't point yet,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (75.68s - 76.84s).
+  - *Timestamp:* `0:01:15.681000 --> 0:01:16.841000`
+  - *Expected Subtitle:* "<b>they will look at it.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (77.44s - 79.16s).
+  - *Timestamp:* `0:01:17.441000 --> 0:01:19.161000`
+  - *Expected Subtitle:* "<b>Then they will be looking at it.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (79.16s - 80.60s).
+  - *Timestamp:* `0:01:19.161000 --> 0:01:20.601000`
+  - *Expected Subtitle:* "<b>And that's a way in which</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (80.60s - 82.68s).
+  - *Timestamp:* `0:01:20.601000 --> 0:01:22.681000`
+  - *Expected Subtitle:* "<b>they are also communicating.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (82.88s - 84.40s).
+  - *Timestamp:* `0:01:22.881000 --> 0:01:24.401000`
+  - *Expected Subtitle:* "<b>So, again they are communicating with</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (84.40s - 87.44s).
+  - *Timestamp:* `0:01:24.401000 --> 0:01:27.441000`
+  - *Expected Subtitle:* "<b>you so much, but it's mainly eyes,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (87.96s - 90.72s).
+  - *Timestamp:* `0:01:27.961000 --> 0:01:30.720000`
+  - *Expected Subtitle:* "<b>neck, movement of the head and the</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (90.72s - 92.40s).
+  - *Timestamp:* `0:01:30.720000 --> 0:01:32.401000`
+  - *Expected Subtitle:* "<b>sort of upper torso part where they</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (92.40s - 93.92s).
+  - *Timestamp:* `0:01:32.401000 --> 0:01:33.921000`
+  - *Expected Subtitle:* "<b>will lean forward if they are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (93.92s - 94.72s).
+  - *Timestamp:* `0:01:33.921000 --> 0:01:34.720000`
+  - *Expected Subtitle:* "<b>interested in you.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (95.32s - 96.16s).
+  - *Timestamp:* `0:01:35.320000 --> 0:01:36.161000`
+  - *Expected Subtitle:* "<b>They will lean back</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (96.16s - 98.00s).
+  - *Timestamp:* `0:01:36.161000 --> 0:01:38`
+  - *Expected Subtitle:* "<b>if they are not interested.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (98.00s - 100.08s).
+  - *Timestamp:* `0:01:38 --> 0:01:40.080000`
+  - *Expected Subtitle:* "<b>And all of these are ways in which your</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (100.08s - 101.84s).
+  - *Timestamp:* `0:01:40.080000 --> 0:01:41.841000`
+  - *Expected Subtitle:* "<b>baby is continuing to interact with you.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+
+### `ep8.mov` (Horizontal) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 2056.56s on a 51.88s clip (Master timeline offset of ~2056.56s detected).
+  - *Action:* Shift all subtitle timecodes by -2056.56s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:07.520000 --> 0:00:08.881000`
+  - *Expected Subtitle:* "<b>If a five-month-old sitting</b>"
+  - *Spoken Audio:* "It's a 5 month old sitting"
+
+### `ep9.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1604.20s on a 82.32s clip (Master timeline offset of ~1604.20s detected).
+  - *Action:* Shift all subtitle timecodes by -1604.20s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:09.639000 --> 0:00:10.960000`
+  - *Expected Subtitle:* "<b>a three month old is a veteran.</b>"
+  - *Spoken Audio:* "before, a three -month -old"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:20.359000 --> 0:00:21.800000`
+  - *Expected Subtitle:* "<b>The quality shifts a little bit,</b>"
+  - *Spoken Audio:* "other, the quality shifts a"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:21.800000 --> 0:00:22.879000`
+  - *Expected Subtitle:* "<b>I find at four months.</b>"
+  - *Spoken Audio:* "little bit, I find at four"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:37.359000 --> 0:00:38.680000`
+  - *Expected Subtitle:* "<b>on the tummy and stretching out</b>"
+  - *Spoken Audio:* "like lying on the tummy and stretching"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:00:38.680000 --> 0:00:40.399000`
+  - *Expected Subtitle:* "<b>like that kind of thing going on.</b>"
+  - *Spoken Audio:* "stretching out like that kind of thing going"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:07.040000 --> 0:01:09.480000`
+  - *Expected Subtitle:* "<b>So that turn taking has really</b>"
+  - *Spoken Audio:* "to you. That turn -taking"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:09.480000 --> 0:01:10.599000`
+  - *Expected Subtitle:* "<b>like got established.</b>"
+  - *Spoken Audio:* "has really like got"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:01:14.879000 --> 0:01:16.440000`
+  - *Expected Subtitle:* "<b>with a four month old.</b>"
+  - *Spoken Audio:* "with the form of thought."
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:01:18.440000 --> 0:01:21.200000`
+  - *Expected Subtitle:* "<b>going to get more and more exciting.</b>"
+  - *Spoken Audio:* "only just going to get more and more"
+
+### `ep10.mov` (Horizontal) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1736.72s on a 97.48s clip (Master timeline offset of ~1736.72s detected).
+  - *Action:* Shift all subtitle timecodes by -1736.72s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (62.5% mismatch).
+  - *Timestamp:* `0:00:05.799000 --> 0:00:08.599000`
+  - *Expected Subtitle:* "<b>with a four-month-old, make eye contact</b>"
+  - *Spoken Audio:* "engage with a formal role, make eye"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:00:17.839000 --> 0:00:20.240000`
+  - *Expected Subtitle:* "<b>contact with your baby, the rest just</b>"
+  - *Spoken Audio:* "make eye contact with your baby, the rest"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:20.240000 --> 0:00:22.039000`
+  - *Expected Subtitle:* "<b>becomes part of that relationship.</b>"
+  - *Spoken Audio:* "just becomes part of that"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:29.639000 --> 0:00:31.359000`
+  - *Expected Subtitle:* "<b>the content of what you say</b>"
+  - *Spoken Audio:* "the content of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:31.359000 --> 0:00:33.520000`
+  - *Expected Subtitle:* "<b>really doesn't matter at this point.</b>"
+  - *Spoken Audio:* "what you say really doesn't matter, right, at this point,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:43.319000 --> 0:00:44`
+  - *Expected Subtitle:* "<b>It could be anything.</b>"
+  - *Spoken Audio:* "of shoes, it could be"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:00:46.440000 --> 0:00:48.319000`
+  - *Expected Subtitle:* "<b>on your face and it's about</b>"
+  - *Spoken Audio:* "on your face and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:00:48.319000 --> 0:00:50.559000`
+  - *Expected Subtitle:* "<b>the intonation that you use.</b>"
+  - *Spoken Audio:* "it's about the intonation that you"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:00:56.160000 --> 0:00:58.319000`
+  - *Expected Subtitle:* "<b>when they're speaking to really small</b>"
+  - *Spoken Audio:* "most adults, when they are speaking to"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:58.319000 --> 0:00:59.960000`
+  - *Expected Subtitle:* "<b>babies, like three, four months old,</b>"
+  - *Spoken Audio:* "really small babies like three, four months"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:59.960000 --> 0:01:02.039000`
+  - *Expected Subtitle:* "<b>they use very high-pitched tones.</b>"
+  - *Spoken Audio:* "months old, they use very high -pitched"
+- **[TEXT_MISMATCH]** Segment text discrepancy (44.4% mismatch).
+  - *Timestamp:* `0:01:06.039000 --> 0:01:09.359000`
+  - *Expected Subtitle:* "<b>So it'll be like, Baby, how are you?</b>"
+  - *Spoken Audio:* "so it'll be like, yeah,"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (70.04s - 71.80s).
+  - *Timestamp:* `0:01:10.039000 --> 0:01:11.799000`
+  - *Expected Subtitle:* "<b>What did you eat?</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:11.799000 --> 0:01:14`
+  - *Expected Subtitle:* "<b>What did you do?</b>"
+  - *Spoken Audio:* "so they say,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:01:16.599000 --> 0:01:17.960000`
+  - *Expected Subtitle:* "<b>babies are responding to.</b>"
+  - *Spoken Audio:* "it that babies are responding"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:29.039000 --> 0:01:29.960000`
+  - *Expected Subtitle:* "<b>It's called Motherese.</b>"
+  - *Spoken Audio:* "yeah. It's called Motherease,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:31.920000 --> 0:01:36.039000`
+  - *Expected Subtitle:* "<b>it motherese, this high-toned interaction.</b>"
+  - *Spoken Audio:* "calls it Motherease, this high -toned"
+
+### `ep11.mov` (Horizontal) — Status: FAIL
+- **[SRT_SYNTAX]** Subtitle #1: Extremely short duration (0.08s).
+- **[TIMING_DRIFT]** No spoken speech detected inside window (0.00s - 0.08s).
+  - *Timestamp:* `0:00:00 --> 0:00:00.080000`
+  - *Expected Subtitle:* "throw tantrums"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:17.600000 --> 0:00:18.080000`
+  - *Expected Subtitle:* "right?"
+  - *Spoken Audio:* "and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:19.400000 --> 0:00:20.640000`
+  - *Expected Subtitle:* "So baby ke liye"
+  - *Spoken Audio:* "so baby the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:20.640000 --> 0:00:21.200000`
+  - *Expected Subtitle:* "the thing"
+  - *Spoken Audio:* "thing"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:23 --> 0:00:24.680000`
+  - *Expected Subtitle:* "for all evil sab chizo ka"
+  - *Spoken Audio:* "for all evil sub"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:24.680000 --> 0:00:27.240000`
+  - *Expected Subtitle:* "illaz ye hai, woh ab suddenly nahi hai"
+  - *Spoken Audio:* "-chosenka illaagye hai whoop suckingi nahi hai so"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:32.120000 --> 0:00:33.320000`
+  - *Expected Subtitle:* "certain babies."
+  - *Spoken Audio:* "certain babies we"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:33.320000 --> 0:00:35.760000`
+  - *Expected Subtitle:* "We say, mummy ko tum chup jao"
+  - *Spoken Audio:* "say mameko tum chup jao tum"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:35.760000 --> 0:00:36.920000`
+  - *Expected Subtitle:* "tum aaj dusre kamre mein"
+  - *Spoken Audio:* "aaj dhursre kamre mein"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:36.920000 --> 0:00:37.560000`
+  - *Expected Subtitle:* "So jao"
+  - *Spoken Audio:* "sao jao tum"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:00:39.600000 --> 0:00:41.640000`
+  - *Expected Subtitle:* "tum kuch kadva laga lo"
+  - *Spoken Audio:* "kuch kadwa lagalo"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:41.640000 --> 0:00:43`
+  - *Expected Subtitle:* "jaise baby suckle karne lage toh"
+  - *Spoken Audio:* "jasii baby suckle kande lagi"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:00:43 --> 0:00:44.040000`
+  - *Expected Subtitle:* "tum jor se chikne lago"
+  - *Spoken Audio:* "tum zor se chikle i'm"
+- **[TEXT_MISMATCH]** Segment text discrepancy (77.8% mismatch).
+  - *Timestamp:* `0:00:44.040000 --> 0:00:46.400000`
+  - *Expected Subtitle:* "I'm just imagine hum kya kar rahe hai"
+  - *Spoken Audio:* "just imagine what we are doing we"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:52.920000 --> 0:00:54.320000`
+  - *Expected Subtitle:* "humko bhi bahot acha nhi lagh raha"
+  - *Spoken Audio:* "we are not very good at"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:54.320000 --> 0:00:55.800000`
+  - *Expected Subtitle:* "woh karte hue"
+  - *Spoken Audio:* "it but"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:55.800000 --> 0:00:58.440000`
+  - *Expected Subtitle:* "but yes ho sakta hai kuch percent baby par"
+  - *Spoken Audio:* "yes hosatthai kuch person baby se"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:59.040000 --> 0:01:00.760000`
+  - *Expected Subtitle:* "And we see it enough on Instagram."
+  - *Spoken Audio:* "and we see it in a fun instagram but"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:01:03.280000 --> 0:01:05.920000`
+  - *Expected Subtitle:* "Yes, baby ke jitne bhi needs hai."
+  - *Spoken Audio:* "yes baby ke jitne binaidse"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:05.920000 --> 0:01:08.720000`
+  - *Expected Subtitle:* "chahe woh emotional needs chahe woh physical needs hai"
+  - *Spoken Audio:* "chai wo emotional needs a chai wo physical needs"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:13 --> 0:01:14.160000`
+  - *Expected Subtitle:* "nahi beta abhi"
+  - *Spoken Audio:* "nae bitta abhi"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:15.680000 --> 0:01:17.440000`
+  - *Expected Subtitle:* "because ab mumma ko nahi karna"
+  - *Spoken Audio:* "because ab mamako nae karna"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:01:18.840000 --> 0:01:20.080000`
+  - *Expected Subtitle:* "ki aab mere se nhi ho raha"
+  - *Spoken Audio:* "ki abhmeer se nae hora"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:22.360000 --> 0:01:23.560000`
+  - *Expected Subtitle:* "But again,"
+  - *Spoken Audio:* "again the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:25.480000 --> 0:01:26.320000`
+  - *Expected Subtitle:* "jaise aap normal"
+  - *Spoken Audio:* "as you talk"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:26.320000 --> 0:01:27.600000`
+  - *Expected Subtitle:* "baby se baat karte hoon"
+  - *Spoken Audio:* "with normal baby be"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:01:28.520000 --> 0:01:31.040000`
+  - *Expected Subtitle:* "ratbhar usko lekar ghomna pad sakta hai"
+  - *Spoken Audio:* "abhmeer hosko leke ghumna par sakta"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:01:31.040000 --> 0:01:32.760000`
+  - *Expected Subtitle:* "because thoda sa soyenge"
+  - *Spoken Audio:* "because hosatthai saoing it"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:32.760000 --> 0:01:34.200000`
+  - *Expected Subtitle:* "fir unki neend kholegi fir again"
+  - *Spoken Audio:* "firun ki neen kulaegi fir again"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:01:34.200000 --> 0:01:35.360000`
+  - *Expected Subtitle:* "they would ask for milk."
+  - *Spoken Audio:* "they would ask for me so"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:38.280000 --> 0:01:40.680000`
+  - *Expected Subtitle:* "But mostly jaha par aisa hai"
+  - *Spoken Audio:* "mostly jhaapar asa hai"
+- **[TEXT_MISMATCH]** Segment text discrepancy (70.0% mismatch).
+  - *Timestamp:* `0:01:40.680000 --> 0:01:42.920000`
+  - *Expected Subtitle:* "jaha par family bhi apke saath same page pe hai"
+  - *Spoken Audio:* "jhaapar family bhaapke saat same page for"
+- **[TEXT_MISMATCH]** Segment text discrepancy (77.8% mismatch).
+  - *Timestamp:* `0:01:42.920000 --> 0:01:45.560000`
+  - *Expected Subtitle:* "For example baby ro raha hai, cheek raha hai"
+  - *Spoken Audio:* "example baby roo rai chik rai so"
+- **[TEXT_MISMATCH]** Segment text discrepancy (88.9% mismatch).
+  - *Timestamp:* `0:01:45.560000 --> 0:01:48.120000`
+  - *Expected Subtitle:* "So aapne pehle se sabko batake rakha hua hai,"
+  - *Spoken Audio:* "apne pala se savko bata ke rakhao hai ki"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:48.120000 --> 0:01:49.240000`
+  - *Expected Subtitle:* "ki aisa honewala hai."
+  - *Spoken Audio:* "ashao ne wala so"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:01:50.800000 --> 0:01:52.600000`
+  - *Expected Subtitle:* "and repeatedly asking  kyu rula rahe ho"
+  - *Spoken Audio:* "and repeated yaskeen kyo roo la reo"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:52.600000 --> 0:01:53.320000`
+  - *Expected Subtitle:* "kyu rula rahe ho"
+  - *Spoken Audio:* "kyo roo la reo"
+- **[TEXT_MISMATCH]** Segment text discrepancy (62.5% mismatch).
+  - *Timestamp:* `0:01:53.320000 --> 0:01:55.200000`
+  - *Expected Subtitle:* "Because they know aap kya kar rahe ho."
+  - *Spoken Audio:* "because they know what you are doing"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:59.600000 --> 0:02:00.760000`
+  - *Expected Subtitle:* "code word or safe"
+  - *Spoken Audio:* "cordward or safe"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (124.04s - 125.88s).
+  - *Timestamp:* `0:02:04.040000 --> 0:02:05.880000`
+  - *Expected Subtitle:* "Kyunki jab aap puri raat tehel rahe ho"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (125.88s - 128.80s).
+  - *Timestamp:* `0:02:05.880000 --> 0:02:08.800000`
+  - *Expected Subtitle:* "aap thak rahe ho. Aapko gussa aanewala hai thik"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (128.80s - 130.36s).
+  - *Timestamp:* `0:02:08.800000 --> 0:02:10.360000`
+  - *Expected Subtitle:* "So kahi baar wo gussa"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (130.36s - 132.12s).
+  - *Timestamp:* `0:02:10.360000 --> 0:02:12.120000`
+  - *Expected Subtitle:* "subconsciously baby pe nikal jata hai."
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (132.12s - 134.36s).
+  - *Timestamp:* `0:02:12.120000 --> 0:02:14.360000`
+  - *Expected Subtitle:* "Toh jab aapko lage ki aapka hone laga,"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (134.36s - 135.96s).
+  - *Timestamp:* `0:02:14.360000 --> 0:02:15.960000`
+  - *Expected Subtitle:* "apne wo code-word bola"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (135.96s - 138.32s).
+  - *Timestamp:* `0:02:15.960000 --> 0:02:18.320000`
+  - *Expected Subtitle:* "aur aapke partner ne casually bilkul"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (138.32s - 138.90s).
+  - *Timestamp:* `0:02:18.320000 --> 0:02:18.900000`
+  - *Expected Subtitle:* "comfortably casually"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+
+### `ep13.mov` (Horizontal) — Status: FAIL
+- **[INVALID_SRT]** Subtitle file is missing.
+
+### `ep1.mov` (Portrait) — Status: NEEDS_REVIEW
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:10.320000 --> 0:00:12.640000`
+  - *Expected Subtitle:* "<b>Winnicott named Donald Winnicott.</b>"
+  - *Spoken Audio:* "Vinicord, named Donald Vinicord. And"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:27.920000 --> 0:00:31.640000`
+  - *Expected Subtitle:* "<b>how deeply intertwined or coexisting</b>"
+  - *Spoken Audio:* "deeply intertwined or co -existing"
+
+### `ep2.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 2176.20s on a 109.96s clip (Master timeline offset of ~2176.20s detected).
+  - *Action:* Shift all subtitle timecodes by -2176.20s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (77.8% mismatch).
+  - *Timestamp:* `0:00:00 --> 0:00:02.624000`
+  - *Expected Subtitle:* "<b>So six months is a lot changes at six</b>"
+  - *Spoken Audio:* "So, as a parent, your engagement"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:00:02.624000 --> 0:00:04.818000`
+  - *Expected Subtitle:* "<b>months because by the time they have</b>"
+  - *Spoken Audio:* "with the baby is of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:04.818000 --> 0:00:06.540000`
+  - *Expected Subtitle:* "<b>that kind of abdominal strength to</b>"
+  - *Spoken Audio:* "critical importance."
+- **[TEXT_MISMATCH]** Segment text discrepancy (137.5% mismatch).
+  - *Timestamp:* `0:00:06.540000 --> 0:00:09.207000`
+  - *Expected Subtitle:* "<b>be able to sit up, more or less</b>"
+  - *Spoken Audio:* "So, it's really important that we don't think of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:09.207000 --> 0:00:11.617000`
+  - *Expected Subtitle:* "<b>unsupported, I would say more or</b>"
+  - *Spoken Audio:* "early baby care as something that can"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:11.617000 --> 0:00:12.820000`
+  - *Expected Subtitle:* "<b>less because they're still quite</b>"
+  - *Spoken Audio:* "be done in a mechanical way."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:12.820000 --> 0:00:13.682000`
+  - *Expected Subtitle:* "<b>floppy, right?</b>"
+  - *Spoken Audio:* "So,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:13.682000 --> 0:00:15.961000`
+  - *Expected Subtitle:* "<b>Like you plant them like this and then</b>"
+  - *Spoken Audio:* "the same things, it's very repetitive,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:15.961000 --> 0:00:17.767000`
+  - *Expected Subtitle:* "<b>like a few minutes later, they'll be</b>"
+  - *Spoken Audio:* "it's very dull, yes."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:17.767000 --> 0:00:19.832000`
+  - *Expected Subtitle:* "<b>like, and then they'll keel over</b>"
+  - *Spoken Audio:* "It's the changing, the holding,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:19.832000 --> 0:00:22.543000`
+  - *Expected Subtitle:* "<b>sideways or backwards and just have</b>"
+  - *Spoken Audio:* "the carrying, the feeding, the cleaning, and then"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:22.543000 --> 0:00:24.694000`
+  - *Expected Subtitle:* "<b>cushions around so that they are not</b>"
+  - *Spoken Audio:* "repeat. That is how your baby"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:24.694000 --> 0:00:25.726000`
+  - *Expected Subtitle:* "<b>whacking their heads.</b>"
+  - *Spoken Audio:* "is literally being held"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:25.726000 --> 0:00:27.534000`
+  - *Expected Subtitle:* "<b>But six months, quite a lot changes.</b>"
+  - *Spoken Audio:* "together. Because any of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (128.6% mismatch).
+  - *Timestamp:* `0:00:27.534000 --> 0:00:30.201000`
+  - *Expected Subtitle:* "<b>And because of that sort of upright</b>"
+  - *Spoken Audio:* "these sensations that are on the inside, whether it"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:30.201000 --> 0:00:32.825000`
+  - *Expected Subtitle:* "<b>posture, your experience of your baby</b>"
+  - *Spoken Audio:* "is hunger, or who has to come"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:32.825000 --> 0:00:36.224000`
+  - *Expected Subtitle:* "<b>is much more of, oh, this is a person</b>"
+  - *Spoken Audio:* "out, so some things are happening, the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:36.224000 --> 0:00:40.612000`
+  - *Expected Subtitle:* "<b>that somehow manages to engage adults</b>"
+  - *Spoken Audio:* "baby has no cognitive or emotional psychic"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:40.612000 --> 0:00:42.891000`
+  - *Expected Subtitle:* "<b>in a different kind of way.</b>"
+  - *Spoken Audio:* "structures to be able to tell the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:42.891000 --> 0:00:46.033000`
+  - *Expected Subtitle:* "<b>And from here on, their interaction</b>"
+  - *Spoken Audio:* "difference between inside and outside. So, the baby is"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:46.033000 --> 0:00:47.882000`
+  - *Expected Subtitle:* "<b>and the quality of their interaction</b>"
+  - *Spoken Audio:* "almost like being"
+- **[TEXT_MISMATCH]** Segment text discrepancy (175.0% mismatch).
+  - *Timestamp:* `0:00:47.882000 --> 0:00:50.463000`
+  - *Expected Subtitle:* "<b>actually changes quite significantly.</b>"
+  - *Spoken Audio:* "besieged by these sensations. Like the baby"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:51.022000 --> 0:00:52.571000`
+  - *Expected Subtitle:* "<b>They become much more active.</b>"
+  - *Spoken Audio:* "just, and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:00:52.571000 --> 0:00:54.206000`
+  - *Expected Subtitle:* "<b>Some of the previous things, of course,</b>"
+  - *Spoken Audio:* "it's the way"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:54.206000 --> 0:00:55.755000`
+  - *Expected Subtitle:* "<b>are still there where they still</b>"
+  - *Spoken Audio:* "in which the caregiver,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:55.755000 --> 0:00:58.078000`
+  - *Expected Subtitle:* "<b>can't like necessarily reach out</b>"
+  - *Spoken Audio:* "the environment,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (183.3% mismatch).
+  - *Timestamp:* `0:00:58.078000 --> 0:01:03.026000`
+  - *Expected Subtitle:* "<b>so pointedly, but they are rolling,</b>"
+  - *Spoken Audio:* "meets this baby with a kind of consistency, reliability, and gentleness"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:03.026000 --> 0:01:06.769000`
+  - *Expected Subtitle:* "<b>they are pulling themselves, they are</b>"
+  - *Spoken Audio:* "that makes that physical"
+- **[TEXT_MISMATCH]** Segment text discrepancy (128.6% mismatch).
+  - *Timestamp:* `0:01:06.769000 --> 0:01:11.457000`
+  - *Expected Subtitle:* "<b>on their tummies, they are sitting up,</b>"
+  - *Spoken Audio:* "care into something that is nurturing because there are"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:11.930000 --> 0:01:14.298000`
+  - *Expected Subtitle:* "<b>they are moving about that way.</b>"
+  - *Spoken Audio:* "feeding the baby that are just,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:14.298000 --> 0:01:16.664000`
+  - *Expected Subtitle:* "<b>And all of that will feed into</b>"
+  - *Spoken Audio:* "and then there are ways of feeding the baby,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:16.664000 --> 0:01:18.857000`
+  - *Expected Subtitle:* "<b>the next step of being able</b>"
+  - *Spoken Audio:* "which are holding and nourishing."
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:18.857000 --> 0:01:22.471000`
+  - *Expected Subtitle:* "<b>to hold themselves up on all fours.</b>"
+  - *Spoken Audio:* "So, at a very simple level, don't"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:22.471000 --> 0:01:24.020000`
+  - *Expected Subtitle:* "<b>So you can see that there is</b>"
+  - *Spoken Audio:* "be on your phone while you"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:01:24.063000 --> 0:01:27.290000`
+  - *Expected Subtitle:* "<b>a gradual going from head to arms</b>"
+  - *Spoken Audio:* "are feeding the baby. Make eye contact, hold"
+- **[TEXT_MISMATCH]** Segment text discrepancy (200.0% mismatch).
+  - *Timestamp:* `0:01:27.290000 --> 0:01:30.816000`
+  - *Expected Subtitle:* "<b>to shoulders to abdomen to legs kind</b>"
+  - *Spoken Audio:* "the baby like you mean it, hold the baby like you want to, and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (175.0% mismatch).
+  - *Timestamp:* `0:01:30.816000 --> 0:01:33.441000`
+  - *Expected Subtitle:* "<b>of development of control.</b>"
+  - *Spoken Audio:* "if you need a break, then take"
+- **[TEXT_MISMATCH]** Segment text discrepancy (171.4% mismatch).
+  - *Timestamp:* `0:01:33.700000 --> 0:01:37.572000`
+  - *Expected Subtitle:* "<b>So our interactions with babies can be</b>"
+  - *Spoken Audio:* "the break from the entire process, even if it is for 20"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:37.572000 --> 0:01:40.410000`
+  - *Expected Subtitle:* "<b>about encouraging all of that, giving</b>"
+  - *Spoken Audio:* "minutes, 30 minutes, if there's nothing else possible."
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:40.410000 --> 0:01:46.778000`
+  - *Expected Subtitle:* "<b>them room to roll around, to explore just</b>"
+  - *Spoken Audio:* "But when you are being with the baby, your emotional state pretty"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:46.778000 --> 0:01:48.800000`
+  - *Expected Subtitle:* "<b>like what their arms and legs can do.</b>"
+  - *Spoken Audio:* "much directly maps on to the baby."
+
+### `ep3.mov` (Portrait) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 836.52s on a 65.20s clip (Master timeline offset of ~836.52s detected).
+  - *Action:* Shift all subtitle timecodes by -836.52s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:15.721000 --> 0:00:18.160000`
+  - *Expected Subtitle:* "<b>responsive environment, and I'm</b>"
+  - *Spoken Audio:* "environment and"
+
+### `ep4.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 968.44s on a 111.53s clip (Master timeline offset of ~968.44s detected).
+  - *Action:* Shift all subtitle timecodes by -968.44s to align with clip start.
+- **[SRT_SYNTAX]** Subtitle #54: Subtitle starts (114.28s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #55: Subtitle starts (116.92s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #56: Subtitle starts (119.80s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #57: Subtitle starts (123.24s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #58: Subtitle starts (125.20s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #59: Subtitle starts (127.76s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #60: Subtitle starts (132.04s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #61: Subtitle starts (135.00s) after video ends (111.53s).
+- **[SRT_SYNTAX]** Subtitle #62: Subtitle starts (137.36s) after video ends (111.53s).
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:08.920000 --> 0:00:10.599000`
+  - *Expected Subtitle:* "<b>is the biggest and the most</b>"
+  - *Spoken Audio:* "and it is the biggest and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:21.079000 --> 0:00:22.160000`
+  - *Expected Subtitle:* "<b>slightly more from a distance,</b>"
+  - *Spoken Audio:* "distance, slightly more from a"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:43.839000 --> 0:00:45.079000`
+  - *Expected Subtitle:* "<b>to take turns because you have</b>"
+  - *Spoken Audio:* "able to take turns because"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:45.079000 --> 0:00:46.880000`
+  - *Expected Subtitle:* "<b>been demonstrating taking turns.</b>"
+  - *Spoken Audio:* "you have been demonstrating taking turns."
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:48.199000 --> 0:00:49.079000`
+  - *Expected Subtitle:* "<b>come out of nowhere.</b>"
+  - *Spoken Audio:* "didn't come out of"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:55.439000 --> 0:00:56.760000`
+  - *Expected Subtitle:* "<b>with the baby in that way.</b>"
+  - *Spoken Audio:* "interacting with them."
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:00:56.760000 --> 0:00:57.919000`
+  - *Expected Subtitle:* "<b>How do we know this?</b>"
+  - *Spoken Audio:* "But now they'll be able"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:57.919000 --> 0:00:59.960000`
+  - *Expected Subtitle:* "<b>Usually from cases where it</b>"
+  - *Spoken Audio:* "to be much more"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:59.960000 --> 0:01:01.480000`
+  - *Expected Subtitle:* "<b>has not worked like that.</b>"
+  - *Spoken Audio:* "expressive"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:01.480000 --> 0:01:03.399000`
+  - *Expected Subtitle:* "<b>So, babies who have been very isolated,</b>"
+  - *Spoken Audio:* "with their facial expressions"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:03.399000 --> 0:01:05.639000`
+  - *Expected Subtitle:* "<b>babies who have not had consistent care,</b>"
+  - *Spoken Audio:* "and body movements"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:05.639000 --> 0:01:06.839000`
+  - *Expected Subtitle:* "<b>institutionalized babies,</b>"
+  - *Spoken Audio:* "because now they"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:06.839000 --> 0:01:08.200000`
+  - *Expected Subtitle:* "<b>they don't develop this.</b>"
+  - *Spoken Audio:* "can kind of like have voluntary"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:08.200000 --> 0:01:10.280000`
+  - *Expected Subtitle:* "<b>None of these developmental markers</b>"
+  - *Spoken Audio:* "control over this much and the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:10.280000 --> 0:01:12.359000`
+  - *Expected Subtitle:* "<b>can just be taken for granted</b>"
+  - *Spoken Audio:* "gross motor movements around their"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:12.399000 --> 0:01:14.679000`
+  - *Expected Subtitle:* "<b>that it is going to just happen.</b>"
+  - *Spoken Audio:* "So if they're holding a rattle"
+- **[TEXT_MISMATCH]** Segment text discrepancy (320.0% mismatch).
+  - *Timestamp:* `0:01:15.079000 --> 0:01:18.800000`
+  - *Expected Subtitle:* "<b>Nothing happens out of context.</b>"
+  - *Spoken Audio:* "example, they'll be able to do this. But every once in a while, they'll"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:21.200000 --> 0:01:22.040000`
+  - *Expected Subtitle:* "<b>So, your baby is learning</b>"
+  - *Spoken Audio:* "coordination"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:01:22.040000 --> 0:01:24.599000`
+  - *Expected Subtitle:* "<b>turn-taking because you have</b>"
+  - *Spoken Audio:* "is still some way away. But"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:24.599000 --> 0:01:26.440000`
+  - *Expected Subtitle:* "<b>been interacting with them.</b>"
+  - *Spoken Audio:* "they will also"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:26.440000 --> 0:01:29.240000`
+  - *Expected Subtitle:* "<b>But now, they will be able to be much</b>"
+  - *Spoken Audio:* "do things like spontaneously laugh and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:29.240000 --> 0:01:32.359000`
+  - *Expected Subtitle:* "<b>more expressive with their facial</b>"
+  - *Spoken Audio:* "let you know that oh,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (225.0% mismatch).
+  - *Timestamp:* `0:01:32.359000 --> 0:01:35.520000`
+  - *Expected Subtitle:* "<b>expressions and body movements</b>"
+  - *Spoken Audio:* "this is something that has got their attention and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:01:35.520000 --> 0:01:37.280000`
+  - *Expected Subtitle:* "<b>because now they can kind of like</b>"
+  - *Spoken Audio:* "it could be something like"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:37.280000 --> 0:01:39.399000`
+  - *Expected Subtitle:* "<b>have voluntary control over this much</b>"
+  - *Spoken Audio:* "a mobile, turning"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:39.399000 --> 0:01:41.599000`
+  - *Expected Subtitle:* "<b>and the gross motor movements around</b>"
+  - *Spoken Audio:* "song playing or"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:41.599000 --> 0:01:42.480000`
+  - *Expected Subtitle:* "<b>their arms.</b>"
+  - *Spoken Audio:* "you"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:43.319000 --> 0:01:44.639000`
+  - *Expected Subtitle:* "<b>So, if they are holding a rattle, for</b>"
+  - *Spoken Audio:* "around with them and"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:44.639000 --> 0:01:46.879000`
+  - *Expected Subtitle:* "<b>example, they will be able to do this.</b>"
+  - *Spoken Audio:* "breeze in their face, depending"
+- **[TEXT_MISMATCH]** Segment text discrepancy (88.9% mismatch).
+  - *Timestamp:* `0:01:46.879000 --> 0:01:48.760000`
+  - *Expected Subtitle:* "<b>But every once in a while, they will end</b>"
+  - *Spoken Audio:* "on which sensations they have"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:48.760000 --> 0:01:51.240000`
+  - *Expected Subtitle:* "<b>up whacking their own face because</b>"
+  - *Spoken Audio:* "found like that."
+- **[TIMING_DRIFT]** No spoken speech detected inside window (111.24s - 114.28s).
+  - *Timestamp:* `0:01:51.240000 --> 0:01:54.280000`
+  - *Expected Subtitle:* "<b>coordination is still some way away.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (114.28s - 116.92s).
+  - *Timestamp:* `0:01:54.280000 --> 0:01:56.919000`
+  - *Expected Subtitle:* "<b>But they will also do things like</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (116.92s - 119.80s).
+  - *Timestamp:* `0:01:56.919000 --> 0:01:59.800000`
+  - *Expected Subtitle:* "<b>spontaneously laugh and let you</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (119.80s - 123.24s).
+  - *Timestamp:* `0:01:59.800000 --> 0:02:03.240000`
+  - *Expected Subtitle:* "<b>know that, oh, this is something</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (123.24s - 125.20s).
+  - *Timestamp:* `0:02:03.240000 --> 0:02:05.200000`
+  - *Expected Subtitle:* "<b>that has caught their attention.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (125.20s - 127.76s).
+  - *Timestamp:* `0:02:05.200000 --> 0:02:07.760000`
+  - *Expected Subtitle:* "<b>And it could be something like a mobile</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (127.76s - 132.04s).
+  - *Timestamp:* `0:02:07.760000 --> 0:02:12.040000`
+  - *Expected Subtitle:* "<b>turning, song playing or you are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (132.04s - 135.00s).
+  - *Timestamp:* `0:02:12.040000 --> 0:02:15`
+  - *Expected Subtitle:* "<b>walking around with them and breeze</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (135.00s - 137.36s).
+  - *Timestamp:* `0:02:15 --> 0:02:17.359000`
+  - *Expected Subtitle:* "<b>in their face depending on which</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (137.36s - 140.20s).
+  - *Timestamp:* `0:02:17.359000 --> 0:02:20.200000`
+  - *Expected Subtitle:* "<b>sensations they have found like that.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+
+### `ep5.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1188.44s on a 136.00s clip (Master timeline offset of ~1188.44s detected).
+  - *Action:* Shift all subtitle timecodes by -1188.44s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:00:34.800000 --> 0:00:36.560000`
+  - *Expected Subtitle:* "<b>probably scream their heads off.</b>"
+  - *Spoken Audio:* "a bath, probably screen the heads off,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:00:40.119000 --> 0:00:42.919000`
+  - *Expected Subtitle:* "<b>And then a lot has been done now.</b>"
+  - *Spoken Audio:* "changed, and then a lot has been"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:42.919000 --> 0:00:44.319000`
+  - *Expected Subtitle:* "<b>So now they will have a nap.</b>"
+  - *Spoken Audio:* "done now, so now they will have"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:00:44.319000 --> 0:00:46.119000`
+  - *Expected Subtitle:* "<b>By the time there are three months,</b>"
+  - *Spoken Audio:* "a nap. But at the time there are three"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:46.119000 --> 0:00:48.399000`
+  - *Expected Subtitle:* "<b>that might include some kind of</b>"
+  - *Spoken Audio:* "months that might have include some"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:48.440000 --> 0:00:50.520000`
+  - *Expected Subtitle:* "<b>like a little stroll outdoors.</b>"
+  - *Spoken Audio:* "kind of like a little stroll"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:50.520000 --> 0:00:52.079000`
+  - *Expected Subtitle:* "<b>Or they might spend some time</b>"
+  - *Spoken Audio:* "outdoors, or they might"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:52.079000 --> 0:00:53.520000`
+  - *Expected Subtitle:* "<b>with a different adult.</b>"
+  - *Spoken Audio:* "spend some time with a different"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:01:06.800000 --> 0:01:08.839000`
+  - *Expected Subtitle:* "<b>There is this idea that babies are just</b>"
+  - *Spoken Audio:* "to. There is this idea that babies"
+- **[TEXT_MISMATCH]** Segment text discrepancy (37.5% mismatch).
+  - *Timestamp:* `0:01:08.839000 --> 0:01:10.960000`
+  - *Expected Subtitle:* "<b>like blobs and it really doesn't matter.</b>"
+  - *Spoken Audio:* "are just like blobs and it really doesn't"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:10.960000 --> 0:01:13.399000`
+  - *Expected Subtitle:* "<b>So as long as the people are there</b>"
+  - *Spoken Audio:* "matter, so as long as the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:01:13.399000 --> 0:01:15.240000`
+  - *Expected Subtitle:* "<b>or they are looked after, you can just</b>"
+  - *Spoken Audio:* "people are there, they are looked after,"
+
+### `ep6.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 397.40s on a 149.44s clip (Master timeline offset of ~397.40s detected).
+  - *Action:* Shift all subtitle timecodes by -397.40s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:14 --> 0:00:14.761000`
+  - *Expected Subtitle:* "<b>outside.</b>"
+  - *Spoken Audio:* "the outside."
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:01:06.560000 --> 0:01:08.641000`
+  - *Expected Subtitle:* "<b>sort of emotional and social world is</b>"
+  - *Spoken Audio:* "baby's sort of emotional and social world"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:41.521000 --> 0:01:45.721000`
+  - *Expected Subtitle:* "<b>without necessarily knowing about</b>"
+  - *Spoken Audio:* "thing without necessarily being about"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:02:12.601000 --> 0:02:15.120000`
+  - *Expected Subtitle:* "<b>neck strength is just a teeny bit</b>"
+  - *Spoken Audio:* "neck strength is just"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:02:15.120000 --> 0:02:17.400000`
+  - *Expected Subtitle:* "<b>better than it was like last week.</b>"
+  - *Spoken Audio:* "a teeny bit better than it was like last week"
+
+### `ep7.mov` (Portrait) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 1892.04s on a 102.66s clip (Master timeline offset of ~1892.04s detected).
+  - *Action:* Shift all subtitle timecodes by -1892.04s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:03.361000 --> 0:00:06.121000`
+  - *Expected Subtitle:* "<b>So, gaze is really something</b>"
+  - *Spoken Audio:* "it's so gaze is really something"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (51.68s - 54.32s).
+  - *Timestamp:* `0:00:51.681000 --> 0:00:54.320000`
+  - *Expected Subtitle:* "<b>a little bit extra or something</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (54.32s - 55.40s).
+  - *Timestamp:* `0:00:54.320000 --> 0:00:55.401000`
+  - *Expected Subtitle:* "<b>happening that they are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (55.40s - 57.28s).
+  - *Timestamp:* `0:00:55.401000 --> 0:00:57.280000`
+  - *Expected Subtitle:* "<b>uncomfortable about, they might use</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (57.28s - 59.12s).
+  - *Timestamp:* `0:00:57.280000 --> 0:00:59.121000`
+  - *Expected Subtitle:* "<b>their eyes as a way of holding down</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (59.12s - 59.92s).
+  - *Timestamp:* `0:00:59.121000 --> 0:00:59.921000`
+  - *Expected Subtitle:* "<b>the rest of them.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (60.12s - 61.68s).
+  - *Timestamp:* `0:01:00.121000 --> 0:01:01.681000`
+  - *Expected Subtitle:* "<b>And these are like the beginnings</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (61.68s - 65.12s).
+  - *Timestamp:* `0:01:01.681000 --> 0:01:05.121000`
+  - *Expected Subtitle:* "<b>of little, little like coping strategies</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (65.24s - 67.76s).
+  - *Timestamp:* `0:01:05.240000 --> 0:01:07.760000`
+  - *Expected Subtitle:* "<b>when things are not all okay also.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (67.76s - 69.92s).
+  - *Timestamp:* `0:01:07.760000 --> 0:01:09.921000`
+  - *Expected Subtitle:* "<b>Other than that, they are beginning to,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (70.08s - 70.96s).
+  - *Timestamp:* `0:01:10.080000 --> 0:01:10.961000`
+  - *Expected Subtitle:* "<b>again like I said,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (70.96s - 73.16s).
+  - *Timestamp:* `0:01:10.961000 --> 0:01:13.161000`
+  - *Expected Subtitle:* "<b>with their gaze let you know that they</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (73.16s - 74.44s).
+  - *Timestamp:* `0:01:13.161000 --> 0:01:14.441000`
+  - *Expected Subtitle:* "<b>are interested in something.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (74.44s - 75.68s).
+  - *Timestamp:* `0:01:14.441000 --> 0:01:15.681000`
+  - *Expected Subtitle:* "<b>So, because they can't point yet,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (75.68s - 76.84s).
+  - *Timestamp:* `0:01:15.681000 --> 0:01:16.841000`
+  - *Expected Subtitle:* "<b>they will look at it.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (77.44s - 79.16s).
+  - *Timestamp:* `0:01:17.441000 --> 0:01:19.161000`
+  - *Expected Subtitle:* "<b>Then they will be looking at it.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (79.16s - 80.60s).
+  - *Timestamp:* `0:01:19.161000 --> 0:01:20.601000`
+  - *Expected Subtitle:* "<b>And that's a way in which</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (80.60s - 82.68s).
+  - *Timestamp:* `0:01:20.601000 --> 0:01:22.681000`
+  - *Expected Subtitle:* "<b>they are also communicating.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (82.88s - 84.40s).
+  - *Timestamp:* `0:01:22.881000 --> 0:01:24.401000`
+  - *Expected Subtitle:* "<b>So, again they are communicating with</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (84.40s - 87.44s).
+  - *Timestamp:* `0:01:24.401000 --> 0:01:27.441000`
+  - *Expected Subtitle:* "<b>you so much, but it's mainly eyes,</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (87.96s - 90.72s).
+  - *Timestamp:* `0:01:27.961000 --> 0:01:30.720000`
+  - *Expected Subtitle:* "<b>neck, movement of the head and the</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (90.72s - 92.40s).
+  - *Timestamp:* `0:01:30.720000 --> 0:01:32.401000`
+  - *Expected Subtitle:* "<b>sort of upper torso part where they</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (92.40s - 93.92s).
+  - *Timestamp:* `0:01:32.401000 --> 0:01:33.921000`
+  - *Expected Subtitle:* "<b>will lean forward if they are</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (93.92s - 94.72s).
+  - *Timestamp:* `0:01:33.921000 --> 0:01:34.720000`
+  - *Expected Subtitle:* "<b>interested in you.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (95.32s - 96.16s).
+  - *Timestamp:* `0:01:35.320000 --> 0:01:36.161000`
+  - *Expected Subtitle:* "<b>They will lean back</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (96.16s - 98.00s).
+  - *Timestamp:* `0:01:36.161000 --> 0:01:38`
+  - *Expected Subtitle:* "<b>if they are not interested.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (98.00s - 100.08s).
+  - *Timestamp:* `0:01:38 --> 0:01:40.080000`
+  - *Expected Subtitle:* "<b>And all of these are ways in which your</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (100.08s - 101.84s).
+  - *Timestamp:* `0:01:40.080000 --> 0:01:41.841000`
+  - *Expected Subtitle:* "<b>baby is continuing to interact with you.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+
+### `ep8.mov` (Portrait) — Status: NEEDS_REVIEW
+- **[TIMELINE_OFFSET]** Subtitles start at 2056.56s on a 51.88s clip (Master timeline offset of ~2056.56s detected).
+  - *Action:* Shift all subtitle timecodes by -2056.56s to align with clip start.
+
+### `ep9.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1604.20s on a 82.32s clip (Master timeline offset of ~1604.20s detected).
+  - *Action:* Shift all subtitle timecodes by -1604.20s to align with clip start.
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:09.639000 --> 0:00:10.960000`
+  - *Expected Subtitle:* "<b>a three month old is a veteran.</b>"
+  - *Spoken Audio:* "before, a three -month -old"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:21.800000 --> 0:00:22.879000`
+  - *Expected Subtitle:* "<b>I find at four months.</b>"
+  - *Spoken Audio:* "little bit, I find at four"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:37.359000 --> 0:00:38.680000`
+  - *Expected Subtitle:* "<b>on the tummy and stretching out</b>"
+  - *Spoken Audio:* "like lying on the tummy and stretching"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:00:38.680000 --> 0:00:40.399000`
+  - *Expected Subtitle:* "<b>like that kind of thing going on.</b>"
+  - *Spoken Audio:* "stretching out like that kind of thing going"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:07.040000 --> 0:01:09.480000`
+  - *Expected Subtitle:* "<b>So that turn taking has really</b>"
+  - *Spoken Audio:* "to you. That turn -taking"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:09.480000 --> 0:01:10.599000`
+  - *Expected Subtitle:* "<b>like got established.</b>"
+  - *Spoken Audio:* "has really like got"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:01:14.879000 --> 0:01:16.440000`
+  - *Expected Subtitle:* "<b>with a four month old.</b>"
+  - *Spoken Audio:* "with the form of thought."
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:16.440000 --> 0:01:18.440000`
+  - *Expected Subtitle:* "<b>And from here onwards, it's only just</b>"
+  - *Spoken Audio:* "And from here onwards,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:01:18.440000 --> 0:01:21.200000`
+  - *Expected Subtitle:* "<b>going to get more and more exciting.</b>"
+  - *Spoken Audio:* "it's only just going to get more and more"
+
+### `ep10.mov` (Portrait) — Status: FAIL
+- **[TIMELINE_OFFSET]** Subtitles start at 1736.72s on a 82.32s clip (Master timeline offset of ~1736.72s detected).
+  - *Action:* Shift all subtitle timecodes by -1736.72s to align with clip start.
+- **[SRT_SYNTAX]** Subtitle #35: Subtitle starts (84.56s) after video ends (82.32s).
+- **[SRT_SYNTAX]** Subtitle #36: Subtitle starts (86.52s) after video ends (82.32s).
+- **[SRT_SYNTAX]** Subtitle #37: Subtitle starts (89.04s) after video ends (82.32s).
+- **[SRT_SYNTAX]** Subtitle #38: Subtitle starts (89.96s) after video ends (82.32s).
+- **[SRT_SYNTAX]** Subtitle #39: Subtitle starts (91.92s) after video ends (82.32s).
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:00 --> 0:00:02`
+  - *Expected Subtitle:* "<b>See, there is no replacement</b>"
+  - *Spoken Audio:* "So, see by four"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:02 --> 0:00:03`
+  - *Expected Subtitle:* "<b>for eye contact.</b>"
+  - *Spoken Audio:* "months, the"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:03 --> 0:00:05.799000`
+  - *Expected Subtitle:* "<b>So what can parents do to engage</b>"
+  - *Spoken Audio:* "entire thing about feeding and sleeping has"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:05.799000 --> 0:00:08.599000`
+  - *Expected Subtitle:* "<b>with a four-month-old, make eye contact</b>"
+  - *Spoken Audio:* "now been established. So,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:00:09.599000 --> 0:00:11.520000`
+  - *Expected Subtitle:* "<b>And honestly, it's like after that,</b>"
+  - *Spoken Audio:* "before, a three -month -old is a veteran."
+- **[TEXT_MISMATCH]** Segment text discrepancy (133.3% mismatch).
+  - *Timestamp:* `0:00:11.520000 --> 0:00:14.799000`
+  - *Expected Subtitle:* "<b>if you are not terribly depressed</b>"
+  - *Spoken Audio:* "So, this whole feeding business by now is"
+- **[TEXT_MISMATCH]** Segment text discrepancy (171.4% mismatch).
+  - *Timestamp:* `0:00:14.799000 --> 0:00:17.839000`
+  - *Expected Subtitle:* "<b>or elsewhere mentally, once you make eye</b>"
+  - *Spoken Audio:* "chill. So, now it's like, okay, we can move on to"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:17.839000 --> 0:00:20.240000`
+  - *Expected Subtitle:* "<b>contact with your baby, the rest just</b>"
+  - *Spoken Audio:* "other interactions,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:20.240000 --> 0:00:22.039000`
+  - *Expected Subtitle:* "<b>becomes part of that relationship.</b>"
+  - *Spoken Audio:* "the quality shifts a little"
+- **[TEXT_MISMATCH]** Segment text discrepancy (166.7% mismatch).
+  - *Timestamp:* `0:00:22.720000 --> 0:00:26.240000`
+  - *Expected Subtitle:* "<b>Whether it's in terms of speaking to them,</b>"
+  - *Spoken Audio:* "four months. So, one is that the neck has more strength. So, the world can"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:26.240000 --> 0:00:29.639000`
+  - *Expected Subtitle:* "<b>trying to engage them in some way,</b>"
+  - *Spoken Audio:* "now be seen with much more, like,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (83.3% mismatch).
+  - *Timestamp:* `0:00:29.639000 --> 0:00:31.359000`
+  - *Expected Subtitle:* "<b>the content of what you say</b>"
+  - *Spoken Audio:* "the circumference"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:31.359000 --> 0:00:33.520000`
+  - *Expected Subtitle:* "<b>really doesn't matter at this point.</b>"
+  - *Spoken Audio:* "changes. Being on that tummy"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:33.520000 --> 0:00:36.079000`
+  - *Expected Subtitle:* "<b>You could tell them about the recipe of</b>"
+  - *Spoken Audio:* "is something that is much more possible."
+- **[TEXT_MISMATCH]** Segment text discrepancy (200.0% mismatch).
+  - *Timestamp:* `0:00:36.079000 --> 0:00:39.079000`
+  - *Expected Subtitle:* "<b>potato that you were cooking or something,</b>"
+  - *Spoken Audio:* "So, there's a lot more like lying on the tummy and stretching out"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:00:39.079000 --> 0:00:40.960000`
+  - *Expected Subtitle:* "<b>or about how uncomfortable your shoes</b>"
+  - *Spoken Audio:* "like that kind of thing going on."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:40.960000 --> 0:00:43.319000`
+  - *Expected Subtitle:* "<b>are and how you need a new pair of shoes.</b>"
+  - *Spoken Audio:* "So, they're really much more"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:43.319000 --> 0:00:44`
+  - *Expected Subtitle:* "<b>It could be anything.</b>"
+  - *Spoken Audio:* "able"
+- **[TEXT_MISMATCH]** Segment text discrepancy (160.0% mismatch).
+  - *Timestamp:* `0:00:44.599000 --> 0:00:46.440000`
+  - *Expected Subtitle:* "<b>It's about the expressiveness</b>"
+  - *Spoken Audio:* "than they were even like a month ago."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:46.440000 --> 0:00:48.319000`
+  - *Expected Subtitle:* "<b>on your face and it's about</b>"
+  - *Spoken Audio:* "And that shows up in their"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:48.319000 --> 0:00:50.559000`
+  - *Expected Subtitle:* "<b>the intonation that you use.</b>"
+  - *Spoken Audio:* "slightly wider"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:50.559000 --> 0:00:53.440000`
+  - *Expected Subtitle:* "<b>And again, there's been research done</b>"
+  - *Spoken Audio:* "range of the kind of movements."
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:00:53.440000 --> 0:00:56.160000`
+  - *Expected Subtitle:* "<b>on this, which is that most adults,</b>"
+  - *Spoken Audio:* "Which"
+- **[TEXT_MISMATCH]** Segment text discrepancy (114.3% mismatch).
+  - *Timestamp:* `0:00:56.160000 --> 0:00:58.319000`
+  - *Expected Subtitle:* "<b>when they're speaking to really small</b>"
+  - *Spoken Audio:* "for them is terribly exciting because now they"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:58.319000 --> 0:00:59.960000`
+  - *Expected Subtitle:* "<b>babies, like three, four months old,</b>"
+  - *Spoken Audio:* "can see"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:59.960000 --> 0:01:02.039000`
+  - *Expected Subtitle:* "<b>they use very high-pitched tones.</b>"
+  - *Spoken Audio:* "further. If they can see further,"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:01:02.039000 --> 0:01:06.039000`
+  - *Expected Subtitle:* "<b>So it's like quite exaggerated.</b>"
+  - *Spoken Audio:* "they can actually like respond to your face."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:06.039000 --> 0:01:09.359000`
+  - *Expected Subtitle:* "<b>So it'll be like, Baby, how are you?</b>"
+  - *Spoken Audio:* "They can call out to you. That turn -taking"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:10.039000 --> 0:01:11.799000`
+  - *Expected Subtitle:* "<b>What did you eat?</b>"
+  - *Spoken Audio:* "like got established."
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:11.799000 --> 0:01:14`
+  - *Expected Subtitle:* "<b>What did you do?</b>"
+  - *Spoken Audio:* "So, there's much more like"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:01:14 --> 0:01:16.599000`
+  - *Expected Subtitle:* "<b>So it's the tonality of it that</b>"
+  - *Spoken Audio:* "interaction with the form of thought."
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:16.599000 --> 0:01:17.960000`
+  - *Expected Subtitle:* "<b>babies are responding to.</b>"
+  - *Spoken Audio:* "And from here"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:17.960000 --> 0:01:20.799000`
+  - *Expected Subtitle:* "<b>The content of it is… and this is common</b>"
+  - *Spoken Audio:* "onwards, it's only just going to get more"
+- **[TEXT_MISMATCH]** Segment text discrepancy (83.3% mismatch).
+  - *Timestamp:* `0:01:20.799000 --> 0:01:24.559000`
+  - *Expected Subtitle:* "<b>across languages and many, many cultures.</b>"
+  - *Spoken Audio:* "and more exciting."
+- **[TIMING_DRIFT]** No spoken speech detected inside window (84.56s - 86.52s).
+  - *Timestamp:* `0:01:24.559000 --> 0:01:26.520000`
+  - *Expected Subtitle:* "<b>So we know that it matters</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (86.52s - 88.40s).
+  - *Timestamp:* `0:01:26.520000 --> 0:01:28.399000`
+  - *Expected Subtitle:* "<b>in the quality of the interaction.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (89.04s - 89.96s).
+  - *Timestamp:* `0:01:29.039000 --> 0:01:29.960000`
+  - *Expected Subtitle:* "<b>It's called Motherese.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (89.96s - 91.92s).
+  - *Timestamp:* `0:01:29.960000 --> 0:01:31.920000`
+  - *Expected Subtitle:* "<b>Developmental psychology literature calls</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (91.92s - 96.04s).
+  - *Timestamp:* `0:01:31.920000 --> 0:01:36.039000`
+  - *Expected Subtitle:* "<b>it motherese, this high-toned interaction.</b>"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+
+### `ep11.mov` (Portrait) — Status: FAIL
+- **[SRT_SYNTAX]** Subtitle #1: Extremely short duration (0.08s).
+- **[TIMING_DRIFT]** No spoken speech detected inside window (0.00s - 0.08s).
+  - *Timestamp:* `0:00:00 --> 0:00:00.080000`
+  - *Expected Subtitle:* "throw tantrums"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:15.320000 --> 0:00:17.600000`
+  - *Expected Subtitle:* "but it is like a breakup,"
+  - *Spoken Audio:* "but it is like a break up Right?"
+- **[TIMING_DRIFT]** No spoken speech detected inside window (17.60s - 18.08s).
+  - *Timestamp:* `0:00:17.600000 --> 0:00:18.080000`
+  - *Expected Subtitle:* "right?"
+  - *Spoken Audio:* "[SILENCE / DRIFT]"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:23 --> 0:00:24.680000`
+  - *Expected Subtitle:* "for all evil sab chizo ka"
+  - *Spoken Audio:* "for all evil sub -cheezaun"
+- **[TEXT_MISMATCH]** Segment text discrepancy (75.0% mismatch).
+  - *Timestamp:* `0:00:24.680000 --> 0:00:27.240000`
+  - *Expected Subtitle:* "illaz ye hai, woh ab suddenly nahi hai"
+  - *Spoken Audio:* "ka illaagye hai Wap saki ki nahi hai So"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:32.120000 --> 0:00:33.320000`
+  - *Expected Subtitle:* "certain babies."
+  - *Spoken Audio:* "Certain babies We"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:00:33.320000 --> 0:00:35.760000`
+  - *Expected Subtitle:* "We say, mummy ko tum chup jao"
+  - *Spoken Audio:* "say Mameko tum chub jao tum"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:00:35.760000 --> 0:00:36.920000`
+  - *Expected Subtitle:* "tum aaj dusre kamre mein"
+  - *Spoken Audio:* "aaj zushre kamre mein"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:36.920000 --> 0:00:37.560000`
+  - *Expected Subtitle:* "So jao"
+  - *Spoken Audio:* "sao jao tum"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:39.600000 --> 0:00:41.640000`
+  - *Expected Subtitle:* "tum kuch kadva laga lo"
+  - *Spoken Audio:* "kuch ka dva lagalo Jai"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:41.640000 --> 0:00:43`
+  - *Expected Subtitle:* "jaise baby suckle karne lage toh"
+  - *Spoken Audio:* "si baby suckle ka delagye"
+- **[TEXT_MISMATCH]** Segment text discrepancy (60.0% mismatch).
+  - *Timestamp:* `0:00:43 --> 0:00:44.040000`
+  - *Expected Subtitle:* "tum jor se chikne lago"
+  - *Spoken Audio:* "tum zor se chikle hago"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:00:44.040000 --> 0:00:46.400000`
+  - *Expected Subtitle:* "I'm just imagine hum kya kar rahe hai"
+  - *Spoken Audio:* "I am just imagine what we are doing We"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:00:50.560000 --> 0:00:52.920000`
+  - *Expected Subtitle:* "Or maybe as parents"
+  - *Spoken Audio:* "Maybe as parents we"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:52.920000 --> 0:00:54.320000`
+  - *Expected Subtitle:* "humko bhi bahot acha nhi lagh raha"
+  - *Spoken Audio:* "are not very good at"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:00:54.320000 --> 0:00:55.800000`
+  - *Expected Subtitle:* "woh karte hue"
+  - *Spoken Audio:* "it But"
+- **[TEXT_MISMATCH]** Segment text discrepancy (57.1% mismatch).
+  - *Timestamp:* `0:00:59.040000 --> 0:01:00.760000`
+  - *Expected Subtitle:* "And we see it enough on Instagram."
+  - *Spoken Audio:* "And we see it in a fun instagram But"
+- **[TEXT_MISMATCH]** Segment text discrepancy (77.8% mismatch).
+  - *Timestamp:* `0:01:05.920000 --> 0:01:08.720000`
+  - *Expected Subtitle:* "chahe woh emotional needs chahe woh physical needs hai"
+  - *Spoken Audio:* "Jai wo emotional nainse Jai wo physical nainse"
+- **[TEXT_MISMATCH]** Segment text discrepancy (66.7% mismatch).
+  - *Timestamp:* `0:01:13 --> 0:01:14.160000`
+  - *Expected Subtitle:* "nahi beta abhi"
+  - *Spoken Audio:* "new bitta Abhi"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:17.440000 --> 0:01:18.840000`
+  - *Expected Subtitle:* "own it tell it"
+  - *Spoken Audio:* "On it Tell it ki"
+- **[TEXT_MISMATCH]** Segment text discrepancy (71.4% mismatch).
+  - *Timestamp:* `0:01:18.840000 --> 0:01:20.080000`
+  - *Expected Subtitle:* "ki aab mere se nhi ho raha"
+  - *Spoken Audio:* "ki ab mir se nahi hora"
+- **[TEXT_MISMATCH]** Segment text discrepancy (50.0% mismatch).
+  - *Timestamp:* `0:01:22.360000 --> 0:01:23.560000`
+  - *Expected Subtitle:* "But again,"
+  - *Spoken Audio:* "But again The"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:25.480000 --> 0:01:26.320000`
+  - *Expected Subtitle:* "jaise aap normal"
+  - *Spoken Audio:* "Like you talk"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:26.320000 --> 0:01:27.600000`
+  - *Expected Subtitle:* "baby se baat karte hoon"
+  - *Spoken Audio:* "to your normal baby Be"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:27.600000 --> 0:01:28.520000`
+  - *Expected Subtitle:* "be prepared ki"
+  - *Spoken Audio:* "prepared that you"
+- **[TEXT_MISMATCH]** Segment text discrepancy (171.4% mismatch).
+  - *Timestamp:* `0:01:28.520000 --> 0:01:31.040000`
+  - *Expected Subtitle:* "ratbhar usko lekar ghomna pad sakta hai"
+  - *Spoken Audio:* "are at night And you have to take her to the room"
+- **[TEXT_MISMATCH]** Segment text discrepancy (150.0% mismatch).
+  - *Timestamp:* `0:01:31.040000 --> 0:01:32.760000`
+  - *Expected Subtitle:* "because thoda sa soyenge"
+  - *Spoken Audio:* "Because You will be sleeping a little"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:32.760000 --> 0:01:34.200000`
+  - *Expected Subtitle:* "fir unki neend kholegi fir again"
+  - *Spoken Audio:* "Then she will take her sleep again"
+- **[TEXT_MISMATCH]** Segment text discrepancy (40.0% mismatch).
+  - *Timestamp:* `0:01:34.200000 --> 0:01:35.360000`
+  - *Expected Subtitle:* "they would ask for milk."
+  - *Spoken Audio:* "They would ask for me So"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:01:38.280000 --> 0:01:40.680000`
+  - *Expected Subtitle:* "But mostly jaha par aisa hai"
+  - *Spoken Audio:* "mostly Where there is a way Where"
+- **[TEXT_MISMATCH]** Segment text discrepancy (70.0% mismatch).
+  - *Timestamp:* `0:01:40.680000 --> 0:01:42.920000`
+  - *Expected Subtitle:* "jaha par family bhi apke saath same page pe hai"
+  - *Spoken Audio:* "the family is at the same page"
+- **[TEXT_MISMATCH]** Segment text discrepancy (55.6% mismatch).
+  - *Timestamp:* `0:01:42.920000 --> 0:01:45.560000`
+  - *Expected Subtitle:* "For example baby ro raha hai, cheek raha hai"
+  - *Spoken Audio:* "For example, baby crying Cheek crying So"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:45.560000 --> 0:01:48.120000`
+  - *Expected Subtitle:* "So aapne pehle se sabko batake rakha hua hai,"
+  - *Spoken Audio:* "you have first told everyone That"
+- **[TEXT_MISMATCH]** Segment text discrepancy (125.0% mismatch).
+  - *Timestamp:* `0:01:48.120000 --> 0:01:49.240000`
+  - *Expected Subtitle:* "ki aisa honewala hai."
+  - *Spoken Audio:* "it is going to happen"
+- **[TEXT_MISMATCH]** Segment text discrepancy (85.7% mismatch).
+  - *Timestamp:* `0:01:50.800000 --> 0:01:52.600000`
+  - *Expected Subtitle:* "and repeatedly asking  kyu rula rahe ho"
+  - *Spoken Audio:* "and repeated Why are you crying?"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:01:52.600000 --> 0:01:53.320000`
+  - *Expected Subtitle:* "kyu rula rahe ho"
+  - *Spoken Audio:* "Why are you crying?"
+- **[TEXT_MISMATCH]** Segment text discrepancy (62.5% mismatch).
+  - *Timestamp:* `0:01:53.320000 --> 0:01:55.200000`
+  - *Expected Subtitle:* "Because they know aap kya kar rahe ho."
+  - *Spoken Audio:* "Because they know what you are doing"
+- **[TEXT_MISMATCH]** Segment text discrepancy (42.9% mismatch).
+  - *Timestamp:* `0:02:01.920000 --> 0:02:04.040000`
+  - *Expected Subtitle:* "or whosoever is helping you with this."
+  - *Spoken Audio:* "who server is helping you with this Because"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:02:04.040000 --> 0:02:05.880000`
+  - *Expected Subtitle:* "Kyunki jab aap puri raat tehel rahe ho"
+  - *Spoken Audio:* "when you are crying all night"
+- **[TEXT_MISMATCH]** Segment text discrepancy (111.1% mismatch).
+  - *Timestamp:* `0:02:05.880000 --> 0:02:08.800000`
+  - *Expected Subtitle:* "aap thak rahe ho. Aapko gussa aanewala hai thik"
+  - *Spoken Audio:* "You are tired You are going to get angry Okay?"
+- **[TEXT_MISMATCH]** Segment text discrepancy (120.0% mismatch).
+  - *Timestamp:* `0:02:08.800000 --> 0:02:10.360000`
+  - *Expected Subtitle:* "So kahi baar wo gussa"
+  - *Spoken Audio:* "So many times she gets angry All"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:02:10.360000 --> 0:02:12.120000`
+  - *Expected Subtitle:* "subconsciously baby pe nikal jata hai."
+  - *Spoken Audio:* "the time she gets unconscious"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:02:12.120000 --> 0:02:14.360000`
+  - *Expected Subtitle:* "Toh jab aapko lage ki aapka hone laga,"
+  - *Spoken Audio:* "So when you started to cry"
+- **[TEXT_MISMATCH]** Segment text discrepancy (80.0% mismatch).
+  - *Timestamp:* `0:02:14.360000 --> 0:02:15.960000`
+  - *Expected Subtitle:* "apne wo code-word bola"
+  - *Spoken Audio:* "You said that code word And"
+- **[TEXT_MISMATCH]** Segment text discrepancy (116.7% mismatch).
+  - *Timestamp:* `0:02:15.960000 --> 0:02:18.320000`
+  - *Expected Subtitle:* "aur aapke partner ne casually bilkul"
+  - *Spoken Audio:* "your partner said That it is not"
+- **[TEXT_MISMATCH]** Segment text discrepancy (100.0% mismatch).
+  - *Timestamp:* `0:02:18.320000 --> 0:02:18.900000`
+  - *Expected Subtitle:* "comfortably casually"
+  - *Spoken Audio:* "comfortable"
+
+### `ep13.mov` (Portrait) — Status: FAIL
+- **[INVALID_SRT]** Subtitle file is missing.
+
+### `So_me_20 August 2026.mp4` (Portrait) — Status: FAIL
+- **[INVALID_SRT]** Subtitle file is missing.
 
