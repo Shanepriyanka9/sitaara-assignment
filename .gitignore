@@ -241,3 +241,18 @@ hf_cache/
 # Google Cloud service account keys
 credentials.json
 *credentials*.json
+
+# Ignore local reviewer test video directories
+real_samples/
+part-a/video-qc/real_samples/
+
+# Ignore raw media containers to prevent accidental 1GB commits
+*.mp4
+*.mov
+*.MOV
+*.mkv
+*.webm
+
+# Temporary QC run outputs
+part-a/video-qc/output_baseline*/
+part-a/video-qc/output_iteration*/

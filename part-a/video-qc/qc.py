@@ -1,4 +1,3 @@
-
 """
 Video & Subtitle Automated QC Skill
 ===================================
@@ -31,6 +30,7 @@ WHISPER_MODEL = "base"           # 'base' model for accurate word timestamps
 MAX_SEGMENT_WER_PASS = 0.35      # 35% accommodates natural speech variations
 MAX_TIMING_DRIFT_SECONDS = 1.5   # >1.5s flags timing drift
 MIN_SRT_DURATION_SEC = 0.3       # Subtitles shorter than 300ms flag warning
+SUPPORTED_EXTS = {".mp4", ".mov", ".mkv", ".webm"}
 
 
 def normalize_text(text: str) -> str:
@@ -39,6 +39,45 @@ def normalize_text(text: str) -> str:
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+
+def find_subtitle_file(video_path: Path, search_root: Path) -> Optional[Path]:
+    """
+    Locate corresponding .srt file:
+    1. Directly beside the video file (e.g. video.srt)
+    2. In any sibling/parent 'Subtitles' or 'subtitles' directory matching stem
+    3. Anywhere under the target root folder matching the stem
+    """
+    # 1. Direct sidecar check
+    sidecar = video_path.with_suffix(".srt")
+    if sidecar.exists():
+        return sidecar
+
+    stem_lower = video_path.stem.lower()
+
+    # 2. Check sibling or root Subtitles/ folders
+    possible_sub_dirs = [
+        video_path.parent / "Subtitles",
+        video_path.parent / "subtitles",
+        video_path.parent.parent / "Subtitles",
+        video_path.parent.parent / "subtitles",
+        search_root / "Subtitles",
+        search_root / "subtitles",
+    ]
+
+    for sub_dir in possible_sub_dirs:
+        if sub_dir.exists() and sub_dir.is_dir():
+            for srt_file in sub_dir.iterdir():
+                if srt_file.is_file() and srt_file.suffix.lower() == ".srt":
+                    if srt_file.stem.lower() == stem_lower:
+                        return srt_file
+
+    # 3. Recursive fallback search in entire directory tree
+    for srt_file in search_root.rglob("*.srt"):
+        if srt_file.is_file() and srt_file.stem.lower() == stem_lower:
+            return srt_file
+
+    return None
 
 
 def probe_media(video_path: Path) -> Tuple[bool, Optional[dict], str]:
@@ -74,11 +113,11 @@ def probe_media(video_path: Path) -> Tuple[bool, Optional[dict], str]:
 
 
 def parse_and_validate_srt(
-    srt_path: Path, video_duration: Optional[float] = None
+    srt_path: Optional[Path], video_duration: Optional[float] = None
 ) -> Tuple[List[srt.Subtitle], List[str]]:
     """Parse SRT file and flag structural/timestamp issues."""
     issues = []
-    if not srt_path.exists():
+    if srt_path is None or not srt_path.exists():
         return [], ["Subtitle file is missing."]
 
     if srt_path.stat().st_size == 0:
@@ -148,7 +187,6 @@ def run_segment_qc(
         sub_end = sub.end.total_seconds()
         sub_text = normalize_text(sub.content)
 
-        # Word belongs to this subtitle if midpoint falls within the boundary
         words_in_window = [
             w for w in all_words
             if sub_start <= ((w.start + w.end) / 2.0) <= sub_end
@@ -185,15 +223,16 @@ def run_segment_qc(
 
 
 def process_video_qc(
-    model: WhisperModel, video_path: Path, samples_dir: Path
+    model: WhisperModel, video_path: Path, root_search_dir: Path
 ) -> dict:
-    print(f"\n--> Inspecting: {video_path.name}")
-    srt_path = video_path.with_suffix(".srt")
+    print(f"\n--> Inspecting: {video_path.name} ({video_path.parent.name})")
+    srt_path = find_subtitle_file(video_path, root_search_dir)
 
     is_valid, probe_data, probe_msg = probe_media(video_path)
     if not is_valid:
         return {
             "file": video_path.name,
+            "folder": video_path.parent.name,
             "status": "FAIL",
             "reason": probe_msg,
             "defects": [{"type": "FILE_CORRUPT", "detail": probe_msg}],
@@ -208,6 +247,7 @@ def process_video_qc(
     if srt_structural_issues and not subtitles:
         return {
             "file": video_path.name,
+            "folder": video_path.parent.name,
             "status": "FAIL",
             "reason": srt_structural_issues[0],
             "defects": [
@@ -225,6 +265,7 @@ def process_video_qc(
     except Exception as e:
         return {
             "file": video_path.name,
+            "folder": video_path.parent.name,
             "status": "FAIL",
             "reason": f"Whisper transcription failed: {str(e)}",
             "defects": [{"type": "TRANSCRIPTION_ERROR", "detail": str(e)}],
@@ -252,7 +293,8 @@ def process_video_qc(
 
     return {
         "file": video_path.name,
-        "srt_file": srt_path.name if srt_path.exists() else None,
+        "folder": video_path.parent.name,
+        "srt_file": srt_path.name if srt_path else None,
         "status": status,
         "metrics": {
             "global_wer": round(global_wer, 4),
@@ -277,8 +319,8 @@ def generate_reports(results: List[dict], output_dir: Path):
     md += f"**Summary:** Total: {len(results)} | ✅ PASS: {pass_count} | ⚠️ NEEDS REVIEW: {review_count} | ❌ FAIL: {fail_count}\n\n"
 
     md += "## Overview\n\n"
-    md += "| File | Status | Global WER | Defects Found |\n"
-    md += "| :--- | :---: | :---: | :---: |\n"
+    md += "| File | Folder | Status | Global WER | Defects Found |\n"
+    md += "| :--- | :--- | :---: | :---: | :---: |\n"
     for r in results:
         badge = (
             "✅ PASS"
@@ -292,7 +334,7 @@ def generate_reports(results: List[dict], output_dir: Path):
             if "global_wer" in r.get("metrics", {})
             else "N/A"
         )
-        md += f"| `{r['file']}` | {badge} | {wer_str} | {len(r['defects'])} |\n"
+        md += f"| `{r['file']}` | `{r.get('folder', 'root')}` | {badge} | {wer_str} | {len(r['defects'])} |\n"
 
     md += "\n## Actionable Defect Breakdown\n\n"
     defective_reports = [r for r in results if r["defects"]]
@@ -303,7 +345,7 @@ def generate_reports(results: List[dict], output_dir: Path):
         )
     else:
         for r in defective_reports:
-            md += f"### `{r['file']}` ({r['status']})\n"
+            md += f"### `{r['file']}` ({r.get('folder', 'root')}) — Status: {r['status']}\n"
             for d in r["defects"]:
                 md += f"- **[{d['type']}]** {d['detail']}\n"
                 if "subtitle_text" in d and "spoken_text" in d:
@@ -321,9 +363,9 @@ def main():
         description="Automated Video & Subtitle QC Skill"
     )
     parser.add_argument(
-    "samples_dir",
-    type=str,
-    help="Directory containing video files (.mp4, .mov, .mkv, .webm) and .srt files",
+        "samples_dir",
+        type=str,
+        help="Directory containing video files and subtitle files",
     )
     parser.add_argument(
         "--output", type=str, default="./output", help="Directory to save reports"
@@ -337,14 +379,18 @@ def main():
     print(f"Loading Whisper model '{WHISPER_MODEL}'...")
     model = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
 
-    SUPPORTED_EXTS = {".mp4", ".mov", ".mkv", ".webm"}
+    # Find videos at top-level and recursively in subdirectories
     video_files = [
-        f for f in samples_dir.iterdir()
-        if f.is_file() and f.suffix.lower() in SUPPORTED_EXTS
+        f for f in samples_dir.rglob("*")
+        if f.is_file() and f.suffix.lower() in SUPPORTED_EXTS and not f.name.startswith("._")
     ]
+
     if not video_files:
         print(f"No supported video files ({', '.join(sorted(SUPPORTED_EXTS))}) found in {samples_dir.resolve()}")
         return
+
+    # Sort for deterministic processing order
+    video_files.sort(key=lambda p: (p.parent.name, p.name))
 
     results = [
         process_video_qc(model, video, samples_dir) for video in video_files
@@ -355,7 +401,7 @@ def main():
     print("QC SUMMARY")
     print("================================")
     for r in results:
-        print(f"{r['file']:<20} -> {r['status']}")
+        print(f"{r.get('folder', '')}/{r['file']:<20} -> {r['status']}")
     print(f"\nDetailed actionable reports written to: {output_dir.resolve()}")
 
 
